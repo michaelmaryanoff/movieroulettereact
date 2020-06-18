@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT } from '../acitons/types.js';
+import { SIGN_IN, SIGN_OUT } from '../actions/types.js';
 
 // This will most likey change as we learn more about the TMDB auth flow
 export default (state = {}, action) => {
