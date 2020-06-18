@@ -10,5 +10,4 @@ export const SELECT_YEAR_TO = 'SELECT_YEAR_TO';
 export const SELECT_RATING = 'SELECT_RATING';
 export const SUBMIT_SPIN = 'SUBMIT_SPIN';
 
-// We will use this when we have selected a movie from a spin
-export const CHOSEN_MOVIE = 'CHOSEN_MOVIE';
+export const SELECT_RANDOM_MOVIE = 'SELECT_RANDOM_MOVIE';
