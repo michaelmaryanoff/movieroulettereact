@@ -60,7 +60,7 @@ class LoginForm extends React.Component {
                 <div className="ui left icon input">
                   <i className="lock icon" />
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     value={this.state.password}
                     placeholder="Password"
@@ -82,5 +82,4 @@ class LoginForm extends React.Component {
   }
 }
 
-// export default connect(reduxForm(mapStateToProps, { form: 'loginForm' })(LoginForm));
 export default LoginForm;
