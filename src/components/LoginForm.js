@@ -18,28 +18,30 @@ class LoginForm extends React.Component {
 
   renderLoginForm() {
     return (
-      <div className="column">
-        <h2 className="ui image header">
-          <img src={reelLogo} className="image" alt="logo" />
-          <div className="content">Log in to your TMDB Account</div>
-        </h2>
-        <form className="ui large form" onSubmit={this.handleSubmit}>
-          <div className="ui stacked segment">
-            <div className="field">
-              <div className="ui left icon input">
-                <i className="user icon" />
-                <input type="text" name="login" placeholder="Username" />
+      <div className="three column row">
+        <div className="column">
+          <h2 className="ui teal image header">
+            <img src={reelLogo} className="image" alt="logo" />
+            <div className="content">Log in to your TMDB Account</div>
+          </h2>
+          <form className="ui large form" onSubmit={this.handleSubmit}>
+            <div className="ui stacked segment">
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="user icon" />
+                  <input type="text" name="login" placeholder="Username" />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <div className="ui left icon input">
-                <i className="lock icon" />
-                <input type="text" name="login" placeholder="Password" />
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="lock icon" />
+                  <input type="text" name="login" placeholder="Password" />
+                </div>
               </div>
+              <button className="ui fuild large teal submit button">Login</button>
             </div>
-            <button className="ui fuild large submit button">Login</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }
