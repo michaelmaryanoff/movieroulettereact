@@ -1,10 +1,5 @@
 import React from 'react';
 import reelLogo from '../../src/images/reel-logo.png';
-import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-
-import InputField from './InputField';
 
 class LoginForm extends React.Component {
   renderField = () => {
@@ -18,7 +13,7 @@ class LoginForm extends React.Component {
 
   renderLoginForm() {
     return (
-      <div className="three column row">
+      <div className="two column row">
         <div className="column">
           <h2 className="ui teal image header">
             <img src={reelLogo} className="image" alt="logo" />
@@ -46,17 +41,9 @@ class LoginForm extends React.Component {
     );
   }
   render() {
-    return (
-      <div className="ui container">
-        <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
-      </div>
-    );
+    return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
   }
 }
-
-const mapStateToProps = state => {
-  return state;
-};
 
 // export default connect(reduxForm(mapStateToProps, { form: 'loginForm' })(LoginForm));
 export default LoginForm;
