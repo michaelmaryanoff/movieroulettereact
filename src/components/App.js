@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import { connect } from 'react-redux';
 import LoginPage from './LoginPage';
 import SpinPage from './SpinPage';
 import WatchList from './WatchList';
