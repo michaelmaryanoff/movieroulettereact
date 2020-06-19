@@ -11,6 +11,11 @@ class LoginForm extends React.Component {
     return <div>email</div>;
   };
 
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('change');
+  }
+
   renderLoginForm() {
     return (
       <div className="column">
@@ -18,18 +23,20 @@ class LoginForm extends React.Component {
           <img src={reelLogo} className="image" alt="logo" />
           <div className="content">Log in to your TMDB Account</div>
         </h2>
-        <form className="ui large form">
+        <form className="ui large form" onSubmit={this.handleSubmit}>
           <div className="ui stacked segment">
-            <Field
-              name="login"
-              className="field"
-              component={component => <InputField fieldType="username" />}
-            />
-            <Field
-              name="login"
-              className="field"
-              component={component => <InputField fieldType="password" />}
-            />
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="user icon" />
+                <input type="text" name="login" placeholder="Username" />
+              </div>
+            </div>
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="lock icon" />
+                <input type="text" name="login" placeholder="Password" />
+              </div>
+            </div>
             <button className="ui fuild large submit button">Login</button>
           </div>
         </form>
@@ -50,6 +57,4 @@ const mapStateToProps = state => {
 };
 
 // export default connect(reduxForm(mapStateToProps, { form: 'loginForm' })(LoginForm));
-const formWrapped = reduxForm({ form: 'loginForm' })(LoginForm);
-
-export default connect(mapStateToProps)(withRouter(formWrapped));
+export default LoginForm;
