@@ -7,19 +7,16 @@ class LoginForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      formErrors: { email: '', password: '' },
-      usernameValid: false,
-      passwordValid: false,
-      formValdi: false
+      hasSubmitted: false
     };
   }
 
   renderError = fieldName => {
-    if (fieldName === 'username' && !this.state.username) {
+    if (fieldName === 'username' && !this.state.username && this.state.hasSubmitted) {
       return <div className="ui error message">Please enter a username</div>;
     }
 
-    if (fieldName === 'password' ) {
+    if (fieldName === 'password' && !this.state.password && this.state.hasSubmitted) {
       return <div className="ui error message">Please enter a password</div>;
     }
   };
@@ -28,14 +25,11 @@ class LoginForm extends React.Component {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    if (!this.state.username || !this.state.password) {
-      
-    }
+    this.setState({ hasSubmitted: true });
   };
 
   renderLoginForm() {
@@ -59,8 +53,9 @@ class LoginForm extends React.Component {
                     onChange={event => this.handleUserInput(event)}
                   />
                 </div>
+                <div>{this.renderError('username')}</div>
               </div>
-              <div>{this.renderError('username')}</div>
+
               <div className="field">
                 <div className="ui left icon input">
                   <i className="lock icon" />
@@ -72,9 +67,10 @@ class LoginForm extends React.Component {
                     onChange={event => this.handleUserInput(event)}
                   />
                 </div>
+                <div>{this.renderError('password')}</div>
               </div>
-              <div>{this.renderError('password')}</div>
-              <button className="ui fuild large teal submit button">Login</button>
+
+              <button className="ui fluid large teal submit button">Login</button>
             </div>
           </form>
         </div>
