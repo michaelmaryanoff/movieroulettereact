@@ -33,7 +33,18 @@ export const signIn = ({ username, password }) => async dispatch => {
     { params: { api_key: apiKey } }
   );
 
-  console.log('response', response);
+  const sessionId = response.data.session_id;
+
+  const accountDetails = await tmdbClient.get('/account', {
+    params: { api_key: apiKey, session_id: sessionId }
+  });
+
+  console.log('account details', accountDetails.id);
+
+  const watchlist = await tmdbClient.get(`/account/${accountDetails.id}/watchlist/movies`, {
+    params: { api_key: apiKey, session_id: sessionId }
+  });
+  console.log('watchlist', watchlist);
 
   return {
     type: SIGN_IN,
