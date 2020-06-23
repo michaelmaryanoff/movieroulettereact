@@ -10,7 +10,8 @@ import {
 } from './types';
 
 export const signIn = params => {
-  // TODO These params will need to change as we learn more about the auth process in the TMDB api
+  console.log(params);
+  
   return {
     type: SIGN_IN,
     payload: params

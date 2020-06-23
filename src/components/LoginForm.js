@@ -1,12 +1,16 @@
 import React from 'react';
 import reelLogo from '../../src/images/reel-logo.png';
+import { signIn } from '../actions';
+import { connect } from 'react-redux';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      userInfo: {
+        username: '',
+        password: ''
+      },
       hasSubmitted: false
     };
   }
@@ -24,12 +28,13 @@ class LoginForm extends React.Component {
   handleUserInput = event => {
     const name = event.target.name;
     const value = event.target.value;
-    this.setState({ [name]: value });
+    this.setState({ userInfo: { [name]: value } });
   };
 
   handleSubmit = event => {
     event.preventDefault();
     this.setState({ hasSubmitted: true });
+    this.props.signIn(this.state.userInfo.username, this.state.userInfo.password);
   };
 
   renderLoginForm() {
@@ -48,7 +53,7 @@ class LoginForm extends React.Component {
                   <input
                     type="text"
                     name="username"
-                    value={this.state.email}
+                    value={this.state.userInfo.username || ''}
                     placeholder="Username"
                     onChange={event => this.handleUserInput(event)}
                   />
@@ -62,7 +67,7 @@ class LoginForm extends React.Component {
                   <input
                     type="password"
                     name="password"
-                    value={this.state.password}
+                    value={this.state.userInfo.password || ''}
                     placeholder="Password"
                     onChange={event => this.handleUserInput(event)}
                   />
@@ -78,8 +83,15 @@ class LoginForm extends React.Component {
     );
   }
   render() {
+
     return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
   }
 }
 
-export default LoginForm;
+const mapStateToProps = state => {
+  return {
+    dummy: 0
+  };
+};
+
+export default connect(mapStateToProps, { signIn })(LoginForm);
