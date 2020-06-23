@@ -4,17 +4,20 @@ import {
   SELECT_GENRES,
   SELECT_YEAR_FROM,
   SELECT_YEAR_TO,
-  SELECT_RATING,
-  SUBMIT_SPIN,
-  SELECT_RANDOM_MOVIE
+  SELECT_RATING
+  // SUBMIT_SPIN,
+  // SELECT_RANDOM_MOVIE
 } from './types';
+import tmdbClient, { apiKey } from '../api/tmdbClient';
+import axios from 'axios';
 
-export const signIn = params => {
-  console.log('submit params', params);
+export const signIn = ({ username, password }) => async dispatch => {
+  const token = await tmdbClient.get('/authentication/token/new', { params: { api_key: apiKey } });
+  console.log('token', token);
 
   return {
     type: SIGN_IN,
-    payload: params
+    payload: token
   };
 };
 
