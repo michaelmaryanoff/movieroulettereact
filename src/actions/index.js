@@ -20,12 +20,20 @@ export const signIn = ({ username, password }) => async dispatch => {
   };
   console.log('params are', params);
 
-  const response = await tmdbClient.post(
+  const authenticated = await tmdbClient.post(
     '/authentication/token/validate_with_login',
     { username: username, password: password, request_token: token.data.request_token },
     { params: { api_key: apiKey } }
   );
-  console.log(response);
+
+  console.log('authenticate', authenticated.data.request_token);
+  const response = await tmdbClient.post(
+    '/authentication/session/new',
+    { request_token: authenticated.data.request_token },
+    { params: { api_key: apiKey } }
+  );
+
+  console.log('response', response);
 
   return {
     type: SIGN_IN,
