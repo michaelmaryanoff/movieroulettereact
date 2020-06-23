@@ -13,10 +13,17 @@ import axios from 'axios';
 
 export const signIn = ({ username, password }) => async dispatch => {
   const token = await tmdbClient.get('/authentication/token/new', { params: { api_key: apiKey } });
-  const response = await await tmdbClient.get(
-    '/authentication/token/new',
-    { params: { api_key: apiKey } },
-    { data: { username, password, request_token: token } }
+  let params = {
+    username: `${username}`,
+    password: `${password}`,
+    request_token: `${token.data.request_token}`
+  };
+  console.log('params are', params);
+
+  const response = await tmdbClient.post(
+    '/authentication/token/validate_with_login',
+    { username: username, password: password, request_token: token.data.request_token },
+    { params: { api_key: apiKey } }
   );
   console.log(response);
 
