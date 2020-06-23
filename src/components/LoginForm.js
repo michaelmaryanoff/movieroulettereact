@@ -33,10 +33,10 @@ class LoginForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    this.setState({ hasSubmitted: true });
     if (!this.state.username || !this.state.password) {
       return;
     }
-    this.setState({ hasSubmitted: true });
 
     let params = { username: this.state.username, password: this.state.password };
     this.props.signIn(params);

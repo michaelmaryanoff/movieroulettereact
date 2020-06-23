@@ -13,7 +13,12 @@ import axios from 'axios';
 
 export const signIn = ({ username, password }) => async dispatch => {
   const token = await tmdbClient.get('/authentication/token/new', { params: { api_key: apiKey } });
-  console.log('token', token);
+  const response = await await tmdbClient.get(
+    '/authentication/token/new',
+    { params: { api_key: apiKey } },
+    { data: { username, password, request_token: token } }
+  );
+  console.log(response);
 
   return {
     type: SIGN_IN,
