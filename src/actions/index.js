@@ -10,8 +10,8 @@ import {
 } from './types';
 
 export const signIn = params => {
-  console.log(params);
-  
+  console.log('submit params', params);
+
   return {
     type: SIGN_IN,
     payload: params

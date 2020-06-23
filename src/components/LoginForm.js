@@ -7,10 +7,8 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userInfo: {
-        username: '',
-        password: ''
-      },
+      username: '',
+      password: '',
       hasSubmitted: false
     };
   }
@@ -26,15 +24,22 @@ class LoginForm extends React.Component {
   };
 
   handleUserInput = event => {
+    // You might want to try using an if statement here so we don't reset the state every time
     const name = event.target.name;
     const value = event.target.value;
-    this.setState({ userInfo: { [name]: value } });
+    this.setState({ [name]: value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
+
+    if (!this.state.username || !this.state.password) {
+      return;
+    }
     this.setState({ hasSubmitted: true });
-    this.props.signIn(this.state.userInfo.username, this.state.userInfo.password);
+
+    let params = { username: this.state.username, password: this.state.password };
+    this.props.signIn(params);
   };
 
   renderLoginForm() {
@@ -53,9 +58,9 @@ class LoginForm extends React.Component {
                   <input
                     type="text"
                     name="username"
-                    value={this.state.userInfo.username || ''}
                     placeholder="Username"
-                    onChange={event => this.handleUserInput(event)}
+                    onChange={this.handleUserInput}
+                    value={this.state.username}
                   />
                 </div>
                 <div>{this.renderError('username')}</div>
@@ -67,9 +72,9 @@ class LoginForm extends React.Component {
                   <input
                     type="password"
                     name="password"
-                    value={this.state.userInfo.password || ''}
                     placeholder="Password"
-                    onChange={event => this.handleUserInput(event)}
+                    onChange={this.handleUserInput}
+                    value={this.state.password}
                   />
                 </div>
                 <div>{this.renderError('password')}</div>
@@ -83,7 +88,6 @@ class LoginForm extends React.Component {
     );
   }
   render() {
-
     return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
   }
 }
