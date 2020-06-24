@@ -10,7 +10,6 @@ import {
   // SELECT_RANDOM_MOVIE
 } from './types';
 import tmdbClient, { apiKey } from '../api/tmdbClient';
-
 export const signIn = ({ username, password }) => async dispatch => {
   // Holds our api key
   const apiKeyParams = { params: { api_key: apiKey } };
@@ -43,14 +42,9 @@ export const signIn = ({ username, password }) => async dispatch => {
   // Creates a sessionDetails variable that has all the releveant info we need for future requests
   const sessionDetails = {
     sessionId,
-    accountDetails: accountDetails.data
+    accountDetails: accountDetails.data,
+    isLoggedIn: true
   };
-
-  // TODO: Gets the watchlist of the authorized user, but should be broken off into it's own method
-  // const watchlist = await tmdbClient.get(`/account/${accountDetails.id}/watchlist/movies`, {
-  //   params: { api_key: apiKey, session_id: sessionId }
-  // });
-  // console.log('watchlist', watchlist);
 
   dispatch({
     type: SIGN_IN,
@@ -58,18 +52,14 @@ export const signIn = ({ username, password }) => async dispatch => {
   });
 };
 
-// TODO: We need a proper getwatchlist function that maps to our props
 export const getWatchList = () => async (dispatch, getState) => {
   const state = getState();
-  console.log('state in getwatchlist', state);
   const { id } = state.session.accountDetails;
   const { sessionId } = state.session;
 
   const { data } = await tmdbClient.get(`/account/${id}/watchlist/movies`, {
     params: { api_key: apiKey, session_id: sessionId }
   });
-  console.log('watchlist', data);
-
   dispatch({ type: GET_WATCHLIST, payload: data });
 };
 

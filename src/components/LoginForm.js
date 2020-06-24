@@ -2,13 +2,15 @@ import React from 'react';
 import reelLogo from '../../src/images/reel-logo.png';
 import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
+import { tempusername, temppassword } from '../testinfo/testinfo';
+// import history from '../history';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: tempusername,
+      password: temppassword,
       hasSubmitted: false
     };
   }
@@ -43,8 +45,6 @@ class LoginForm extends React.Component {
   };
 
   renderLoginForm() {
-    console.log('props', this.props);
-
     return (
       <div className="two column row">
         <div className="column">
@@ -95,7 +95,6 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state);
   return {
     sessionDetails: state.session
   };
