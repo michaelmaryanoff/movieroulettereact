@@ -9,38 +9,43 @@ import {
   // SELECT_RANDOM_MOVIE
 } from './types';
 import tmdbClient, { apiKey } from '../api/tmdbClient';
-import axios from 'axios';
 
 export const signIn = ({ username, password }) => async dispatch => {
-  const token = await tmdbClient.get('/authentication/token/new', { params: { api_key: apiKey } });
-  let params = {
-    username: `${username}`,
-    password: `${password}`,
-    request_token: `${token.data.request_token}`
-  };
-  console.log('params are', params);
+  // Holds our api key
+  const apiKeyParams = { params: { api_key: apiKey } };
 
+  // Creates an authorization token
+  const token = await tmdbClient.get('/authentication/token/new', apiKeyParams);
+  const requestToken = token.data.request_token;
+
+  // Authorizes our token
   const authenticated = await tmdbClient.post(
     '/authentication/token/validate_with_login',
-    { username: username, password: password, request_token: token.data.request_token },
-    { params: { api_key: apiKey } }
+    { username, password, request_token: requestToken },
+    apiKeyParams
   );
+  const authenticatedToken = authenticated.data.request_token;
 
-  console.log('authenticate', authenticated.data.request_token);
+  // Creates a new session and gets us a session_id
   const response = await tmdbClient.post(
     '/authentication/session/new',
-    { request_token: authenticated.data.request_token },
-    { params: { api_key: apiKey } }
+    { request_token: authenticatedToken },
+    apiKeyParams
   );
-
   const sessionId = response.data.session_id;
 
+  // Gets details about the authorized user
   const accountDetails = await tmdbClient.get('/account', {
     params: { api_key: apiKey, session_id: sessionId }
   });
 
-  console.log('account details', accountDetails.id);
+  // Creates a sessionDetails variable that has all the releveant info we need for future requests
+  const sessionDetails = {
+    sessionId,
+    accountDetails: accountDetails.data
+  };
 
+  // TODO: Gets the watchlist of the authorized user, but should be broken off into it's own method
   const watchlist = await tmdbClient.get(`/account/${accountDetails.id}/watchlist/movies`, {
     params: { api_key: apiKey, session_id: sessionId }
   });
@@ -48,7 +53,7 @@ export const signIn = ({ username, password }) => async dispatch => {
 
   return {
     type: SIGN_IN,
-    payload: token
+    payload: sessionDetails
   };
 };
 
