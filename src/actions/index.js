@@ -4,7 +4,8 @@ import {
   SELECT_GENRES,
   SELECT_YEAR_FROM,
   SELECT_YEAR_TO,
-  SELECT_RATING
+  SELECT_RATING,
+  GET_WATCHLIST
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -55,6 +56,25 @@ export const signIn = ({ username, password }) => async dispatch => {
     type: SIGN_IN,
     payload: sessionDetails
   });
+};
+
+// TODO: We need a proper getwatchlist function that maps to our props
+export const getWatchList = () => async (dispatch, getState) => {
+  const state = getState();
+  console.log('state in getwatchlist', state);
+  const { id } = state.session.accountDetails;
+  const { sessionId } = state.session;
+
+  const { data } = await tmdbClient.get(`/account/${id}/watchlist/movies`, {
+    params: { api_key: apiKey, session_id: sessionId }
+  });
+  console.log('watchlist', data);
+
+  dispatch({ type: GET_WATCHLIST, payload: data });
+};
+
+export const getUserDetails = loginFormParams => dispatch => {
+  dispatch(signIn(loginFormParams)).then(() => dispatch(getWatchList()));
 };
 
 export const signOut = params => {

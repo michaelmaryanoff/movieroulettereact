@@ -1,6 +1,6 @@
 import React from 'react';
 import reelLogo from '../../src/images/reel-logo.png';
-import { signIn } from '../actions';
+import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
 
 class LoginForm extends React.Component {
@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
     }
 
     let params = { username: this.state.username, password: this.state.password };
-    this.props.signIn(params);
+    this.props.getUserDetails(params);
   };
 
   renderLoginForm() {
@@ -101,4 +101,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { signIn })(LoginForm);
+export default connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm);

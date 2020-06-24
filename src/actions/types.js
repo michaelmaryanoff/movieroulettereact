@@ -2,6 +2,9 @@
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 
+// Fetching user info
+export const GET_WATCHLIST = 'GET_WATCHLIST';
+
 // Spin types
 //* We may not need these if we user redux form
 export const SELECT_GENRES = 'SELECT_GENRES';
