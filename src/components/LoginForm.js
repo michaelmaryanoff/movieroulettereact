@@ -97,7 +97,7 @@ class LoginForm extends React.Component {
 const mapStateToProps = state => {
   console.log('state', state);
   return {
-    sessionDetails: state
+    sessionDetails: state.session
   };
 };
 
