@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute';
 import LoginPage from './LoginPage';
 import SpinPage from './SpinPage';
 import WatchList from './WatchList';
@@ -16,8 +16,12 @@ class App extends React.Component {
       <div className="ui container">
         <Router history={history}>
           <Switch>
-            <Route path="/spin" component={SpinPage} />
-            <Route path="/watchlist" component={WatchList} />
+            <ProtectedRoute path="/spin" component={SpinPage} isLoggedIn={this.props.isLoggedIn} />
+            <ProtectedRoute
+              path="/watchlist"
+              component={WatchList}
+              isLoggedIn={this.props.isLoggedIn}
+            />
             <Route path="/login" component={LoginPage} />
             <Route path="/">
               <Redirect to="/login" />
@@ -31,7 +35,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentState: state
+    isLoggedIn: state.session.isLoggedIn
   };
 };
 
