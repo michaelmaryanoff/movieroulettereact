@@ -46,15 +46,15 @@ export const signIn = ({ username, password }) => async dispatch => {
   };
 
   // TODO: Gets the watchlist of the authorized user, but should be broken off into it's own method
-  const watchlist = await tmdbClient.get(`/account/${accountDetails.id}/watchlist/movies`, {
-    params: { api_key: apiKey, session_id: sessionId }
-  });
-  console.log('watchlist', watchlist);
+  // const watchlist = await tmdbClient.get(`/account/${accountDetails.id}/watchlist/movies`, {
+  //   params: { api_key: apiKey, session_id: sessionId }
+  // });
+  // console.log('watchlist', watchlist);
 
-  return {
+  dispatch({
     type: SIGN_IN,
     payload: sessionDetails
-  };
+  });
 };
 
 export const signOut = params => {

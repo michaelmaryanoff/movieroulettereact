@@ -43,6 +43,8 @@ class LoginForm extends React.Component {
   };
 
   renderLoginForm() {
+    console.log('props', this.props);
+
     return (
       <div className="two column row">
         <div className="column">
@@ -93,8 +95,9 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state', state);
   return {
-    dummy: 0
+    sessionDetails: state
   };
 };
 
