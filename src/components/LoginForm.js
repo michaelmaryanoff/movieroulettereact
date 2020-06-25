@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
     };
   }
   componentDidUpdate() {
-
+    console.log('session details', this.props.sessionDetails);
   }
 
   renderError = fieldName => {
@@ -45,8 +45,6 @@ class LoginForm extends React.Component {
 
     this.setState({ hasSubmitted: true });
     if (!this.state.username || !this.state.password) {
-      console.log('got to ss');
-
       return;
     }
 
@@ -100,6 +98,9 @@ class LoginForm extends React.Component {
     );
   }
   render() {
+    if (this.props.isLoggedIn) {
+      history.push('/watchlist');
+    }
     return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
   }
 }

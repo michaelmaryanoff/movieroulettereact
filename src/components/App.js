@@ -1,31 +1,43 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import ProtectedRoute from './ProtectedRoute';
-import LoginPage from './LoginPage';
+import LoginForm from './LoginPage';
 import SpinPage from './SpinPage';
 import WatchList from './WatchList';
+import Header from './Header';
+
+import ProtectedRoute from './ProtectedRoute';
 import history from '../history';
 import { withRouter } from 'react-router';
 
 class App extends React.Component {
-  componentDidUpdate() {}
   render() {
-    console.log('props in App', this.props);
+    history.listen(match => {
+      console.log('match', match);
+    });
+    console.log('props', history);
 
     return (
       <div className="ui container">
         <Router history={history}>
-          <ProtectedRoute
-            exact
-            path="/spin"
-            component={SpinPage}
-            isLoggedIn={this.props.isLoggedIn}
-          />
-          <Route exact path="/watchlist" component={WatchList} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/" component={LoginPage} />
+          <Fragment>
+            <Header />
+            <Switch>
+              {/* <ProtectedRoute
+                exact
+                path="/spin"
+                component={SpinPage}
+                isLoggedIn={this.props.isLoggedIn}
+              /> */}
+
+              {/* <Route exact path="/login" component={LoginForm} /> */}
+
+              <Route exact path="/watchlist" component={WatchList} />
+
+              <Route exact path="/" component={LoginForm} />
+            </Switch>
+          </Fragment>
         </Router>
       </div>
     );
@@ -38,4 +50,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps)(App);
