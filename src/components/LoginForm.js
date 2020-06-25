@@ -1,9 +1,14 @@
 import React from 'react';
 import reelLogo from '../../src/images/reel-logo.png';
+
+import { tempusername, temppassword } from '../testinfo/testinfo';
+
 import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
-import { tempusername, temppassword } from '../testinfo/testinfo';
-// import history from '../history';
+
+import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
+import history from '../history';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -13,6 +18,9 @@ class LoginForm extends React.Component {
       password: temppassword,
       hasSubmitted: false
     };
+  }
+  componentDidUpdate() {
+
   }
 
   renderError = fieldName => {
@@ -37,6 +45,8 @@ class LoginForm extends React.Component {
 
     this.setState({ hasSubmitted: true });
     if (!this.state.username || !this.state.password) {
+      console.log('got to ss');
+
       return;
     }
 
@@ -96,8 +106,11 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sessionDetails: state.session
+    sessionDetails: state.session,
+    isLoggedIn: state.session.isLoggedIn
   };
 };
 
-export default connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm);
+export default withRouter(
+  connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm)
+);

@@ -10,6 +10,7 @@ import {
   // SELECT_RANDOM_MOVIE
 } from './types';
 import tmdbClient, { apiKey } from '../api/tmdbClient';
+import history from '../history';
 export const signIn = ({ username, password }) => async dispatch => {
   // Holds our api key
   const apiKeyParams = { params: { api_key: apiKey } };
@@ -60,6 +61,7 @@ export const getWatchList = () => async (dispatch, getState) => {
   const { data } = await tmdbClient.get(`/account/${id}/watchlist/movies`, {
     params: { api_key: apiKey, session_id: sessionId }
   });
+  history.push('/watchlist');
   dispatch({ type: GET_WATCHLIST, payload: data });
 };
 

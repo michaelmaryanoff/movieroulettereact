@@ -7,26 +7,25 @@ import LoginPage from './LoginPage';
 import SpinPage from './SpinPage';
 import WatchList from './WatchList';
 import history from '../history';
+import { withRouter } from 'react-router';
 
 class App extends React.Component {
+  componentDidUpdate() {}
   render() {
     console.log('props in App', this.props);
 
     return (
       <div className="ui container">
         <Router history={history}>
-          <Switch>
-            <ProtectedRoute path="/spin" component={SpinPage} isLoggedIn={this.props.isLoggedIn} />
-            <ProtectedRoute
-              path="/watchlist"
-              component={WatchList}
-              isLoggedIn={this.props.isLoggedIn}
-            />
-            <Route path="/login" component={LoginPage} />
-            <Route path="/">
-              <Redirect to="/login" />
-            </Route>
-          </Switch>
+          <ProtectedRoute
+            exact
+            path="/spin"
+            component={SpinPage}
+            isLoggedIn={this.props.isLoggedIn}
+          />
+          <Route exact path="/watchlist" component={WatchList} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/" component={LoginPage} />
         </Router>
       </div>
     );

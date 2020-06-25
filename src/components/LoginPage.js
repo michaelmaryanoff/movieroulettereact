@@ -1,5 +1,6 @@
 import React from 'react';
 import LoginForm from './LoginForm';
+import { withRouter } from 'react-router';
 
 class LoginPage extends React.Component {
   render() {
@@ -7,4 +8,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default LoginPage;
+export default withRouter(LoginPage);
