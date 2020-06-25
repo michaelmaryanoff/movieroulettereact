@@ -21,6 +21,10 @@ class LoginForm extends React.Component {
   }
   componentDidUpdate() {
     console.log('session details', this.props.sessionDetails);
+
+    if (this.props.sessionDetails.isLoggedIn === true) {
+      history.push('/watchlist');
+    }
   }
 
   renderError = fieldName => {
@@ -98,14 +102,15 @@ class LoginForm extends React.Component {
     );
   }
   render() {
-    if (this.props.isLoggedIn) {
-      history.push('/watchlist');
-    }
+    console.log('props', this.props.sessionDetails.isLoggedIn === true);
+
     return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
   }
 }
 
 const mapStateToProps = state => {
+  console.log(state);
+
   return {
     sessionDetails: state.session,
     isLoggedIn: state.session.isLoggedIn
