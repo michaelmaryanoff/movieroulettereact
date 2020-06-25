@@ -5,9 +5,8 @@ import { tempusername, temppassword } from '../testinfo/testinfo';
 
 import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import { Redirect } from 'react-router-dom';
-import { withRouter } from 'react-router';
 import history from '../history';
 
 class LoginForm extends React.Component {
@@ -20,7 +19,9 @@ class LoginForm extends React.Component {
     };
   }
   componentDidUpdate() {
-
+    if (this.props.isLoggedIn) {
+      this.props.history.push('/watchlist');
+    }
   }
 
   renderError = fieldName => {
@@ -45,8 +46,6 @@ class LoginForm extends React.Component {
 
     this.setState({ hasSubmitted: true });
     if (!this.state.username || !this.state.password) {
-      console.log('got to ss');
-
       return;
     }
 

@@ -1,32 +1,26 @@
-import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import ProtectedRoute from './ProtectedRoute';
-import LoginPage from './LoginPage';
-import SpinPage from './SpinPage';
+import LoginForm from './LoginForm';
 import WatchList from './WatchList';
-import history from '../history';
-import { withRouter } from 'react-router';
+
 
 class App extends React.Component {
-  componentDidUpdate() {}
   render() {
-    console.log('props in App', this.props);
-
     return (
       <div className="ui container">
-        <Router history={history}>
-          <ProtectedRoute
-            exact
-            path="/spin"
-            component={SpinPage}
-            isLoggedIn={this.props.isLoggedIn}
-          />
-          <Route exact path="/watchlist" component={WatchList} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/" component={LoginPage} />
-        </Router>
+        <BrowserRouter>
+          <Fragment>
+            <div>
+              <Switch>
+                <Route path="/watchlist" exact component={WatchList} />
+                {/* <Route path="/login" exact component={LoginForm} /> */}
+                <Route path="/" exact component={LoginForm} />
+              </Switch>
+            </div>
+          </Fragment>
+        </BrowserRouter>
       </div>
     );
   }
