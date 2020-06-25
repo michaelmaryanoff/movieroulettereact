@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import WatchList from './WatchList';
 
-
 class App extends React.Component {
   render() {
     return (

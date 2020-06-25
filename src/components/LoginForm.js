@@ -5,9 +5,7 @@ import { tempusername, temppassword } from '../testinfo/testinfo';
 
 import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-
-import history from '../history';
+import { withRouter } from 'react-router';
 
 class LoginForm extends React.Component {
   constructor(props) {
