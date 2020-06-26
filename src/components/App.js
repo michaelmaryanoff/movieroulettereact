@@ -1,8 +1,8 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import LoginPage from './LoginPage';
-import SpinPage from './SpinPage';
+import LoginForm from './LoginForm';
 import WatchList from './WatchList';
 
 class App extends React.Component {
@@ -10,18 +10,25 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <BrowserRouter>
-          <Switch>
-            <Route path="/login" component={LoginPage} />
-            <Route path="/spin" component={SpinPage} />
-            <Route path="/watchlist" component={WatchList} />
-            <Route path="/">
-              <Redirect to="/login" />
-            </Route>
-          </Switch>
+          <Fragment>
+            <div>
+              <Switch>
+                <Route path="/watchlist" exact component={WatchList} />
+                {/* <Route path="/login" exact component={LoginForm} /> */}
+                <Route path="/" exact component={LoginForm} />
+              </Switch>
+            </div>
+          </Fragment>
         </BrowserRouter>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.session.isLoggedIn
+  };
+};
+
+export default connect(mapStateToProps, {})(App);

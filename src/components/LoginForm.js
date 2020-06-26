@@ -1,16 +1,25 @@
 import React from 'react';
 import reelLogo from '../../src/images/reel-logo.png';
+
+import { tempusername, temppassword } from '../testinfo/testinfo';
+
 import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: '',
+      username: tempusername,
+      password: temppassword,
       hasSubmitted: false
     };
+  }
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push('/watchlist');
+    }
   }
 
   renderError = fieldName => {
@@ -43,8 +52,6 @@ class LoginForm extends React.Component {
   };
 
   renderLoginForm() {
-    console.log('props', this.props);
-
     return (
       <div className="two column row">
         <div className="column">
@@ -99,10 +106,12 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state);
   return {
-    sessionDetails: state.session
+    sessionDetails: state.session,
+    isLoggedIn: state.session.isLoggedIn
   };
 };
 
-export default connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm);
+export default withRouter(
+  connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm)
+);
