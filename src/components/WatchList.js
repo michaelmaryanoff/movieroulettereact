@@ -3,11 +3,6 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 class WatchList extends React.Component {
-  componentDidMount() {
-    console.log('session details ', this.props);
-    console.log('watchlist', this.props);
-  }
-
   renderWatchList() {
     if (this.props.watchList) {
       return this.props.watchList.results.map(movie => {
@@ -37,8 +32,6 @@ class WatchList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state);
-
   return {
     sessionDetails: state.session,
     isLoggedIn: state.session.isLoggedIn,

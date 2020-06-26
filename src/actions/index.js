@@ -61,7 +61,6 @@ export const getWatchList = () => async (dispatch, getState) => {
   const { data } = await tmdbClient.get(`/account/${id}/watchlist/movies`, {
     params: { api_key: apiKey, session_id: sessionId }
   });
-  console.log('data', data);
 
   dispatch({ type: GET_WATCHLIST, payload: data });
 };

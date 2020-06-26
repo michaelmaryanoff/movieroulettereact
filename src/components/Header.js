@@ -6,9 +6,6 @@ class Header extends React.Component {
   renderHeader() {
     //TODO: A variable that will return JSX elements for watchlist, spin, logout, and render the users name
 
-    //TODO: A variable that will return the spin page and ask the user to log in to view their watchlist
-    const loggedOutHeader = <div>Logged out</div>;
-
     if (this.props.isLoggedIn) {
       //TODO: We need to add functionality to logout
       return (
@@ -24,13 +21,31 @@ class Header extends React.Component {
             </Link>
           </div>
           <div className="right menu">
-            <div className="item">{this.props.sessionDetails.accountDetails.name}</div>
+            <div className="item">Welcome, {this.props.sessionDetails.accountDetails.name}!</div>
             <div className="header item">Logout</div>
           </div>
         </div>
       );
     } else if (!this.props.isLoggedIn) {
-      return loggedOutHeader;
+      return (
+        <div className="ui menu">
+          <div>
+            <Link to="/login" className="header item">
+              Log in to see Watchlist
+            </Link>
+          </div>
+          <div>
+            <Link to="/spin" className="header item">
+              Spin
+            </Link>
+          </div>
+          <div className="right menu">
+            <Link to="/login" className="header item">
+              Log in
+            </Link>
+          </div>
+        </div>
+      );
     }
   }
 
@@ -40,8 +55,6 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state details', state);
-
   return {
     sessionDetails: state.session,
     isLoggedIn: state.session.isLoggedIn
