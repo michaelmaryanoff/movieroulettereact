@@ -24,14 +24,6 @@ class Header extends React.Component {
             </Link>
           </div>
           <div className="right menu">
-            <div className="item">
-              <img
-                className="image"
-                src={`https://www.gravatar.com/avatar/${this.props.sessionDetails.accountDetails.avatar.gravatar.hash}`}
-                alt="profile avatar"
-              />
-            </div>
-
             <div className="item">{this.props.sessionDetails.accountDetails.name}</div>
             <div className="header item">Logout</div>
           </div>
