@@ -15,11 +15,11 @@ class WatchList extends React.Component {
         let imageURL = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 
         return (
-          <div className="ui card">
+          <div className="ui card" key={`${movie.id}`}>
             <div className="image">
               <img src={imageURL} alt={movie.id} />
             </div>
-            <div class="content">
+            <div className="content">
               <div className="header">{movie.original_title}</div>
               <div className="meta">Released: {movie.release_date}</div>
               <div className="description">{movie.overview}</div>
