@@ -97,11 +97,13 @@ class LoginForm extends React.Component {
     );
   }
   render() {
-    return;
-    <div className="ui container ">
-      <div className="ui vertical stripe segment"></div>
-      <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
-    </div>;
+    return (
+      <div className="pusher">
+        <div className="ui vertical stripe segment">
+          <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
+        </div>
+      </div>
+    );
   }
 }
 
