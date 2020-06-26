@@ -5,7 +5,9 @@ import {
   SELECT_YEAR_FROM,
   SELECT_YEAR_TO,
   SELECT_RATING,
-  GET_WATCHLIST
+  GET_WATCHLIST,
+  START_GUEST_SESSION,
+  END_GUEST_SESSION
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -51,6 +53,18 @@ export const signIn = ({ username, password }) => async dispatch => {
     type: SIGN_IN,
     payload: sessionDetails
   });
+};
+
+export const createGuestSession = () => {
+  const isGuestSession = true;
+
+  return { type: START_GUEST_SESSION, payload: isGuestSession };
+};
+
+export const destroyGuestSession = () => {
+  const isGuestSession = false;
+
+  return { type: END_GUEST_SESSION, payload: isGuestSession };
 };
 
 export const getWatchList = () => async (dispatch, getState) => {

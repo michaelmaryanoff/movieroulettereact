@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import { destroyGuestSession } from '../actions';
+
 class Header extends React.Component {
   renderHeader() {
     //TODO: A variable that will return JSX elements for watchlist, spin, logout, and render the users name
@@ -26,7 +28,7 @@ class Header extends React.Component {
           </div>
         </div>
       );
-    } else if (!this.props.isLoggedIn) {
+    } else if (this.props.isGuestSession) {
       return (
         <div className="ui menu">
           <div>
@@ -40,7 +42,7 @@ class Header extends React.Component {
             </Link>
           </div>
           <div className="right menu">
-            <Link to="/login" className="header item">
+            <Link to="/login" className="header item" onClick={this.props.destroyGuestSession}>
               Log in
             </Link>
           </div>
@@ -57,9 +59,10 @@ class Header extends React.Component {
 const mapStateToProps = state => {
   return {
     sessionDetails: state.session,
-    isLoggedIn: state.session.isLoggedIn
+    isLoggedIn: state.session.isLoggedIn,
+    isGuestSession: state.session.isGuestSession
   };
 };
 
 // get our props into our header
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { destroyGuestSession })(Header);

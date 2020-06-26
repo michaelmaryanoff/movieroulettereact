@@ -24,7 +24,7 @@ class WatchList extends React.Component {
         );
       });
     }
-    return <div>Loading...</div>;
+    return <div>You must be logged in to access this page</div>;
   }
   render() {
     return <div>{this.renderWatchList()}</div>;

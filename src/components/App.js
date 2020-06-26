@@ -13,7 +13,7 @@ class App extends React.Component {
       <div className="ui container">
         <BrowserRouter>
           <Fragment>
-            <Header />
+            {(this.props.isLoggedIn || this.props.isGuestSession) === false ? null : <Header />}
             <div>
               <Switch>
                 <Route path="/spin" exact component={SpinPage} />
@@ -30,8 +30,11 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state in app');
+
   return {
-    isLoggedIn: state.session.isLoggedIn
+    isLoggedIn: state.session.isLoggedIn,
+    isGuestSession: state.session.isGuestSession
   };
 };
 
