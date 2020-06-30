@@ -95,7 +95,7 @@ class LoginForm extends React.Component {
               <div className="ui message">
                 Don't have an account?{' '}
                 {
-                  <Link to="/watchlist" onClick={this.props.createGuestSession}>
+                  <Link to="/spin" onClick={this.props.createGuestSession}>
                     Click here to continue as guest
                   </Link>
                 }
