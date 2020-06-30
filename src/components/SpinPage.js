@@ -56,6 +56,18 @@ class SpinPage extends React.Component {
         );
       });
     }
+
+    if (type === 'genres' && this.props.genreCodes) {
+      return this.props.genreCodes.map(genre => {
+        console.log('genre is', genre);
+
+        return (
+          <option key={genre.name} value={genre.name}>
+            {genre.name}
+          </option>
+        );
+      });
+    }
   }
 
   renderSpinForm() {
@@ -89,6 +101,12 @@ class SpinPage extends React.Component {
                       </select>
                     </div>
                   </div>
+                  <div className="field">
+                    <label>Genre</label>
+                    <select name="Genres" className="ui fluid dropdown">
+                      {this.renderDropDown('genres')}
+                    </select>
+                  </div>
                 </div>
               </form>
             </div>
@@ -108,7 +126,6 @@ const mapStateToProps = state => {
   console.log('state in this', state);
   return {
     genreCodes: state.spin.genres,
-    // genreNames: Object.values(state.spin.genres),
     currState: state
   };
 };
