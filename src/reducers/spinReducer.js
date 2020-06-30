@@ -3,7 +3,8 @@ import {
   SELECT_YEAR_TO,
   SELECT_RATING,
   SUBMIT_SPIN,
-  SELECT_GENRES
+  SELECT_GENRES,
+  GET_GENRE_CODES
 } from '../actions/types';
 
 //* There is a possiblity here that we will need to have some sort of intial state that specifies default values since we are going to have to check for null when forming out url in the reducer.
@@ -21,6 +22,8 @@ export default (state = {}, action) => {
     // TODO: SUBMIT_SPIN may need to be modified since the resul of the spin will depend on the response. Delete this comment if this is not the case.
     case SUBMIT_SPIN:
       return { ...state, ...action.payload };
+    case GET_GENRE_CODES:
+      return { state, ...action.payload };
     default:
       return state;
   }

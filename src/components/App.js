@@ -30,8 +30,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state in app');
-
   return {
     isLoggedIn: state.session.isLoggedIn,
     isGuestSession: state.session.isGuestSession

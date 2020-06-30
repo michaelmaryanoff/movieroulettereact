@@ -7,7 +7,8 @@ import {
   SELECT_RATING,
   GET_WATCHLIST,
   START_GUEST_SESSION,
-  END_GUEST_SESSION
+  END_GUEST_SESSION,
+  GET_GENRE_CODES
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -81,6 +82,14 @@ export const getWatchList = () => async (dispatch, getState) => {
 
 export const getUserDetails = loginFormParams => dispatch => {
   dispatch(signIn(loginFormParams)).then(() => dispatch(getWatchList()));
+};
+
+export const getGenreCodes = () => async dispatch => {
+  const { data } = await tmdbClient.get('/genre/movie/list', {
+    params: { api_key: apiKey }
+  });
+
+  dispatch({ type: GET_GENRE_CODES, payload: data });
 };
 
 export const signOut = params => {

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { getGenreCodes } from '../actions';
 
 class SpinPage extends React.Component {
   constructor(props) {
@@ -6,6 +8,9 @@ class SpinPage extends React.Component {
     const yearArray = this.generateYearArray();
 
     this.state = { yearArray, yearFrom: yearArray[0], yearTo: yearArray[yearArray.length - 1] };
+  }
+  componentDidMount() {
+    this.props.getGenreCodes();
   }
 
   generateYearArray() {
@@ -94,8 +99,18 @@ class SpinPage extends React.Component {
   }
 
   render() {
+    console.log('genre codes in props', this.props.genreCodes);
     return <div className="ui container">{this.renderSpinForm()}</div>;
   }
 }
 
-export default SpinPage;
+const mapStateToProps = state => {
+  console.log('state in this', state);
+  return {
+    genreCodes: state.spin.genres,
+    // genreNames: Object.values(state.spin.genres),
+    currState: state
+  };
+};
+
+export default connect(mapStateToProps, { getGenreCodes })(SpinPage);
