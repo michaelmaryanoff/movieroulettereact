@@ -6,8 +6,6 @@ import { destroyGuestSession } from '../actions';
 
 class Header extends React.Component {
   renderHeader() {
-    //TODO: A variable that will return JSX elements for watchlist, spin, logout, and render the users name
-
     if (this.props.isLoggedIn) {
       //TODO: We need to add functionality to logout
       return (
