@@ -32,15 +32,16 @@ class Header extends React.Component {
       return (
         <div className="ui menu">
           <div>
-            <Link to="/login" className="header item" onClick={this.props.destroyGuestSession}>
-              Log in to see Watchlist
-            </Link>
-          </div>
-          <div>
             <Link to="/spin" className="header item">
               Spin
             </Link>
           </div>
+          <div>
+            <Link to="/login" className="header item" onClick={this.props.destroyGuestSession}>
+              Log in to see Watchlist
+            </Link>
+          </div>
+
           <div className="right menu">
             <Link to="/login" className="header item" onClick={this.props.destroyGuestSession}>
               Log in
