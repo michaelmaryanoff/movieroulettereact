@@ -19,7 +19,13 @@ class SpinPage extends React.Component {
 
       // A default "yearTo", set at the current year
       // This will be used to manage to make the dropdown a controlled component
-      yearTo: yearArray[yearArray.length - 1]
+      yearTo: yearArray[yearArray.length - 1],
+
+      // The title of the currently selected genre
+      genreName: '',
+
+      // The code of the currently selected genre (used for our network request)
+      genreCode: ''
     };
   }
   componentDidMount() {
