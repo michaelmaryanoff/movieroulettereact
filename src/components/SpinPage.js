@@ -11,9 +11,10 @@ class SpinPage extends React.Component {
       // An array of years used to populate dropdown menu
       yearArray,
 
-      // A default "yearFrom" set at the earliest year movies are available.
+      // A default "yearFrom" set to 1955, since people are probably not going
+      // To be wanding to look much earlier than that
       // This will be used to manage to make the dropdown a controlled component
-      yearFrom: yearArray[0],
+      yearFrom: yearArray[35],
 
       // A default "yearTo", set at the current year
       // This will be used to manage to make the dropdown a controlled component
@@ -111,6 +112,7 @@ class SpinPage extends React.Component {
                       <select
                         name="yearFrom"
                         className="ui dropdown"
+                        value={this.state.yearFrom}
                         onChange={this.handleUserInput('yearFrom')}
                       >
                         {this.renderDropDown('yearFrom')}
