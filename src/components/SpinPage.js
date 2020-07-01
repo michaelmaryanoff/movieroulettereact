@@ -110,8 +110,11 @@ class SpinPage extends React.Component {
     }
 
     if (inputType === genreInput) {
-      console.log('tval', event.target.value);
-      this.setState({ genreCode: target.value.id, genreName: target.value.name });
+      // We need these variables to get the text of the label in order to set the state
+      let index = event.nativeEvent.target.selectedIndex;
+      let label = event.nativeEvent.target[index].label;
+
+      this.setState({ genreCode: target.value, genreName: label });
     }
   };
 
@@ -181,7 +184,7 @@ class SpinPage extends React.Component {
   }
 
   render() {
-    // console.log('state', this.state);
+    console.log('state', this.state);
 
     return <div className="ui container">{this.renderSpinForm()}</div>;
   }
