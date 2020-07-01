@@ -201,16 +201,16 @@ class SpinPage extends React.Component {
   }
 
   render() {
-    console.log('state', this.state);
-
     return <div className="ui container">{this.renderSpinForm()}</div>;
   }
 }
 
 const mapStateToProps = state => {
+  console.log('state in props', state);
+
   return {
     genreCodes: state.spin.genres,
-    currState: state
+    selectedMovie: state.spin.selectedMovie
   };
 };
 
