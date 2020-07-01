@@ -90,7 +90,6 @@ class LoginForm extends React.Component {
                 </div>
                 <div>{this.renderError('password')}</div>
               </div>
-
               <button className="ui fluid large teal submit button">Login</button>
               <div className="ui message">
                 Don't have an account?{' '}
@@ -109,9 +108,9 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="pusher">
-        <div className="ui vertical stripe segment">
-          <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
-        </div>
+        <div className="ui basic segment"></div>
+        <div className="ui basic segment"></div>
+        <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
       </div>
     );
   }
