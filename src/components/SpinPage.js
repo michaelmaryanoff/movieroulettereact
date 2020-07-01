@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getGenreCodes } from '../actions';
+import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class SpinPage extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class SpinPage extends React.Component {
     // The TMDB API takes in a zero index integer for ratings
     const ratingArray = Array.from(new Array(10), (i, index) => index);
 
-    if (inputType === 'yearFrom') {
+    if (inputType === yearFromInput) {
       return this.state.yearArray.map(year => {
         return (
           <option key={year} value={year}>
@@ -57,7 +58,7 @@ class SpinPage extends React.Component {
       });
     }
 
-    if (inputType === 'yearTo') {
+    if (inputType === yearToInput) {
       return this.state.yearArray.map(year => {
         return (
           <option key={year} value={year}>
@@ -66,7 +67,7 @@ class SpinPage extends React.Component {
         );
       });
     }
-    if (inputType === 'minimumRating') {
+    if (inputType === minimumRatingInput) {
       return ratingArray.map(rating => {
         let displayRating = (rating + 1) * 10;
         return (
@@ -77,7 +78,7 @@ class SpinPage extends React.Component {
       });
     }
 
-    if (inputType === 'genres' && this.props.genreCodes) {
+    if (inputType === genreInput && this.props.genreCodes) {
       return this.props.genreCodes.map(genre => {
         return (
           <option key={genre.name} value={genre.name}>
@@ -90,7 +91,7 @@ class SpinPage extends React.Component {
 
   handleUserInput = inputType => event => {
     const { target } = event;
-    if (inputType === 'yearFrom') {
+    if (inputType === yearFromInput) {
       this.setState({ yearFrom: target.value });
     }
   };
@@ -113,28 +114,33 @@ class SpinPage extends React.Component {
                         name="yearFrom"
                         className="ui dropdown"
                         value={this.state.yearFrom}
-                        onChange={this.handleUserInput('yearFrom')}
+                        onChange={this.handleUserInput(yearFromInput)}
                       >
-                        {this.renderDropDown('yearFrom')}
+                        {this.renderDropDown(yearFromInput)}
                       </select>
                     </div>
                     <div className="field">
                       <label>To</label>
-                      <select name="yearTo" className="ui dropdown">
-                        {this.renderDropDown('yearTo')}
+                      <select
+                        name="yearTo"
+                        className="ui dropdown"
+                        value={this.state.yearTo}
+                        onChange={this.handleUserInput(yearToInput)}
+                      >
+                        {this.renderDropDown(yearToInput)}
                       </select>
                     </div>
                     <div className="field">
                       <label>Minimum Rating</label>
                       <select name="Minimum Rating" className="ui dropdown">
-                        {this.renderDropDown('minimumRating')}
+                        {this.renderDropDown(minimumRatingInput)}
                       </select>
                     </div>
                   </div>
                   <div className="field">
                     <label>Genre</label>
                     <select name="Genres" className="ui fluid dropdown">
-                      {this.renderDropDown('genres')}
+                      {this.renderDropDown(genreInput)}
                     </select>
                   </div>
                 </div>
