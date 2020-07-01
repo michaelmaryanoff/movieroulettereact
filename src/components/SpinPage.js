@@ -7,9 +7,22 @@ class SpinPage extends React.Component {
     super(props);
     const yearArray = this.generateYearArray();
 
-    this.state = { yearArray, yearFrom: yearArray[0], yearTo: yearArray[yearArray.length - 1] };
+    this.state = {
+      // An array of years used to populate dropdown menu
+      yearArray,
+
+      // A default "yearFrom" set at the earliest year movies are available.
+      // This will be used to manage to make the dropdown a controlled component
+      yearFrom: yearArray[0],
+
+      // A default "yearTo", set at the current year
+      // This will be used to manage to make the dropdown a controlled component
+      yearTo: yearArray[yearArray.length - 1]
+    };
   }
   componentDidMount() {
+    // Since genre codes change over time, we need to make a network call to make sure we have
+    // The correct genre codes
     this.props.getGenreCodes();
   }
 
