@@ -89,11 +89,7 @@ class SpinPage extends React.Component {
 
     if (inputType === genreInput && this.props.genreCodes) {
       return this.props.genreCodes.map(genre => {
-        return (
-          <option key={genre.name} value={genre.name}>
-            {genre.name}
-          </option>
-        );
+        return <option key={genre.name} label={genre.name} value={genre.id}></option>;
       });
     }
   }
@@ -111,6 +107,11 @@ class SpinPage extends React.Component {
 
     if (inputType === minimumRatingInput) {
       this.setState({ minimumRating: target.value });
+    }
+
+    if (inputType === genreInput) {
+      console.log('tval', event.target.value);
+      this.setState({ genreCode: target.value.id, genreName: target.value.name });
     }
   };
 
@@ -153,6 +154,7 @@ class SpinPage extends React.Component {
                       <select
                         name="Minimum Rating"
                         className="ui dropdown"
+                        value={this.state.minimumRating}
                         onChange={this.handleUserInput(minimumRatingInput)}
                       >
                         {this.renderDropDown(minimumRatingInput)}
@@ -161,7 +163,11 @@ class SpinPage extends React.Component {
                   </div>
                   <div className="field">
                     <label>Genre</label>
-                    <select name="Genres" className="ui fluid dropdown">
+                    <select
+                      name="Genres"
+                      className="ui fluid dropdown"
+                      onChange={this.handleUserInput(genreInput)}
+                    >
                       {this.renderDropDown(genreInput)}
                     </select>
                   </div>
@@ -175,6 +181,8 @@ class SpinPage extends React.Component {
   }
 
   render() {
+    // console.log('state', this.state);
+
     return <div className="ui container">{this.renderSpinForm()}</div>;
   }
 }
