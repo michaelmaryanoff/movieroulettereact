@@ -98,6 +98,10 @@ export const signOut = params => {
   };
 };
 
+export const submitSpin = selections => {
+
+};
+
 export const selectGenres = genres => {
   // A funciton that saves the genres we have selected
   return {
@@ -132,17 +136,4 @@ export const selectRating = rating => {
   };
 };
 
-export const submitSpin = selections => {
-  // This will call an async request (I think it is GET but
-  // I need to check the TMDB documentation) to give us a random movie.
-  // We will use async await to return a list of movies that meets those params
-  // From that list of movies we will select a movie
-  //* check for null and pass either nothing or null into fetchMovieList
-  // TODO: We will need to add dispatch and getState as arguments here
-  // TODO: Do we actually select the movie here using what is returned or do we move that
-  // TODO: logic to a component? Probably here for best practices
-  // * const response = await fetchMovieList(selections)
-  // fetchMovieList() is going to make an async call and get a movie list
-  // We can use fetchMovieList with axios and put it in a utils funciton somewhere else
-  // * await spinForMovie(response)
-};
+

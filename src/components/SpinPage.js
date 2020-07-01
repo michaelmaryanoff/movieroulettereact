@@ -120,6 +120,8 @@ class SpinPage extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
+    console.log('state submit', this.state);
   };
 
   renderSpinForm() {
@@ -128,7 +130,7 @@ class SpinPage extends React.Component {
         <div className="ui middle aligned center aligned grid">
           <div className="two column row">
             <div className="column">
-              <form className="ui large form error">
+              <form className="ui large form error" onSubmit={this.handleSubmit}>
                 <div className="ui segment">
                   <h2 className="ui teal image header">
                     <div className="content">Find a movie!</div>

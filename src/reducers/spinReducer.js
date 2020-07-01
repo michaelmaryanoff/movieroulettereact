@@ -21,7 +21,7 @@ export default (state = {}, action) => {
       return { ...state, genres: action.payload };
     // TODO: SUBMIT_SPIN may need to be modified since the resul of the spin will depend on the response. Delete this comment if this is not the case.
     case SUBMIT_SPIN:
-      return { ...state, ...action.payload };
+      return { ...state, spin: action.payload };
     case GET_GENRE_CODES:
       return { state, ...action.payload };
     default:
