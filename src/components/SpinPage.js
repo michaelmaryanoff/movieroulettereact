@@ -200,8 +200,50 @@ class SpinPage extends React.Component {
     );
   }
 
+  renderSpinCard() {
+    if (this.props.selectedMovie) {
+      let {
+        poster_path,
+        id,
+        original_title,
+        release_date,
+        overview,
+        vote_average
+      } = this.props.selectedMovie;
+      let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
+
+      return (
+        <div className="pusher">
+          <div className="ui middle aligned center aligned grid">
+            <div className="three column row">
+              <div className="column">
+                <div className="ui card" key={id}>
+                  <h3>Tonight you're watching...</h3>
+                  <div className="image">
+                    <img src={imageURL} alt={id} />
+                  </div>
+                  <div className="content">
+                    <div className="header">{original_title}</div>
+                    <div className="meta">Released: {release_date}</div>
+                    <div className="description">{overview}</div>
+                    <div className="extra content">Average Score:{vote_average}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
+
   render() {
-    return <div className="ui container">{this.renderSpinForm()}</div>;
+    return (
+      <div className="ui container">
+        <div className="ui basic segment">{this.renderSpinForm()}</div>
+        <div className="ui basic segment">{this.renderSpinCard()}</div>
+      </div>
+    );
   }
 }
 
