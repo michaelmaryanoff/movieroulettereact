@@ -52,9 +52,9 @@ class SpinPage extends React.Component {
     // This function will render the various dropdown menus
     // It takes in
 
-    // Creates a zero indexed array for ratings.
-    // The TMDB API takes in a zero index integer for ratings
-    const ratingArray = Array.from(new Array(10), (i, index) => index);
+    // Creates an indexed array for ratings.
+    // TMDB expects an integer that is not zero indexed
+    const ratingArray = Array.from(new Array(10), (i, index) => index + 1);
 
     if (inputType === yearFromInput) {
       return this.state.yearArray.map(year => {
@@ -77,7 +77,7 @@ class SpinPage extends React.Component {
     }
     if (inputType === minimumRatingInput) {
       return ratingArray.map(rating => {
-        let displayRating = (rating + 1) * 10;
+        let displayRating = rating * 10;
 
         return (
           <option key={displayRating} value={rating}>

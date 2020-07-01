@@ -102,7 +102,6 @@ export const signOut = params => {
 export const submitSpin = selection => async dispatch => {
   console.log('selection in actions', selection);
   let { genreCode, minimumRating, yearFrom, yearTo } = selection;
-
   // Need to format date here
   let dateFrom;
   let dateTo;
