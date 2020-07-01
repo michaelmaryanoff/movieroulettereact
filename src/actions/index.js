@@ -99,11 +99,25 @@ export const signOut = params => {
   };
 };
 
-export const submitSpin = selection => {
+export const submitSpin = selection => async dispatch => {
   console.log('selection in actions', selection);
-  let selectionObject = selection;
+  let { genreCode, minimumRating, yearFrom, yearTo } = selection;
 
-  return { type: SUBMIT_SPIN, payload: selectionObject };
+  // Need to format date here
+  let dateFrom;
+  let dateTo;
+
+  const { data } = await tmdbClient.get('/discover/movie', {
+    params: {
+      api_key: apiKey,
+      include_adult: false,
+      'vote_average.gte': minimumRating,
+      with_genres: genreCode
+    }
+  });
+  console.log('data: ', data);
+
+  dispatch({ type: SUBMIT_SPIN, payload: data });
 };
 
 export const selectGenres = genres => {
