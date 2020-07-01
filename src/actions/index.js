@@ -106,6 +106,7 @@ export const submitSpin = selection => async dispatch => {
   // Need to format date here
   let dateFrom;
   let dateTo;
+  console.log('min rating', minimumRating);
 
   const { data } = await tmdbClient.get('/discover/movie', {
     params: {
@@ -115,7 +116,8 @@ export const submitSpin = selection => async dispatch => {
       with_genres: genreCode
     }
   });
-  console.log('data: ', data);
+
+  console.log('data', data);
 
   dispatch({ type: SUBMIT_SPIN, payload: data });
 };
