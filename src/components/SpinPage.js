@@ -124,7 +124,7 @@ class SpinPage extends React.Component {
     let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
 
     let submissionObject = {
-      yearfrom: yearFrom,
+      yearFrom: yearFrom,
       yearTo: yearTo,
       minimumRating: minimumRating,
       genreCode: genreCode

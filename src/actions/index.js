@@ -100,25 +100,36 @@ export const signOut = params => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  console.log('selection in actions', selection);
+  
   let { genreCode, minimumRating, yearFrom, yearTo } = selection;
   // Need to format date here
-  let dateFrom;
-  let dateTo;
-  console.log('min rating', minimumRating);
+  let dateFrom = `${yearFrom}-01-01`;
+  let dateTo = `${yearTo}-12-31`;
+
+  
 
   const { data } = await tmdbClient.get('/discover/movie', {
     params: {
       api_key: apiKey,
       include_adult: false,
+      language: 'en-US',
+      sort_by: 'popularity.desc',
       'vote_average.gte': minimumRating,
-      with_genres: genreCode
+      page: 1,
+      with_genres: genreCode,
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo
     }
   });
 
-  console.log('data', data);
+  let { length } = data.results;
 
-  dispatch({ type: SUBMIT_SPIN, payload: data });
+  let randomIndex = Math.floor(Math.random() * length);
+
+  let selectedMovie = data.results[randomIndex];
+  console.log('selected movie', selectedMovie);
+
+  dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };
 
 export const selectGenres = genres => {
