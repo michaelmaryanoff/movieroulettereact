@@ -9,7 +9,7 @@ export const END_GUEST_SESSION = 'END_GUEST_SESSION';
 export const GET_WATCHLIST = 'GET_WATCHLIST';
 
 // Fetching other info
-export const GET_GENRE_CODES = 'GET_GENRE_CODES'
+export const GET_GENRE_CODES = 'GET_GENRE_CODES';
 
 // Spin types
 //* We may not need these if we user redux form

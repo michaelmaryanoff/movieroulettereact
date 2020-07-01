@@ -8,7 +8,8 @@ import {
   GET_WATCHLIST,
   START_GUEST_SESSION,
   END_GUEST_SESSION,
-  GET_GENRE_CODES
+  GET_GENRE_CODES,
+  SUBMIT_SPIN
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -98,8 +99,11 @@ export const signOut = params => {
   };
 };
 
-export const submitSpin = selections => {
+export const submitSpin = selection => {
+  console.log('selection in actions', selection);
+  let selectionObject = selection;
 
+  return { type: SUBMIT_SPIN, payload: selectionObject };
 };
 
 export const selectGenres = genres => {
@@ -135,5 +139,3 @@ export const selectRating = rating => {
     payload: rating
   };
 };
-
-

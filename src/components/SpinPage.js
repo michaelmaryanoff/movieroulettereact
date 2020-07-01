@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getGenreCodes } from '../actions';
+import { getGenreCodes, submitSpin } from '../actions';
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class SpinPage extends React.Component {
@@ -121,7 +121,15 @@ class SpinPage extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    console.log('state submit', this.state);
+    let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
+
+    let submissionObject = {
+      yearfrom: yearFrom,
+      yearTo: yearTo,
+      minimumRating: minimumRating,
+      genreCode: genreCode
+    };
+    this.props.submitSpin(submissionObject);
   };
 
   renderSpinForm() {
@@ -205,4 +213,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getGenreCodes })(SpinPage);
+export default connect(mapStateToProps, { getGenreCodes, submitSpin })(SpinPage);
