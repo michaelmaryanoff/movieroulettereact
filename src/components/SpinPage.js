@@ -21,6 +21,8 @@ class SpinPage extends React.Component {
       // This will be used to manage to make the dropdown a controlled component
       yearTo: yearArray[yearArray.length - 1],
 
+      minimumRating: 0,
+
       // The title of the currently selected genre
       genreName: '',
 
@@ -76,8 +78,9 @@ class SpinPage extends React.Component {
     if (inputType === minimumRatingInput) {
       return ratingArray.map(rating => {
         let displayRating = (rating + 1) * 10;
+
         return (
-          <option key={displayRating} value={displayRating}>
+          <option key={displayRating} value={rating}>
             {displayRating}%
           </option>
         );
@@ -97,8 +100,17 @@ class SpinPage extends React.Component {
 
   handleUserInput = inputType => event => {
     const { target } = event;
+
     if (inputType === yearFromInput) {
       this.setState({ yearFrom: target.value });
+    }
+
+    if (inputType === yearToInput) {
+      this.setState({ yearTo: target.value });
+    }
+
+    if (inputType === minimumRatingInput) {
+      this.setState({ minimumRating: target.value });
     }
   };
 
@@ -138,7 +150,11 @@ class SpinPage extends React.Component {
                     </div>
                     <div className="field">
                       <label>Minimum Rating</label>
-                      <select name="Minimum Rating" className="ui dropdown">
+                      <select
+                        name="Minimum Rating"
+                        className="ui dropdown"
+                        onChange={this.handleUserInput(minimumRatingInput)}
+                      >
                         {this.renderDropDown(minimumRatingInput)}
                       </select>
                     </div>
@@ -159,8 +175,6 @@ class SpinPage extends React.Component {
   }
 
   render() {
-    console.log('render state', this.state);
-
     return <div className="ui container">{this.renderSpinForm()}</div>;
   }
 }
