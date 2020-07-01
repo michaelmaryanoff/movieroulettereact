@@ -118,6 +118,10 @@ class SpinPage extends React.Component {
     }
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+  };
+
   renderSpinForm() {
     return (
       <div className="pusher">
@@ -173,6 +177,8 @@ class SpinPage extends React.Component {
                     >
                       {this.renderDropDown(genreInput)}
                     </select>
+                    <div className="ui basic segment"></div>
+                    <button className="ui fluid large teal submit button">Spin!</button>
                   </div>
                 </div>
               </form>
