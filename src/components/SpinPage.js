@@ -27,6 +27,7 @@ class SpinPage extends React.Component {
   }
 
   generateYearArray() {
+    // Creates an array of genres in order to populate the dropdown lists
     let currentYear = new Date().getFullYear();
     let firstYear = 1920;
     let years = [];
@@ -36,11 +37,16 @@ class SpinPage extends React.Component {
     }
     return years;
   }
-  renderDropDown(type) {
-    // Creates a zero indexed array for ratings
+
+  renderDropDown(inputType) {
+    // This function will render the various dropdown menus
+    // It takes in
+
+    // Creates a zero indexed array for ratings.
+    // The TMDB API takes in a zero index integer for ratings
     const ratingArray = Array.from(new Array(10), (i, index) => index);
 
-    if (type === 'yearFrom') {
+    if (inputType === 'yearFrom') {
       return this.state.yearArray.map(year => {
         return (
           <option key={year} value={year}>
@@ -50,7 +56,7 @@ class SpinPage extends React.Component {
       });
     }
 
-    if (type === 'yearTo') {
+    if (inputType === 'yearTo') {
       return this.state.yearArray.map(year => {
         return (
           <option key={year} value={year}>
@@ -59,7 +65,7 @@ class SpinPage extends React.Component {
         );
       });
     }
-    if (type === 'minimumRating') {
+    if (inputType === 'minimumRating') {
       return ratingArray.map(rating => {
         let displayRating = (rating + 1) * 10;
         return (
@@ -70,10 +76,8 @@ class SpinPage extends React.Component {
       });
     }
 
-    if (type === 'genres' && this.props.genreCodes) {
+    if (inputType === 'genres' && this.props.genreCodes) {
       return this.props.genreCodes.map(genre => {
-        console.log('genre is', genre);
-
         return (
           <option key={genre.name} value={genre.name}>
             {genre.name}
@@ -82,6 +86,13 @@ class SpinPage extends React.Component {
       });
     }
   }
+
+  handleUserInput = inputType => event => {
+    const { target } = event;
+    if (inputType === 'yearFrom') {
+      this.setState({ yearFrom: target.value });
+    }
+  };
 
   renderSpinForm() {
     return (
@@ -97,7 +108,11 @@ class SpinPage extends React.Component {
                   <div className="fields">
                     <div className="field">
                       <label>From</label>
-                      <select name="yearFrom" className="ui dropdown">
+                      <select
+                        name="yearFrom"
+                        className="ui dropdown"
+                        onChange={this.handleUserInput('yearFrom')}
+                      >
                         {this.renderDropDown('yearFrom')}
                       </select>
                     </div>
@@ -130,13 +145,13 @@ class SpinPage extends React.Component {
   }
 
   render() {
-    console.log('genre codes in props', this.props.genreCodes);
+    console.log('render state', this.state);
+
     return <div className="ui container">{this.renderSpinForm()}</div>;
   }
 }
 
 const mapStateToProps = state => {
-  console.log('state in this', state);
   return {
     genreCodes: state.spin.genres,
     currState: state
