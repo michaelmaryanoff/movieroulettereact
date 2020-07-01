@@ -185,6 +185,7 @@ class SpinPage extends React.Component {
                       className="ui fluid dropdown"
                       onChange={this.handleUserInput(genreInput)}
                     >
+                      <option id="selectGenre">Select Genre</option>
                       {this.renderDropDown(genreInput)}
                     </select>
                     <div className="ui basic segment"></div>
