@@ -6,7 +6,6 @@ import {
   END_GUEST_SESSION
 } from '../actions/types.js';
 
-// This will most likey change as we learn more about the TMDB auth flow
 const INITAL_STATE = {
   isLoggedIn: false,
   isGuestSession: false
@@ -16,7 +15,20 @@ export default (state = INITAL_STATE, action) => {
     case SIGN_IN:
       return { ...state, ...action.payload };
     case SIGN_OUT:
-      return { ...state, sessionId: null };
+      // here is what we need to nullify:
+      // accountDetails: null
+      // isGuestSession: false
+      // isLoggedIn: false
+      // sessionId: null (already there)
+      // watchList: null
+      return {
+        ...state,
+        sessionId: null,
+        accountDetails: null,
+        isGuestSession: false,
+        isLoggedIn: false,
+        watchList: null
+      };
     case START_GUEST_SESSION:
       return { ...state, isGuestSession: action.payload };
     case END_GUEST_SESSION:

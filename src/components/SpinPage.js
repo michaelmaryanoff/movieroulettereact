@@ -309,6 +309,8 @@ class SpinPage extends React.Component {
   }
 
   render() {
+    console.log('props in render', this.props);
+
     return (
       <div className="ui container">
         <div className="ui basic segment">{this.renderSpinForm()}</div>
@@ -319,6 +321,8 @@ class SpinPage extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state in props', state);
+
   return {
     genreCodes: state.spin.genres,
     selectedMovie: state.spin.selectedMovie,

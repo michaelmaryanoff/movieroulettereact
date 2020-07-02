@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
-import { destroyGuestSession } from '../actions';
+import { destroyGuestSession, signOut } from '../actions';
 
 class Header extends React.Component {
-  handleLogout() {
-    console.log('logout clicked');
-  }
+  handleLogout = () => {
+    this.props.signOut().then(this.props.history.push('/login'));
+  };
   renderHeader() {
     if (this.props.isLoggedIn) {
-      //TODO: We need to add functionality to logout
       return (
         <div className="ui menu">
           <div>
@@ -25,13 +25,14 @@ class Header extends React.Component {
           </div>
           <div className="right menu">
             <div className="item">Welcome, {this.props.sessionDetails.accountDetails.name}!</div>
-            <Link className="header item" onClick={this.handleLogout}>
+            <button className="header inactive item" onClick={this.handleLogout}>
               Logout
-            </Link>
+            </button>
           </div>
         </div>
       );
-    } else if (this.props.isGuestSession) {
+    }
+    if (this.props.isGuestSession) {
       return (
         <div className="ui menu">
           <div>
@@ -69,4 +70,4 @@ const mapStateToProps = state => {
 };
 
 // get our props into our header
-export default connect(mapStateToProps, { destroyGuestSession })(Header);
+export default withRouter(connect(mapStateToProps, { destroyGuestSession, signOut })(Header));

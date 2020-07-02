@@ -15,6 +15,7 @@ import {
   // SELECT_RANDOM_MOVIE
 } from './types';
 import tmdbClient, { apiKey } from '../api/tmdbClient';
+import history from '../history';
 
 export const signIn = ({ username, password }) => async dispatch => {
   // Holds our api key
@@ -94,10 +95,20 @@ export const getGenreCodes = () => async dispatch => {
   dispatch({ type: GET_GENRE_CODES, payload: data });
 };
 
-export const signOut = params => {
-  return {
-    type: SIGN_OUT
-  };
+export const signOut = params => async (dispatch, getState) => {
+  let state = getState();
+  let { sessionId } = state.session;
+
+  const response = await tmdbClient.delete(`/authentication/session?api_key=${apiKey}`, {
+    data: {
+      session_id: sessionId
+    }
+  });
+
+  dispatch({
+    type: SIGN_OUT,
+    payload: response
+  });
 };
 
 export const submitSpin = selection => async dispatch => {
