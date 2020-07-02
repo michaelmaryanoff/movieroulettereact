@@ -76,7 +76,7 @@ export const getWatchList = () => async (dispatch, getState) => {
   const { sessionId } = state.session;
 
   const { data } = await tmdbClient.get(`/account/${id}/watchlist/movies`, {
-    params: { api_key: apiKey, session_id: sessionId }
+    params: { api_key: apiKey, session_id: sessionId, sort_by: 'created_at.desc' }
   });
 
   dispatch({ type: GET_WATCHLIST, payload: data });
@@ -130,9 +130,6 @@ export const submitSpin = selection => async dispatch => {
 };
 
 export const addToWatchlist = selection => async (dispatch, getState) => {
-  console.log('state in atw', getState());
-  console.log('selection in atw', selection);
-
   let { session, spin } = getState();
   let { accountDetails } = session;
 
@@ -152,9 +149,8 @@ export const addToWatchlist = selection => async (dispatch, getState) => {
 
   let url = `/account/${accountId}/watchlist`;
 
-  const response = await tmdbClient
-    .post(url, bodyParams, { params: pathParams })
-    .then(() => dispatch(getWatchList()));
+  const response = await tmdbClient.post(url, bodyParams, { params: pathParams });
+  dispatch(getWatchList());
 
   dispatch({ type: ADD_TO_WATCHLIST, payload: response });
 };

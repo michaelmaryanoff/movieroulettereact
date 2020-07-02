@@ -9,8 +9,9 @@ import {
 } from '../actions/types';
 
 //* There is a possiblity here that we will need to have some sort of intial state that specifies default values since we are going to have to check for null when forming out url in the reducer.
+const INITIAL_STATE = { watchListResponse: -1 };
 
-export default (state = {}, action) => {
+export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SELECT_YEAR_FROM:
       return { ...state, yearFrom: action.yearFrom };
