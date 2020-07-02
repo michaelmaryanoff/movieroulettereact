@@ -20,7 +20,7 @@ class LoginForm extends React.Component {
   }
   componentDidUpdate() {
     if (this.props.isLoggedIn) {
-      this.props.history.push('/watchlist');
+      this.props.history.push('/spin');
     }
   }
 
