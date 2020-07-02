@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getGenreCodes, submitSpin } from '../actions';
+import { getGenreCodes, submitSpin, addToWatchlist } from '../actions';
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class SpinPage extends React.Component {
@@ -201,17 +201,20 @@ class SpinPage extends React.Component {
     );
   }
 
-  handleAddToWatchlist = () => {
-    console.log('selected movie', this.props.selectedMovie.id);
-    // We are going to need a funciton for making the watchlist call
+  handleAddToWatchlist = event => {
+    event.preventDefault();
+    this.props.addToWatchlist(this.props.selectedMovie.id);
   };
 
-  renderAddButton() {
+  renderAddToWatchlistButton() {
     // Renders a the "Add to watchlist button"
     if (this.props.isLoggedIn) {
       return (
         <div>
-          <button className="ui fluid large teal submit button" onClick={this.handleAddToWatchlist}>
+          <button
+            className="ui fluid large teal submit button"
+            onClick={event => this.handleAddToWatchlist(event)}
+          >
             Add to Watchlist
           </button>
         </div>
@@ -219,10 +222,7 @@ class SpinPage extends React.Component {
     } else {
       return (
         <div>
-          <button
-            className="ui fluid large inactive submit button"
-            onClick={this.handleAddToWatchlist}
-          >
+          <button disabled={true} className="ui fluid large inactive submit button">
             Log in to add to Watchlist
           </button>
         </div>
@@ -262,7 +262,7 @@ class SpinPage extends React.Component {
                     <div className="description">{overview}</div>
                     <div className="extra content">Average Score:{vote_average}</div>
                     <p />
-                    <div>{this.renderAddButton()}</div>
+                    <div>{this.renderAddToWatchlistButton()}</div>
                   </div>
                 </div>
               </div>
@@ -284,7 +284,7 @@ class SpinPage extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state in props', state);
+  // console.log('state in props', state);
 
   return {
     genreCodes: state.spin.genres,
@@ -294,4 +294,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getGenreCodes, submitSpin })(SpinPage);
+export default connect(mapStateToProps, { getGenreCodes, submitSpin, addToWatchlist })(SpinPage);

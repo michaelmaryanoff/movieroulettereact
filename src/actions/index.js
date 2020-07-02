@@ -9,7 +9,8 @@ import {
   START_GUEST_SESSION,
   END_GUEST_SESSION,
   GET_GENRE_CODES,
-  SUBMIT_SPIN
+  SUBMIT_SPIN,
+  ADD_TO_WATCHLIST
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -124,9 +125,25 @@ export const submitSpin = selection => async dispatch => {
   let randomIndex = Math.floor(Math.random() * length);
 
   let selectedMovie = data.results[randomIndex];
-  console.log('selected movie', selectedMovie);
 
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
+};
+
+export const addToWatchlist = selection => async (dispatch, getState) => {
+  // console.log('state in atw', getState());
+  // console.log('selection in atw', selection);
+
+  // To make this call we will need the following:
+  // account_id (for the url, and param)
+  // api_key
+  // session_id
+  // media_type (default to movie)
+  // media_id (this will come from selection)
+  // watchlist (true, since we are addingtm)
+
+  let dummyPayload = 'dummyPayload';
+
+  dispatch({ type: ADD_TO_WATCHLIST, payload: dummyPayload });
 };
 
 export const selectGenres = genres => {
