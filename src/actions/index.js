@@ -152,7 +152,9 @@ export const addToWatchlist = selection => async (dispatch, getState) => {
 
   let url = `/account/${accountId}/watchlist`;
 
-  const response = await tmdbClient.post(url, bodyParams, { params: pathParams });
+  const response = await tmdbClient
+    .post(url, bodyParams, { params: pathParams })
+    .then(() => dispatch(getWatchList()));
 
   dispatch({ type: ADD_TO_WATCHLIST, payload: response });
 };
