@@ -130,20 +130,31 @@ export const submitSpin = selection => async dispatch => {
 };
 
 export const addToWatchlist = selection => async (dispatch, getState) => {
-  // console.log('state in atw', getState());
-  // console.log('selection in atw', selection);
+  console.log('state in atw', getState());
+  console.log('selection in atw', selection);
 
-  // To make this call we will need the following:
-  // account_id (for the url, and param)
-  // api_key
-  // session_id
-  // media_type (default to movie)
-  // media_id (this will come from selection)
-  // watchlist (true, since we are addingtm)
+  let { session, spin } = getState();
+  let { accountDetails } = session;
 
-  let dummyPayload = 'dummyPayload';
+  // Parameters for watchlist add
+  let accountId = accountDetails.id;
+  let sessionId = session.sessionId;
+  const mediaType = 'movie';
+  let mediaId = spin.selectedMovie.id;
+  const watchlist = true;
+  let pathParams = { api_key: apiKey, session_id: sessionId };
 
-  dispatch({ type: ADD_TO_WATCHLIST, payload: dummyPayload });
+  let bodyParams = {
+    media_type: mediaType,
+    media_id: mediaId,
+    watchlist
+  };
+
+  let url = `/account/${accountId}/watchlist`;
+
+  const response = await tmdbClient.post(url, bodyParams, { params: pathParams });
+
+  dispatch({ type: ADD_TO_WATCHLIST, payload: response });
 };
 
 export const selectGenres = genres => {
