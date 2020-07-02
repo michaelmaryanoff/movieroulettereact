@@ -201,18 +201,28 @@ class SpinPage extends React.Component {
     );
   }
 
+  handleAddToWatchlist = () => {
+    console.log('selected movie', this.props.selectedMovie.id);
+    // We are going to need a funciton for making the watchlist call
+  };
+
   renderAddButton() {
     // Renders a the "Add to watchlist button"
     if (this.props.isLoggedIn) {
       return (
         <div>
-          <button className="ui fluid large teal submit button">Add to Watchlist</button>
+          <button className="ui fluid large teal submit button" onClick={this.handleAddToWatchlist}>
+            Add to Watchlist
+          </button>
         </div>
       );
     } else {
       return (
         <div>
-          <button className="ui fluid large inactive submit button">
+          <button
+            className="ui fluid large inactive submit button"
+            onClick={this.handleAddToWatchlist}
+          >
             Log in to add to Watchlist
           </button>
         </div>
