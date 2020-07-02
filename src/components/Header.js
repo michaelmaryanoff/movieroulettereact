@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import { destroyGuestSession } from '../actions';
 
 class Header extends React.Component {
+  handleLogout() {
+    console.log('logout clicked');
+  }
   renderHeader() {
     if (this.props.isLoggedIn) {
       //TODO: We need to add functionality to logout
@@ -22,7 +25,9 @@ class Header extends React.Component {
           </div>
           <div className="right menu">
             <div className="item">Welcome, {this.props.sessionDetails.accountDetails.name}!</div>
-            <div className="header item">Logout</div>
+            <Link className="header item" onClick={this.handleLogout}>
+              Logout
+            </Link>
           </div>
         </div>
       );
