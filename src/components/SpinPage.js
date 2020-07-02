@@ -34,6 +34,7 @@ class SpinPage extends React.Component {
     // Since genre codes change over time, we need to make a network call to make sure we have
     // The correct genre codes
     this.props.getGenreCodes();
+    // console.log('props', this.props);
   }
 
   generateYearArray() {
@@ -200,6 +201,25 @@ class SpinPage extends React.Component {
     );
   }
 
+  renderAddButton() {
+    // Renders a the "Add to watchlist button"
+    if (this.props.isLoggedIn) {
+      return (
+        <div>
+          <button className="ui fluid large teal submit button">Add to Watchlist</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button className="ui fluid large inactive submit button">
+            Log in to add to Watchlist
+          </button>
+        </div>
+      );
+    }
+  }
+
   renderSpinCard() {
     if (this.props.selectedMovie) {
       let {
@@ -218,15 +238,21 @@ class SpinPage extends React.Component {
             <div className="three column row">
               <div className="column">
                 <div className="ui card" key={id}>
-                  <h3>Tonight you're watching...</h3>
+                  <div className="content">
+                    <h3>
+                      <em>Tonight you're watching...</em>
+                    </h3>
+                    <h1>{original_title}</h1>
+                  </div>
                   <div className="image">
                     <img src={imageURL} alt={id} />
                   </div>
                   <div className="content">
-                    <div className="header">{original_title}</div>
                     <div className="meta">Released: {release_date}</div>
                     <div className="description">{overview}</div>
                     <div className="extra content">Average Score:{vote_average}</div>
+                    <p />
+                    <div>{this.renderAddButton()}</div>
                   </div>
                 </div>
               </div>
@@ -252,7 +278,9 @@ const mapStateToProps = state => {
 
   return {
     genreCodes: state.spin.genres,
-    selectedMovie: state.spin.selectedMovie
+    selectedMovie: state.spin.selectedMovie,
+    isLoggedIn: state.session.isLoggedIn,
+    isGuestSession: state.session.isGuestSession
   };
 };
 
