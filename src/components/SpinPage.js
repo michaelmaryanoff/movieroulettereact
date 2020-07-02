@@ -27,7 +27,16 @@ class SpinPage extends React.Component {
       genreName: '',
 
       // The code of the currently selected genre (used for our network request)
-      genreCode: ''
+      genreCode: '',
+
+      // Let's us know if spin was clicked
+      isSpinning: false,
+
+      // Let's us know if we are updating the watchlist
+      isUpdatingWatchlist: false,
+
+      // Used for rendering the watchlist button once watchlist is updated
+      watchListIsUpdated: false
     };
   }
   // ANCHOR: Lifecycle methods
@@ -74,9 +83,9 @@ class SpinPage extends React.Component {
     }
   };
 
-  handleSubmit = event => {
+  handleSpin = event => {
     event.preventDefault();
-
+    this.setState({ watchListIsUpdated: false });
     let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
 
     let submissionObject = {
@@ -85,12 +94,21 @@ class SpinPage extends React.Component {
       minimumRating: minimumRating,
       genreCode: genreCode
     };
+
     this.props.submitSpin(submissionObject);
   };
 
   handleAddToWatchlist = event => {
     event.preventDefault();
-    this.props.addToWatchlist(this.props.selectedMovie.id);
+
+    this.setState({ isUpdatingWatchlist: true });
+
+    this.props.addToWatchlist(this.props.selectedMovie.id).then(() => {
+      if (this.props.watchListResponseStatus >= 200 && this.props.watchListResponseStatus <= 299) {
+        this.setState({ isUpdatingWatchlist: false });
+        this.setState({ watchListIsUpdated: true });
+      }
+    });
   };
 
   // ANCHOR: Render methods
@@ -142,7 +160,7 @@ class SpinPage extends React.Component {
 
   renderAddToWatchlistButton() {
     // Renders a the "Add to watchlist button"
-    if (this.props.isLoggedIn) {
+    if (this.props.isLoggedIn && this.state.watchListIsUpdated === false) {
       return (
         <div>
           <button
@@ -153,7 +171,22 @@ class SpinPage extends React.Component {
           </button>
         </div>
       );
-    } else {
+    }
+
+    if (this.props.isLoggedIn && this.state.watchListIsUpdated === true) {
+      return (
+        <div>
+          <button
+            className="ui fluid large inactive submit button"
+            onClick={event => this.handleAddToWatchlist(event)}
+            disabled={true}
+          >
+            Added to Watchlist!
+          </button>
+        </div>
+      );
+    }
+    if (!this.props.isLoggedIn) {
       return (
         <div>
           <button disabled={true} className="ui fluid large inactive submit button">
@@ -170,7 +203,7 @@ class SpinPage extends React.Component {
         <div className="ui middle aligned center aligned grid">
           <div className="two column row">
             <div className="column">
-              <form className="ui large form error" onSubmit={this.handleSubmit}>
+              <form className="ui large form error" onSubmit={this.handleSpin}>
                 <div className="ui segment">
                   <h2 className="ui teal image header">
                     <div className="content">Find a movie!</div>
@@ -276,7 +309,6 @@ class SpinPage extends React.Component {
   }
 
   render() {
-    console.log('state in render', this.props.currentState);
     return (
       <div className="ui container">
         <div className="ui basic segment">{this.renderSpinForm()}</div>
