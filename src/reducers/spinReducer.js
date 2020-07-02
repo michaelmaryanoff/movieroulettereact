@@ -4,7 +4,8 @@ import {
   SELECT_RATING,
   SUBMIT_SPIN,
   SELECT_GENRES,
-  GET_GENRE_CODES
+  GET_GENRE_CODES,
+  ADD_TO_WATCHLIST
 } from '../actions/types';
 
 //* There is a possiblity here that we will need to have some sort of intial state that specifies default values since we are going to have to check for null when forming out url in the reducer.
@@ -23,7 +24,9 @@ export default (state = {}, action) => {
     case SUBMIT_SPIN:
       return { ...state, selectedMovie: action.payload };
     case GET_GENRE_CODES:
-      return { state, ...action.payload };
+      return { ...state, ...action.payload };
+    case ADD_TO_WATCHLIST:
+      return { ...state, watchListResponse: action.payload };
     default:
       return state;
   }
