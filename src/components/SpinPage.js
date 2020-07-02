@@ -30,13 +30,13 @@ class SpinPage extends React.Component {
       genreCode: ''
     };
   }
+  // ANCHOR: Lifecycle methods
   componentDidMount() {
     // Since genre codes change over time, we need to make a network call to make sure we have
-    // The correct genre codes
+    // the correct genre codes
     this.props.getGenreCodes();
-    // console.log('props', this.props);
   }
-
+  // ANCHOR: Helper methods
   generateYearArray() {
     // Creates an array of genres in order to populate the dropdown lists
     let currentYear = new Date().getFullYear();
@@ -49,6 +49,51 @@ class SpinPage extends React.Component {
     return years;
   }
 
+  // ANCHOR: Handle input methods
+  handleUserInput = inputType => event => {
+    const { target } = event;
+
+    if (inputType === yearFromInput) {
+      this.setState({ yearFrom: target.value });
+    }
+
+    if (inputType === yearToInput) {
+      this.setState({ yearTo: target.value });
+    }
+
+    if (inputType === minimumRatingInput) {
+      this.setState({ minimumRating: target.value });
+    }
+
+    if (inputType === genreInput) {
+      // We need these variables to get the text of the label in order to set the state
+      let index = event.nativeEvent.target.selectedIndex;
+      let label = event.nativeEvent.target[index].label;
+
+      this.setState({ genreCode: target.value, genreName: label });
+    }
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
+
+    let submissionObject = {
+      yearFrom: yearFrom,
+      yearTo: yearTo,
+      minimumRating: minimumRating,
+      genreCode: genreCode
+    };
+    this.props.submitSpin(submissionObject);
+  };
+
+  handleAddToWatchlist = event => {
+    event.preventDefault();
+    this.props.addToWatchlist(this.props.selectedMovie.id);
+  };
+
+  // ANCHOR: Render methods
   renderDropDown(inputType) {
     // This function will render the various dropdown menus
     // It takes in
@@ -95,43 +140,29 @@ class SpinPage extends React.Component {
     }
   }
 
-  handleUserInput = inputType => event => {
-    const { target } = event;
-
-    if (inputType === yearFromInput) {
-      this.setState({ yearFrom: target.value });
+  renderAddToWatchlistButton() {
+    // Renders a the "Add to watchlist button"
+    if (this.props.isLoggedIn) {
+      return (
+        <div>
+          <button
+            className="ui fluid large teal submit button"
+            onClick={event => this.handleAddToWatchlist(event)}
+          >
+            Add to Watchlist
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button disabled={true} className="ui fluid large inactive submit button">
+            Log in to add to Watchlist
+          </button>
+        </div>
+      );
     }
-
-    if (inputType === yearToInput) {
-      this.setState({ yearTo: target.value });
-    }
-
-    if (inputType === minimumRatingInput) {
-      this.setState({ minimumRating: target.value });
-    }
-
-    if (inputType === genreInput) {
-      // We need these variables to get the text of the label in order to set the state
-      let index = event.nativeEvent.target.selectedIndex;
-      let label = event.nativeEvent.target[index].label;
-
-      this.setState({ genreCode: target.value, genreName: label });
-    }
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
-
-    let submissionObject = {
-      yearFrom: yearFrom,
-      yearTo: yearTo,
-      minimumRating: minimumRating,
-      genreCode: genreCode
-    };
-    this.props.submitSpin(submissionObject);
-  };
+  }
 
   renderSpinForm() {
     return (
@@ -199,35 +230,6 @@ class SpinPage extends React.Component {
         </div>
       </div>
     );
-  }
-
-  handleAddToWatchlist = event => {
-    event.preventDefault();
-    this.props.addToWatchlist(this.props.selectedMovie.id);
-  };
-
-  renderAddToWatchlistButton() {
-    // Renders a the "Add to watchlist button"
-    if (this.props.isLoggedIn) {
-      return (
-        <div>
-          <button
-            className="ui fluid large teal submit button"
-            onClick={event => this.handleAddToWatchlist(event)}
-          >
-            Add to Watchlist
-          </button>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          <button disabled={true} className="ui fluid large inactive submit button">
-            Log in to add to Watchlist
-          </button>
-        </div>
-      );
-    }
   }
 
   renderSpinCard() {
