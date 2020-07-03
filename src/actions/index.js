@@ -10,7 +10,8 @@ import {
   END_GUEST_SESSION,
   GET_GENRE_CODES,
   SUBMIT_SPIN,
-  ADD_TO_WATCHLIST
+  ADD_TO_WATCHLIST,
+  AUTH_ERROR
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -22,40 +23,64 @@ export const signIn = ({ username, password }) => async dispatch => {
 
   // Creates an authorization token
   const token = await tmdbClient.get('/authentication/token/new', apiKeyParams);
+  console.log('token', token);
+
   const requestToken = token.data.request_token;
+  console.log('requestToken', requestToken);
 
   // Authorizes our token
-  const authenticated = await tmdbClient.post(
-    '/authentication/token/validate_with_login',
-    { username, password, request_token: requestToken },
-    apiKeyParams
-  );
-  const authenticatedToken = authenticated.data.request_token;
-
-  // Creates a new session and gets us a session_id
-  const response = await tmdbClient.post(
-    '/authentication/session/new',
-    { request_token: authenticatedToken },
-    apiKeyParams
-  );
-  const sessionId = response.data.session_id;
-
-  // Gets details about the authorized user
-  const accountDetails = await tmdbClient.get('/account', {
-    params: { api_key: apiKey, session_id: sessionId }
-  });
-
-  // Creates a sessionDetails variable that has all the releveant info we need for future requests
-  const sessionDetails = {
-    sessionId,
-    accountDetails: accountDetails.data,
-    isLoggedIn: true
-  };
+  const authenticated = await tmdbClient
+    .post(
+      '/authentication/token/validate_with_login',
+      { username, password, request_token: requestToken },
+      apiKeyParams
+    )
+    .then(response => {
+      console.log('response', response);
+    })
+    .catch(error => {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    });
 
   dispatch({
     type: SIGN_IN,
-    payload: sessionDetails
+    payload: authenticated
   });
+
+  // console.log('authenticated', authenticated);
+
+  // const authenticatedToken = authenticated.data.request_token;
+  // console.log('authenticatedToken', authenticatedToken);
+
+  // // Creates a new session and gets us a session_id
+  // const response = await tmdbClient.post(
+  //   '/authentication/session/new',
+  //   { request_token: authenticatedToken },
+  //   apiKeyParams
+  // );
+  // console.log('response', response);
+
+  // const sessionId = response.data.session_id;
+  // console.log('sessionId', sessionId);
+
+  // // Gets details about the authorized user
+  // const accountDetails = await tmdbClient.get('/account', {
+  //   params: { api_key: apiKey, session_id: sessionId }
+  // });
+  // console.log('accountDetails', accountDetails);
+
+  // // Creates a sessionDetails variable that has all the releveant info we need for future requests
+  // const sessionDetails = {
+  //   sessionId,
+  //   accountDetails: accountDetails.data,
+  //   isLoggedIn: true
+  // };
+  // console.log('sessionDetails', sessionDetails);
+
+  // dispatch({
+  //   type: SIGN_IN,
+  //   payload: sessionDetails
+  // });
 };
 
 export const createGuestSession = () => {
@@ -71,7 +96,13 @@ export const destroyGuestSession = () => {
 };
 
 export const getWatchList = () => async (dispatch, getState) => {
+  console.log('state', getState());
+
   const state = getState();
+  if (state.session.authError) {
+    console.log('error!');
+    return;
+  }
   const { id } = state.session.accountDetails;
   const { sessionId } = state.session;
 

@@ -14,7 +14,7 @@ class LoginForm extends React.Component {
     super(props);
     this.state = {
       username: tempusername,
-      password: temppassword,
+      password: '1234',
       hasSubmitted: false
     };
   }

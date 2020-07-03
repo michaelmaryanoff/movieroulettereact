@@ -3,24 +3,20 @@ import {
   SIGN_OUT,
   GET_WATCHLIST,
   START_GUEST_SESSION,
-  END_GUEST_SESSION
+  END_GUEST_SESSION,
+  AUTH_ERROR
 } from '../actions/types.js';
 
 const INITAL_STATE = {
   isLoggedIn: false,
-  isGuestSession: false
+  isGuestSession: false,
+  authError: null
 };
 export default (state = INITAL_STATE, action) => {
   switch (action.type) {
     case SIGN_IN:
       return { ...state, ...action.payload };
     case SIGN_OUT:
-      // here is what we need to nullify:
-      // accountDetails: null
-      // isGuestSession: false
-      // isLoggedIn: false
-      // sessionId: null (already there)
-      // watchList: null
       return {
         ...state,
         sessionId: null,
@@ -29,6 +25,8 @@ export default (state = INITAL_STATE, action) => {
         isLoggedIn: false,
         watchList: null
       };
+    case AUTH_ERROR:
+      return { ...state, authError: action.payload };
     case START_GUEST_SESSION:
       return { ...state, isGuestSession: action.payload };
     case END_GUEST_SESSION:
