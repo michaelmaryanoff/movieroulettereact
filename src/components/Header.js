@@ -6,11 +6,25 @@ import { withRouter } from 'react-router';
 import { destroyGuestSession, signOut } from '../actions';
 
 class Header extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { headerShouldRender: false };
+  }
+
+  componentDidMount() {
+    if (this.props.isLoggedIn || this.props.isGuestSession) {
+      this.setState({ headerShouldRender: true });
+    }
+  }
+
   handleLogout = () => {
+    this.setState({ headerShouldRender: false });
     this.props.signOut().then(this.props.history.push('/login'));
   };
+
   renderHeader() {
-    if (this.props.isLoggedIn) {
+    if (this.state.headerShouldRender && this.props.isLoggedIn) {
       return (
         <div className="ui menu">
           <div>
@@ -32,7 +46,7 @@ class Header extends React.Component {
         </div>
       );
     }
-    if (this.props.isGuestSession) {
+    if (this.props.isGuestSession && this.state.headerShouldRender) {
       return (
         <div className="ui menu">
           <div>
