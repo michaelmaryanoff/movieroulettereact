@@ -27,7 +27,7 @@ export default (state = INITAL_STATE, action) => {
         watchList: null
       };
     case VALIDATE_REQUEST_TOKEN:
-      return { ...state, requestToken: action.payload };
+      return { ...state, ...action.payload };
     case AUTH_ERROR:
       return { ...state, authError: action.payload };
     case START_GUEST_SESSION:

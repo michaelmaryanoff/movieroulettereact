@@ -36,51 +36,48 @@ export const signIn = ({ username, password }) => async dispatch => {
       { username, password, request_token: requestToken },
       apiKeyParams
     )
-    .then(response => dispatch({ type: SIGN_IN, payload: response.data.request_token }))
+    .then(response => {
+      dispatch({ type: SIGN_IN, payload: response.data.request_token });
+    })
     .catch(error => {
       dispatch({ type: AUTH_ERROR, payload: error });
     });
 
   // const authenticatedToken = authenticated.data.request_token;
-
-  // // Creates a new session and gets us a session_id
-  // const response = await tmdbClient.post(
-  //   '/authentication/session/new',
-  //   { request_token: authenticatedToken },
-  //   apiKeyParams
-  // );
-  // console.log('response', response);
-
-  // const sessionId = response.data.session_id;
-  // console.log('sessionId', sessionId);
-
-  // // Gets details about the authorized user
-  // const accountDetails = await tmdbClient.get('/account', {
-  //   params: { api_key: apiKey, session_id: sessionId }
-  // });
-  // console.log('accountDetails', accountDetails);
-
-  // // Creates a sessionDetails variable that has all the releveant info we need for future requests
-  // const sessionDetails = {
-  //   sessionId,
-  //   accountDetails: accountDetails.data,
-  //   isLoggedIn: true
-  // };
-  // console.log('sessionDetails', sessionDetails);
-
-  // dispatch({
-  //   type: SIGN_IN,
-  //   payload: sessionDetails
-  // });
 };
 
 export const validateRequestToken = () => async (dispatch, getState) => {
   const state = getState();
   console.log('state in val', state);
+  const apiKeyParams = { params: { api_key: apiKey } };
 
-  let dummy = 'dummy';
+  let authenticatedToken = state.session.responseToken;
 
-  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: dummy });
+  // Creates a new session and gets us a session_id
+  const response = await tmdbClient.post(
+    '/authentication/session/new',
+    { request_token: authenticatedToken },
+    apiKeyParams
+  );
+  console.log('response', response);
+
+  const sessionId = response.data.session_id;
+
+  // Gets details about the authorized user
+  const accountDetails = await tmdbClient.get('/account', {
+    params: { api_key: apiKey, session_id: sessionId }
+  });
+  console.log('accountDetails', accountDetails);
+
+  // Creates a sessionDetails variable that has all the releveant info we need for future requests
+  const sessionDetails = {
+    sessionId,
+    accountDetails: accountDetails.data,
+    isLoggedIn: true
+  };
+  console.log('sessionDetails', sessionDetails);
+
+  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
 };
 
 export const getUserDetails = loginFormParams => dispatch => {
