@@ -39,7 +39,7 @@ class Header extends React.Component {
           </div>
           <div className="right menu">
             <div className="item">Welcome, {this.props.sessionDetails.accountDetails.name}!</div>
-            <button className="header inactive item" onClick={this.handleLogout}>
+            <button className="header item" onClick={this.handleLogout}>
               Logout
             </button>
           </div>
