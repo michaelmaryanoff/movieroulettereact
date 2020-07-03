@@ -116,7 +116,7 @@ export const submitSpin = selection => async dispatch => {
   let dateFrom = `${yearFrom}-01-01`;
   let dateTo = `${yearTo}-12-31`;
 
-  const { data } = await tmdbClient.get('/discover/movie', {
+  const pageResponse = await tmdbClient.get('/discover/movie', {
     params: {
       api_key: apiKey,
       include_adult: false,
@@ -129,12 +129,38 @@ export const submitSpin = selection => async dispatch => {
       'primary_release_date.lte': dateTo
     }
   });
+  let totalPages = pageResponse.data.total_pages;
 
-  let { length } = data.results;
+  /** In order to increase the randomness of the movies selected, we want to select a random page
+   * The issue that we run into is that if we get the first page of results (with the popularity sorted
+   * in descending order) or an early page we will get a movie that has a very low popularity with a small chance
+   * of wide availability. So we will be using results for the first 40% of pages instead.
+   */
+
+  let pageRange = totalPages * 0.4;
+
+  let randomPage = Math.floor(Math.random() * pageRange) + 1;
+
+  const movieResponse = await tmdbClient.get('/discover/movie', {
+    params: {
+      api_key: apiKey,
+      include_adult: false,
+      language: 'en-US',
+      sort_by: 'popularity.desc',
+      'vote_average.gte': minimumRating,
+      page: randomPage,
+      with_genres: genreCode,
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo
+    }
+  });
+  console.log('movieResponse', movieResponse);
+
+  let { length } = movieResponse.data.results;
 
   let randomIndex = Math.floor(Math.random() * length);
 
-  let selectedMovie = data.results[randomIndex];
+  let selectedMovie = movieResponse.data.results[randomIndex];
 
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };
