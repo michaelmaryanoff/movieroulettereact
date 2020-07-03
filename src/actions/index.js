@@ -59,7 +59,6 @@ export const validateRequestToken = () => async (dispatch, getState) => {
     { request_token: authenticatedToken },
     apiKeyParams
   );
-  console.log('response', response);
 
   const sessionId = response.data.session_id;
 
@@ -100,7 +99,7 @@ export const destroyGuestSession = () => {
 };
 
 export const getWatchList = () => async (dispatch, getState) => {
-  console.log('state', getState());
+  console.log('state in watchlist', getState());
 
   const state = getState();
   if (state.session.authError) {

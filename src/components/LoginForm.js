@@ -24,13 +24,20 @@ class LoginForm extends React.Component {
     }
   }
 
-  renderError = fieldName => {
+  renderFieldError = fieldName => {
     if (fieldName === 'username' && !this.state.username && this.state.hasSubmitted) {
       return <div className="ui error message">Please enter a username</div>;
     }
 
     if (fieldName === 'password' && !this.state.password && this.state.hasSubmitted) {
       return <div className="ui error message">Please enter a password</div>;
+    }
+  };
+
+  renderLoginError = () => {
+    console.log('error in ren', this.props.authError);
+    if (this.props.authError) {
+      return <div className="ui error message">Invalid username and/or password</div>;
     }
   };
 
@@ -74,7 +81,7 @@ class LoginForm extends React.Component {
                     value={this.state.username}
                   />
                 </div>
-                <div>{this.renderError('username')}</div>
+                <div>{this.renderFieldError('username')}</div>
               </div>
 
               <div className="field">
@@ -88,9 +95,10 @@ class LoginForm extends React.Component {
                     value={this.state.password}
                   />
                 </div>
-                <div>{this.renderError('password')}</div>
+                <div>{this.renderFieldError('password')}</div>
               </div>
               <button className="ui fluid large teal submit button">Login</button>
+              <div>{this.renderLoginError()}</div>
               <div className="ui message">
                 Don't have an account?{' '}
                 {
@@ -119,7 +127,8 @@ class LoginForm extends React.Component {
 const mapStateToProps = state => {
   return {
     sessionDetails: state.session,
-    isLoggedIn: state.session.isLoggedIn
+    isLoggedIn: state.session.isLoggedIn,
+    authError: state.session.authError
   };
 };
 
