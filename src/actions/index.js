@@ -15,7 +15,6 @@ import {
   // SELECT_RANDOM_MOVIE
 } from './types';
 import tmdbClient, { apiKey } from '../api/tmdbClient';
-import history from '../history';
 
 export const signIn = ({ username, password }) => async dispatch => {
   // Holds our api key
