@@ -4,7 +4,8 @@ import {
   GET_WATCHLIST,
   START_GUEST_SESSION,
   END_GUEST_SESSION,
-  AUTH_ERROR
+  AUTH_ERROR,
+  VALIDATE_REQUEST_TOKEN
 } from '../actions/types.js';
 
 const INITAL_STATE = {
@@ -15,7 +16,7 @@ const INITAL_STATE = {
 export default (state = INITAL_STATE, action) => {
   switch (action.type) {
     case SIGN_IN:
-      return { ...state, ...action.payload };
+      return { ...state, responseToken: action.payload };
     case SIGN_OUT:
       return {
         ...state,
@@ -25,6 +26,8 @@ export default (state = INITAL_STATE, action) => {
         isLoggedIn: false,
         watchList: null
       };
+    case VALIDATE_REQUEST_TOKEN:
+      return { ...state, requestToken: action.payload };
     case AUTH_ERROR:
       return { ...state, authError: action.payload };
     case START_GUEST_SESSION:

@@ -11,7 +11,8 @@ import {
   GET_GENRE_CODES,
   SUBMIT_SPIN,
   ADD_TO_WATCHLIST,
-  AUTH_ERROR
+  AUTH_ERROR,
+  VALIDATE_REQUEST_TOKEN
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -29,28 +30,18 @@ export const signIn = ({ username, password }) => async dispatch => {
   console.log('requestToken', requestToken);
 
   // Authorizes our token
-  const authenticated = await tmdbClient
+  await tmdbClient
     .post(
       '/authentication/token/validate_with_login',
       { username, password, request_token: requestToken },
       apiKeyParams
     )
-    .then(response => {
-      console.log('response', response);
-    })
+    .then(response => dispatch({ type: SIGN_IN, payload: response.data.request_token }))
     .catch(error => {
       dispatch({ type: AUTH_ERROR, payload: error });
     });
 
-  dispatch({
-    type: SIGN_IN,
-    payload: authenticated
-  });
-
-  // console.log('authenticated', authenticated);
-
   // const authenticatedToken = authenticated.data.request_token;
-  // console.log('authenticatedToken', authenticatedToken);
 
   // // Creates a new session and gets us a session_id
   // const response = await tmdbClient.post(
@@ -83,6 +74,22 @@ export const signIn = ({ username, password }) => async dispatch => {
   // });
 };
 
+export const validateRequestToken = () => async (dispatch, getState) => {
+  const state = getState();
+  console.log('state in val', state);
+
+  let dummy = 'dummy';
+
+  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: dummy });
+};
+
+export const getUserDetails = loginFormParams => dispatch => {
+  // TODO: We will need to add a .then with our token validation
+  dispatch(signIn(loginFormParams))
+    .then(() => dispatch(validateRequestToken()))
+    .then(() => dispatch(getWatchList()));
+};
+
 export const createGuestSession = () => {
   const isGuestSession = true;
 
@@ -111,10 +118,6 @@ export const getWatchList = () => async (dispatch, getState) => {
   });
 
   dispatch({ type: GET_WATCHLIST, payload: data });
-};
-
-export const getUserDetails = loginFormParams => dispatch => {
-  dispatch(signIn(loginFormParams)).then(() => dispatch(getWatchList()));
 };
 
 export const getGenreCodes = () => async dispatch => {

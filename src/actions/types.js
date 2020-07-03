@@ -6,6 +6,7 @@ export const START_GUEST_SESSION = 'START_GUEST_SESSION';
 export const END_GUEST_SESSION = 'END_GUEST_SESSION';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
+export const VALIDATE_REQUEST_TOKEN = 'VALIDATE_REQUEST_TOKEN';
 
 // Fetching user info
 export const GET_WATCHLIST = 'GET_WATCHLIST';
