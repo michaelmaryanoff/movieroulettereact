@@ -9,8 +9,6 @@ import {
 } from '../actions/types.js';
 
 const INITAL_STATE = {
-  isLoggedIn: false,
-  isGuestSession: false,
   authError: null
 };
 export default (state = INITAL_STATE, action) => {

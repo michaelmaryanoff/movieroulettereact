@@ -7,13 +7,15 @@ import WatchList from './WatchList';
 import Header from './Header';
 import SpinPage from './SpinPage';
 
+// TODO: Create a conditional that renders header with login page
 class App extends React.Component {
   render() {
     return (
       <div className="ui container">
         <BrowserRouter>
           <Fragment>
-            {(this.props.isLoggedIn || this.props.isGuestSession) === false ? null : <Header />}
+            {/* {!this.props.isLoggedIn ? null : <Header />} */}
+            <Header />
             <div>
               <Switch>
                 <Route path="/spin" exact component={SpinPage} />
@@ -31,8 +33,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.session.isLoggedIn,
-    isGuestSession: state.session.isGuestSession
+    isLoggedIn: state.session.isLoggedIn
   };
 };
 

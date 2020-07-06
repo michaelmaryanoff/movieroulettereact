@@ -24,10 +24,8 @@ export const signIn = ({ username, password }) => async dispatch => {
 
   // Creates an authorization token
   const token = await tmdbClient.get('/authentication/token/new', apiKeyParams);
-  console.log('token', token);
 
   const requestToken = token.data.request_token;
-  console.log('requestToken', requestToken);
 
   // Authorizes our token
   await tmdbClient
@@ -48,7 +46,6 @@ export const signIn = ({ username, password }) => async dispatch => {
 
 export const validateRequestToken = () => async (dispatch, getState) => {
   const state = getState();
-  console.log('state in val', state);
   const apiKeyParams = { params: { api_key: apiKey } };
 
   let authenticatedToken = state.session.responseToken;
@@ -66,7 +63,6 @@ export const validateRequestToken = () => async (dispatch, getState) => {
   const accountDetails = await tmdbClient.get('/account', {
     params: { api_key: apiKey, session_id: sessionId }
   });
-  console.log('accountDetails', accountDetails);
 
   // Creates a sessionDetails variable that has all the releveant info we need for future requests
   const sessionDetails = {
@@ -74,7 +70,6 @@ export const validateRequestToken = () => async (dispatch, getState) => {
     accountDetails: accountDetails.data,
     isLoggedIn: true
   };
-  console.log('sessionDetails', sessionDetails);
 
   dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
 };
@@ -99,11 +94,9 @@ export const destroyGuestSession = () => {
 };
 
 export const getWatchList = () => async (dispatch, getState) => {
-  console.log('state in watchlist', getState());
 
   const state = getState();
   if (state.session.authError) {
-    console.log('error!');
     return;
   }
   const { id } = state.session.accountDetails;
@@ -184,7 +177,6 @@ export const submitSpin = selection => async dispatch => {
       'primary_release_date.lte': dateTo
     }
   });
-  console.log('movieResponse', movieResponse);
 
   let { length } = movieResponse.data.results;
 

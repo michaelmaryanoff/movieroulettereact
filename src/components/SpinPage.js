@@ -323,7 +323,6 @@ const mapStateToProps = state => {
     genreCodes: state.spin.genres,
     selectedMovie: state.spin.selectedMovie,
     isLoggedIn: state.session.isLoggedIn,
-    isGuestSession: state.session.isGuestSession,
     watchListResponseStatus: state.spin.watchListResponse.status,
     currentState: state
   };

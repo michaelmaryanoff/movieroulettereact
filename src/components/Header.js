@@ -9,11 +9,18 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { headerShouldRender: false };
+    this.state = { headerShouldRender: true };
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn || this.props.isGuestSession) {
+
+    if (this.props.history.location.pathname === '/' || '/login') {
+      
+      this.setState({ headerShouldRender: false });
+    }
+
+
+    if (this.props.isLoggedIn) {
       this.setState({ headerShouldRender: true });
     }
   }
@@ -24,6 +31,9 @@ class Header extends React.Component {
   };
 
   renderHeader() {
+    if (this.state.headerShouldRender === false) {
+      return <div></div>;
+    }
     if (this.state.headerShouldRender && this.props.isLoggedIn) {
       return (
         <div className="ui menu">
@@ -46,7 +56,7 @@ class Header extends React.Component {
         </div>
       );
     }
-    if (this.props.isGuestSession && this.state.headerShouldRender) {
+    if (!this.props.isLoggedIn) {
       return (
         <div className="ui menu">
           <div>
@@ -78,8 +88,7 @@ class Header extends React.Component {
 const mapStateToProps = state => {
   return {
     sessionDetails: state.session,
-    isLoggedIn: state.session.isLoggedIn,
-    isGuestSession: state.session.isGuestSession
+    isLoggedIn: state.session.isLoggedIn
   };
 };
 

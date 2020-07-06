@@ -35,7 +35,6 @@ class LoginForm extends React.Component {
   };
 
   renderLoginError = () => {
-    console.log('error in ren', this.props.authError);
     if (this.props.authError) {
       return <div className="ui error message">Invalid username and/or password</div>;
     }
