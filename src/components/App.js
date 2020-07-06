@@ -6,12 +6,14 @@ import LoginForm from './LoginForm';
 import WatchList from './WatchList';
 import Header from './Header';
 import SpinPage from './SpinPage';
+import { LoadingBar } from 'react-redux-loading-bar';
 
 class App extends React.Component {
   render() {
     return (
       <div className="ui container">
         <BrowserRouter>
+          <LoadingBar progressIncrease={100} showFastActions />
           <Switch>
             <Route path="/login" exact component={LoginForm} />
             <Route path="/" exact component={LoginForm} />

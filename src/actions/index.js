@@ -15,6 +15,7 @@ import {
   // SELECT_RANDOM_MOVIE
 } from './types';
 import tmdbClient, { apiKey } from '../api/tmdbClient';
+import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
 export const signIn = ({ username, password }) => async dispatch => {
   // Holds our api key
@@ -73,10 +74,13 @@ export const validateRequestToken = () => async (dispatch, getState) => {
 };
 
 export const getUserDetails = loginFormParams => dispatch => {
-  // TODO: We will need to add a .then with our token validation
+  dispatch(showLoading());
   dispatch(signIn(loginFormParams))
     .then(() => dispatch(validateRequestToken()))
-    .then(() => dispatch(getWatchList()));
+    .then(() => {
+      dispatch(getWatchList());
+      dispatch(hideLoading());
+    });
 };
 
 export const getWatchList = () => async (dispatch, getState) => {
