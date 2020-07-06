@@ -2,8 +2,6 @@ import {
   SIGN_IN,
   SIGN_OUT,
   GET_WATCHLIST,
-  START_GUEST_SESSION,
-  END_GUEST_SESSION,
   AUTH_ERROR,
   VALIDATE_REQUEST_TOKEN
 } from '../actions/types.js';
@@ -20,7 +18,6 @@ export default (state = INITAL_STATE, action) => {
         ...state,
         sessionId: null,
         accountDetails: null,
-        isGuestSession: false,
         isLoggedIn: false,
         watchList: null
       };
@@ -28,10 +25,6 @@ export default (state = INITAL_STATE, action) => {
       return { ...state, ...action.payload };
     case AUTH_ERROR:
       return { ...state, authError: action.payload };
-    case START_GUEST_SESSION:
-      return { ...state, isGuestSession: action.payload };
-    case END_GUEST_SESSION:
-      return { ...state, isGuestSession: action.payload };
     case GET_WATCHLIST:
       return { ...state, watchList: action.payload };
     default:

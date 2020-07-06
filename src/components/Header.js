@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { destroyGuestSession, signOut } from '../actions';
+import { signOut } from '../actions';
 
 class Header extends React.Component {
   constructor(props) {
@@ -12,35 +12,14 @@ class Header extends React.Component {
     this.state = { headerShouldRender: true };
   }
 
-  componentDidMount() {
-    if (this.props.history.location.pathname === ('/' || '/login')) {
-      console.log('his', this.props.history.location.pathname);
-      console.log('loc', this.props.history.location);
-
-      this.setState({ headerShouldRender: false });
-    } else {
-      this.setState({ headerShouldRender: true });
-    }
-
-    if (this.props.isLoggedIn) {
-      this.setState({ headerShouldRender: true });
-    }
-  }
-
-  componentDidUpdate() {}
-
   handleLogout = () => {
     console.log('handle logout');
 
-    this.setState({ headerShouldRender: false });
     this.props.signOut().then(this.props.history.push('/login'));
   };
 
   renderHeader() {
-    if (this.state.headerShouldRender === false) {
-      return <div></div>;
-    }
-    if (this.state.headerShouldRender && this.props.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       return (
         <div className="ui menu">
           <div>
@@ -61,8 +40,7 @@ class Header extends React.Component {
           </div>
         </div>
       );
-    }
-    if (!this.props.isLoggedIn && this.state.headerShouldRender === true) {
+    } else {
       return (
         <div className="ui menu">
           <div>
@@ -71,13 +49,13 @@ class Header extends React.Component {
             </Link>
           </div>
           <div>
-            <Link to="/login" className="header item" onClick={this.props.destroyGuestSession}>
+            <Link to="/login" className="header item">
               Log in to see Watchlist
             </Link>
           </div>
 
           <div className="right menu">
-            <Link to="/login" className="header item" onClick={this.props.destroyGuestSession}>
+            <Link to="/login" className="header item">
               Log in
             </Link>
           </div>
@@ -87,8 +65,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log('this.state.headerShouldRender', this.state.headerShouldRender);
-    console.log('render', this.props.history.location.pathname);
     if (this.props.history.location.pathname) {
     }
 
@@ -104,4 +80,4 @@ const mapStateToProps = state => {
 };
 
 // get our props into our header
-export default withRouter(connect(mapStateToProps, { destroyGuestSession, signOut })(Header));
+export default withRouter(connect(mapStateToProps, { signOut })(Header));

@@ -2,9 +2,6 @@
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 
-export const START_GUEST_SESSION = 'START_GUEST_SESSION';
-export const END_GUEST_SESSION = 'END_GUEST_SESSION';
-
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const VALIDATE_REQUEST_TOKEN = 'VALIDATE_REQUEST_TOKEN';
 

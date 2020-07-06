@@ -6,8 +6,6 @@ import {
   SELECT_YEAR_TO,
   SELECT_RATING,
   GET_WATCHLIST,
-  START_GUEST_SESSION,
-  END_GUEST_SESSION,
   GET_GENRE_CODES,
   SUBMIT_SPIN,
   ADD_TO_WATCHLIST,
@@ -81,20 +79,7 @@ export const getUserDetails = loginFormParams => dispatch => {
     .then(() => dispatch(getWatchList()));
 };
 
-export const createGuestSession = () => {
-  const isGuestSession = true;
-
-  return { type: START_GUEST_SESSION, payload: isGuestSession };
-};
-
-export const destroyGuestSession = () => {
-  const isGuestSession = false;
-
-  return { type: END_GUEST_SESSION, payload: isGuestSession };
-};
-
 export const getWatchList = () => async (dispatch, getState) => {
-
   const state = getState();
   if (state.session.authError) {
     return;

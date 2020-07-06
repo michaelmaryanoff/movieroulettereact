@@ -3,7 +3,7 @@ import reelLogo from '../../src/images/reel-logo.png';
 
 import { tempusername, temppassword } from '../testinfo/testinfo';
 
-import { signIn, getWatchList, getUserDetails, createGuestSession } from '../actions';
+import { signIn, getWatchList, getUserDetails } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
               <div className="ui message">
                 Don't have an account?{' '}
                 {
-                  <Link to="/spin" onClick={this.props.createGuestSession}>
+                  <Link to="/spin" >
                     Click here to continue as guest
                   </Link>
                 }
@@ -132,5 +132,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { signIn, getWatchList, getUserDetails, createGuestSession })(LoginForm)
+  connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm)
 );
