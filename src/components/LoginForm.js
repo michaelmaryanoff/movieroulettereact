@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { Link } from 'react-router-dom';
+import LoadingBar from 'react-redux-loading-bar'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -114,7 +115,9 @@ class LoginForm extends React.Component {
   }
   render() {
     return (
+
       <div className="pusher">
+      <LoadingBar />  
         <div className="ui basic segment"></div>
         <div className="ui basic segment"></div>
         <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
