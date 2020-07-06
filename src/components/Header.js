@@ -13,19 +13,25 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.history.location.pathname === ('/' || '/login')) {
+      console.log('his', this.props.history.location.pathname);
+      console.log('loc', this.props.history.location);
 
-    if (this.props.history.location.pathname === '/' || '/login') {
-      
       this.setState({ headerShouldRender: false });
+    } else {
+      this.setState({ headerShouldRender: true });
     }
-
 
     if (this.props.isLoggedIn) {
       this.setState({ headerShouldRender: true });
     }
   }
 
+  componentDidUpdate() {}
+
   handleLogout = () => {
+    console.log('handle logout');
+
     this.setState({ headerShouldRender: false });
     this.props.signOut().then(this.props.history.push('/login'));
   };
@@ -56,7 +62,7 @@ class Header extends React.Component {
         </div>
       );
     }
-    if (!this.props.isLoggedIn) {
+    if (!this.props.isLoggedIn && this.state.headerShouldRender === true) {
       return (
         <div className="ui menu">
           <div>
@@ -81,6 +87,11 @@ class Header extends React.Component {
   }
 
   render() {
+    console.log('this.state.headerShouldRender', this.state.headerShouldRender);
+    console.log('render', this.props.history.location.pathname);
+    if (this.props.history.location.pathname) {
+    }
+
     return <div>{this.renderHeader()}</div>;
   }
 }

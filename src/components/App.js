@@ -7,24 +7,20 @@ import WatchList from './WatchList';
 import Header from './Header';
 import SpinPage from './SpinPage';
 
-// TODO: Create a conditional that renders header with login page
 class App extends React.Component {
   render() {
     return (
       <div className="ui container">
         <BrowserRouter>
-          <Fragment>
-            {/* {!this.props.isLoggedIn ? null : <Header />} */}
-            <Header />
-            <div>
-              <Switch>
-                <Route path="/spin" exact component={SpinPage} />
-                <Route path="/watchlist" exact component={WatchList} />
-                <Route path="/login" exact component={LoginForm} />
-                <Route path="/" exact component={LoginForm} />
-              </Switch>
-            </div>
-          </Fragment>
+          <Switch>
+            <Route path="/login" exact component={LoginForm} />
+            <Route path="/" exact component={LoginForm} />
+            <Fragment>
+              <Header />
+              <Route path="/spin" exact component={SpinPage} />
+              <Route path="/watchlist" exact component={WatchList} />
+            </Fragment>
+          </Switch>
         </BrowserRouter>
       </div>
     );
