@@ -321,8 +321,12 @@ class SpinPage extends React.Component {
         overview,
         vote_average
       } = this.props.selectedMovie;
+
       let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
 
+      if (!this.props.selectedMovie.poster_path) {
+        imageURL = reelLogoPlaceHolder;
+      }
       return (
         <div className="pusher">
           <div className="ui middle aligned center aligned grid">

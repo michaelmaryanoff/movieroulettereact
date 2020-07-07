@@ -146,8 +146,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: 1,
       with_genres: genreCode,
-      'primary_release_date.gte': incorrectDateFrom,
-      'primary_release_date.lte': incorrectDateTo
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo
     }
   });
   let totalPages = pageResponse.data.total_pages;
@@ -171,8 +171,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: randomPage,
       with_genres: genreCode,
-      'primary_release_date.gte': incorrectDateFrom,
-      'primary_release_date.lte': incorrectDateTo
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo
     }
   });
   let { length } = movieResponse.data.results;
