@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { Link } from 'react-router-dom';
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'react-redux-loading-bar';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -100,12 +100,9 @@ class LoginForm extends React.Component {
               <button className="ui fluid large teal submit button">Login</button>
               <div>{this.renderLoginError()}</div>
               <div className="ui message">
-                Don't have an account?{' '}
-                {
-                  <Link to="/spin" >
-                    Click here to continue as guest
-                  </Link>
-                }
+                Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
+                <p />
+                {<a href="https://www.themoviedb.org/account/signup">Click here to sign up</a>}
               </div>
             </div>
           </form>
@@ -115,9 +112,8 @@ class LoginForm extends React.Component {
   }
   render() {
     return (
-
       <div className="pusher">
-      <LoadingBar />  
+        <LoadingBar />
         <div className="ui basic segment"></div>
         <div className="ui basic segment"></div>
         <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
