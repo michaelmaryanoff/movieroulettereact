@@ -22,7 +22,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, rating: action.rating };
     case SELECT_GENRES:
       return { ...state, genres: action.payload };
-    // TODO: SUBMIT_SPIN may need to be modified since the resul of the spin will depend on the response. Delete this comment if this is not the case.
     case SUBMIT_SPIN:
       return { ...state, selectedMovie: action.payload };
     case IS_SPINNING:

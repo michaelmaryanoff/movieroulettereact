@@ -7,6 +7,7 @@ import {
   spinningStarted,
   spinningCompleted
 } from '../actions';
+import reelLogoPlaceHolder from '../images/reelLogoPlaceholder.jpg';
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class SpinPage extends React.Component {
@@ -274,6 +275,39 @@ class SpinPage extends React.Component {
   }
 
   renderSpinCard() {
+    if (this.props.selectedMovie === 'NO_RESULTS') {
+      return (
+        <div className="pusher">
+          <div className="ui middle aligned center aligned grid">
+            <div className="three column row">
+              <div className="column">
+                <div className="ui card" key="placeholder">
+                  <div className="content">
+                    <h3>
+                      <em>No movies match this criteria</em>
+                    </h3>
+                    <h1>Please try again</h1>
+                  </div>
+                  <div className="image">
+                    <img
+                      className="ui medium bordered image"
+                      src={reelLogoPlaceHolder}
+                      alt="No results found"
+                    />
+                  </div>
+                  <div className="content">
+                    <div className="description">Please spin again</div>
+                    <p />
+                    <div>{this.renderAddToWatchlistButton()}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     if (this.props.isSpinning === true) {
       return <div>{this.renderLoadingCard()}</div>;
     }
@@ -337,6 +371,7 @@ class SpinPage extends React.Component {
   }
 
   render() {
+    console.log('SpinPage -> render -> this.props.selectedMovie', this.props.selectedMovie);
     return (
       <div>
         <div className="ui basic segment">{this.renderSpinForm()}</div>

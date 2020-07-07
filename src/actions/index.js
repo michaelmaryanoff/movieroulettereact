@@ -132,6 +132,11 @@ export const submitSpin = selection => async dispatch => {
   let dateFrom = `${lowYear}-01-01`;
   let dateTo = `${highYear}-12-31`;
 
+  //! This is a purposely incorrect paramater that will give a blank response
+  //! For testing only.
+  const incorrectDateFrom = '2000';
+  const incorrectDateTo = '1955';
+
   const pageResponse = await tmdbClient.get('/discover/movie', {
     params: {
       api_key: apiKey,
@@ -141,8 +146,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: 1,
       with_genres: genreCode,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
+      'primary_release_date.gte': incorrectDateFrom,
+      'primary_release_date.lte': incorrectDateTo
     }
   });
   let totalPages = pageResponse.data.total_pages;
@@ -166,15 +171,24 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: randomPage,
       with_genres: genreCode,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
+      'primary_release_date.gte': incorrectDateFrom,
+      'primary_release_date.lte': incorrectDateTo
     }
   });
   let { length } = movieResponse.data.results;
 
+  if (length === 0) {
+    let selectedMovie = 'NO_RESULTS';
+
+    dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
+    return;
+  }
+  console.log('break');
+
   let randomIndex = Math.floor(Math.random() * length);
 
   let selectedMovie = movieResponse.data.results[randomIndex];
+  console.log('selectedMovie', selectedMovie);
 
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };
