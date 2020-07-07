@@ -124,10 +124,13 @@ export const signOut = params => async (dispatch, getState) => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  let { genreCode, minimumRating, yearFrom, yearTo } = selection;
-  // Need to format date here
-  let dateFrom = `${yearFrom}-01-01`;
-  let dateTo = `${yearTo}-12-31`;
+  const { genreCode, minimumRating, yearFrom, yearTo } = selection;
+
+  let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
+  let highYear = yearFrom >= yearTo ? yearFrom : yearTo;
+
+  let dateFrom = `${lowYear}-01-01`;
+  let dateTo = `${highYear}-12-31`;
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
     params: {
