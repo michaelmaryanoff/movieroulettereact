@@ -10,7 +10,8 @@ import {
   SUBMIT_SPIN,
   ADD_TO_WATCHLIST,
   AUTH_ERROR,
-  VALIDATE_REQUEST_TOKEN
+  VALIDATE_REQUEST_TOKEN,
+  IS_SPINNING
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -166,7 +167,6 @@ export const submitSpin = selection => async dispatch => {
       'primary_release_date.lte': dateTo
     }
   });
-
   let { length } = movieResponse.data.results;
 
   let randomIndex = Math.floor(Math.random() * length);
@@ -200,6 +200,14 @@ export const addToWatchlist = selection => async (dispatch, getState) => {
   dispatch(getWatchList());
 
   dispatch({ type: ADD_TO_WATCHLIST, payload: response });
+};
+
+export const spinningStarted = () => {
+  return { type: IS_SPINNING, payload: true };
+};
+
+export const spinningCompleted = () => {
+  return { type: IS_SPINNING, payload: false };
 };
 
 export const selectGenres = genres => {

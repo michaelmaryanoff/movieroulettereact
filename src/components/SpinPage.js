@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getGenreCodes, submitSpin, addToWatchlist } from '../actions';
+import {
+  getGenreCodes,
+  submitSpin,
+  addToWatchlist,
+  spinningStarted,
+  spinningCompleted
+} from '../actions';
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class SpinPage extends React.Component {
@@ -84,7 +90,9 @@ class SpinPage extends React.Component {
   };
 
   handleSpin = event => {
+    this.props.spinningStarted();
     event.preventDefault();
+
     this.setState({ watchListIsUpdated: false });
     let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
 
@@ -95,7 +103,7 @@ class SpinPage extends React.Component {
       genreCode: genreCode
     };
 
-    this.props.submitSpin(submissionObject);
+    this.props.submitSpin(submissionObject).then(this.props.spinningCompleted);
   };
 
   handleAddToWatchlist = event => {
@@ -203,7 +211,7 @@ class SpinPage extends React.Component {
         <div className="ui middle aligned center aligned grid">
           <div className="two column row">
             <div className="column">
-              <form className="ui large form error" onSubmit={this.handleSpin}>
+              <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
                 <div className="ui segment">
                   <h2 className="ui teal image header">
                     <div className="content">Find a movie!</div>
@@ -266,6 +274,10 @@ class SpinPage extends React.Component {
   }
 
   renderSpinCard() {
+    if (this.props.isSpinning === true) {
+      return <div>{this.renderLoadingCard()}</div>;
+    }
+
     if (this.props.selectedMovie) {
       let {
         poster_path,
@@ -308,9 +320,25 @@ class SpinPage extends React.Component {
     }
   }
 
+  renderLoadingCard() {
+    return (
+      <div className="pusher">
+        <div className="ui middle aligned center aligned grid">
+          <div className="three column row">
+            <div className="column">
+              <div className="ui active dimmer">
+                <div className="ui loader"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div className="ui container">
+      <div>
         <div className="ui basic segment">{this.renderSpinForm()}</div>
         <div className="ui basic segment">{this.renderSpinCard()}</div>
       </div>
@@ -324,8 +352,15 @@ const mapStateToProps = state => {
     selectedMovie: state.spin.selectedMovie,
     isLoggedIn: state.session.isLoggedIn,
     watchListResponseStatus: state.spin.watchListResponse.status,
+    isSpinning: state.spin.isSpinning,
     currentState: state
   };
 };
 
-export default connect(mapStateToProps, { getGenreCodes, submitSpin, addToWatchlist })(SpinPage);
+export default connect(mapStateToProps, {
+  getGenreCodes,
+  submitSpin,
+  addToWatchlist,
+  spinningStarted,
+  spinningCompleted
+})(SpinPage);

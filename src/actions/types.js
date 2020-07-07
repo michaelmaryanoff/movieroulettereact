@@ -14,7 +14,7 @@ export const GET_GENRE_CODES = 'GET_GENRE_CODES';
 // Adding to watchlist
 export const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST';
 
-// Spin types
+// Spin
 //* We may not need these if we user redux form
 export const SELECT_GENRES = 'SELECT_GENRES';
 export const SELECT_YEAR_FROM = 'SELECT_YEAR_FROM';
@@ -23,3 +23,5 @@ export const SELECT_RATING = 'SELECT_RATING';
 export const SUBMIT_SPIN = 'SUBMIT_SPIN';
 
 export const SELECT_RANDOM_MOVIE = 'SELECT_RANDOM_MOVIE';
+
+export const IS_SPINNING = 'IS_SPINNING';
