@@ -4,7 +4,8 @@ import {
   GET_WATCHLIST,
   AUTH_ERROR,
   VALIDATE_REQUEST_TOKEN,
-  NEW_TOKEN
+  NEW_TOKEN,
+  GET_ACCOUNT_DETAILS
 } from '../actions/types.js';
 
 const INITAL_STATE = {
@@ -25,6 +26,8 @@ export default (state = INITAL_STATE, action) => {
         watchList: null
       };
     case VALIDATE_REQUEST_TOKEN:
+      return { ...state, sessionId: action.payload };
+    case GET_ACCOUNT_DETAILS:
       return { ...state, ...action.payload };
     case AUTH_ERROR:
       return { ...state, authError: action.payload };

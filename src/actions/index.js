@@ -12,7 +12,8 @@ import {
   AUTH_ERROR,
   VALIDATE_REQUEST_TOKEN,
   IS_SPINNING,
-  NEW_TOKEN
+  NEW_TOKEN,
+  GET_ACCOUNT_DETAILS
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -65,18 +66,18 @@ export const createSessionId = passedState => async dispatch => {
   const sessionId = response.data.session_id;
 
   // Gets details about the authorized user
-  const accountDetails = await tmdbClient.get('/account', {
-    params: { api_key: apiKey, session_id: sessionId }
-  });
+  // const accountDetails = await tmdbClient.get('/account', {
+  //   params: { api_key: apiKey, session_id: sessionId }
+  // });
 
-  // Creates a sessionDetails variable that has all the releveant info we need for future requests
-  const sessionDetails = {
-    sessionId,
-    accountDetails: accountDetails.data,
-    isLoggedIn: true
-  };
+  // // Creates a sessionDetails variable that has all the releveant info we need for future requests
+  // const sessionDetails = {
+  //   sessionId,
+  //   accountDetails: accountDetails.data,
+  //   isLoggedIn: true
+  // };
 
-  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
+  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionId });
 };
 
 export const getAccountDetails = passedState => async dispatch => {
@@ -94,7 +95,7 @@ export const getAccountDetails = passedState => async dispatch => {
     isLoggedIn: true
   };
 
-  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
+  dispatch({ type: GET_ACCOUNT_DETAILS, payload: sessionDetails });
 };
 
 export const signIn = ({ username, password }) => (dispatch, getState) => {
