@@ -57,7 +57,8 @@ class LoginForm extends React.Component {
     }
 
     let params = { username: this.state.username, password: this.state.password };
-    this.props.getUserDetails(params);
+    // TODO: Change this back to get user details
+    this.props.signIn(params);
   };
 
   renderLoginForm() {

@@ -11,27 +11,34 @@ import {
   ADD_TO_WATCHLIST,
   AUTH_ERROR,
   VALIDATE_REQUEST_TOKEN,
-  IS_SPINNING
+  IS_SPINNING,
+  NEW_TOKEN
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
-import tmdbClient, { apiKey } from '../api/tmdbClient';
+import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { create } from 'domain';
 
-export const signIn = ({ username, password }) => async dispatch => {
-  // Holds our api key
-  const apiKeyParams = { params: { api_key: apiKey } };
+// Action creator that gets the auth token
+export const getNewToken = () => async dispatch => {
+  await tmdbClient
+    .get('/authentication/token/new', apiKeyParams)
+    .then(response => {
+      dispatch({ type: NEW_TOKEN, payload: response.data.request_token });
+    })
+    .catch(error => {
+      return dispatch({ type: AUTH_ERROR, payload: error });
+    });
+};
 
-  // Creates an authorization token
-  const token = await tmdbClient.get('/authentication/token/new', apiKeyParams);
+export const authorizeToken = (username, password, passedState) => async (dispatch, getState) => {
+  let token = passedState.session.newToken;
 
-  const requestToken = token.data.request_token;
-
-  // Authorizes our token
   await tmdbClient
     .post(
       '/authentication/token/validate_with_login',
-      { username, password, request_token: requestToken },
+      { username: username, password: password, request_token: token },
       apiKeyParams
     )
     .then(response => {
@@ -40,15 +47,12 @@ export const signIn = ({ username, password }) => async dispatch => {
     .catch(error => {
       dispatch({ type: AUTH_ERROR, payload: error });
     });
-
-  // const authenticatedToken = authenticated.data.request_token;
 };
 
-export const validateRequestToken = () => async (dispatch, getState) => {
-  const state = getState();
-  const apiKeyParams = { params: { api_key: apiKey } };
+export const createSessionId = passedState => async dispatch => {
+  const { session } = passedState;
 
-  let authenticatedToken = state.session.responseToken;
+  let authenticatedToken = session.responseToken;
 
   // Creates a new session and gets us a session_id
   const response = await tmdbClient.post(
@@ -57,6 +61,7 @@ export const validateRequestToken = () => async (dispatch, getState) => {
     apiKeyParams
   );
 
+  //! Split this into another function
   const sessionId = response.data.session_id;
 
   // Gets details about the authorized user
@@ -74,14 +79,44 @@ export const validateRequestToken = () => async (dispatch, getState) => {
   dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
 };
 
-export const getUserDetails = loginFormParams => dispatch => {
-  dispatch(showLoading());
-  dispatch(signIn(loginFormParams))
-    .then(() => dispatch(validateRequestToken()))
+export const getAccountDetails = passedState => async dispatch => {
+  console.log('passed state', passedState);
+  // We need the sessionId here
+  let { sessionId } = passedState.session;
+
+  const accountDetails = await tmdbClient.get('/account', {
+    params: { api_key: apiKey, session_id: sessionId }
+  });
+
+  const sessionDetails = {
+    sessionId,
+    accountDetails: accountDetails.data,
+    isLoggedIn: true
+  };
+
+  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
+};
+
+export const signIn = ({ username, password }) => (dispatch, getState) => {
+  dispatch(getNewToken())
     .then(() => {
-      dispatch(getWatchList());
-      dispatch(hideLoading());
+      const state = getState();
+
+      return dispatch(authorizeToken(username, password, state)).then(() => {
+        const state = getState();
+        return dispatch(createSessionId(state));
+      });
+    })
+    .then(() => {
+      const state = getState();
+
+      return dispatch(getAccountDetails(state));
     });
+};
+
+export const getUserDetails = loginFormParams => async dispatch => {
+  dispatch(showLoading());
+  dispatch(signIn(loginFormParams));
 };
 
 export const getWatchList = () => async (dispatch, getState) => {
@@ -89,6 +124,10 @@ export const getWatchList = () => async (dispatch, getState) => {
   if (state.session.authError) {
     return;
   }
+
+  if (!state.accountDetails) {
+  }
+
   const { id } = state.session.accountDetails;
   const { sessionId } = state.session;
 
@@ -183,12 +222,10 @@ export const submitSpin = selection => async dispatch => {
     dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
     return;
   }
-  console.log('break');
 
   let randomIndex = Math.floor(Math.random() * length);
 
   let selectedMovie = movieResponse.data.results[randomIndex];
-  console.log('selectedMovie', selectedMovie);
 
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };

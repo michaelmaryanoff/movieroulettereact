@@ -375,7 +375,6 @@ class SpinPage extends React.Component {
   }
 
   render() {
-    console.log('SpinPage -> render -> this.props.selectedMovie', this.props.selectedMovie);
     return (
       <div>
         <div className="ui basic segment">{this.renderSpinForm()}</div>
