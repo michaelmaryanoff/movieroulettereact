@@ -45,6 +45,8 @@ export const authorizeToken = (username, password, passedState) => async (dispat
       dispatch({ type: SIGN_IN, payload: response.data.request_token });
     })
     .catch(error => {
+      console.log(error.response.data);
+
       dispatch({ type: AUTH_ERROR, payload: error });
     });
 };
@@ -70,14 +72,14 @@ export const getAccountDetails = passedState => async dispatch => {
   // We need the sessionId here
   let { sessionId } = passedState.session;
 
-  const accountDetails = await tmdbClient
+  await tmdbClient
     .get('/account', {
       params: { api_key: apiKey, session_id: sessionId }
     })
     .then(response => {
       const sessionDetails = {
         sessionId,
-        accountDetails: accountDetails.data,
+        accountDetails: response.data,
         isLoggedIn: true
       };
       dispatch({ type: GET_ACCOUNT_DETAILS, payload: sessionDetails });
