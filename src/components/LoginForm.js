@@ -3,7 +3,7 @@ import reelLogo from '../../src/images/reel-logo.png';
 
 import { tempusername, temppassword } from '../testinfo/testinfo';
 
-import { signIn, getWatchList, getUserDetails } from '../actions';
+import { signIn, getWatchList } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -131,6 +131,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm)
-);
+export default withRouter(connect(mapStateToProps, { signIn, getWatchList })(LoginForm));

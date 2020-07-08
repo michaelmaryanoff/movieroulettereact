@@ -19,7 +19,6 @@ import {
 } from './types';
 import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { create } from 'domain';
 
 // Action creator that gets the auth token
 export const getNewToken = () => async dispatch => {
@@ -56,35 +55,40 @@ export const createSessionId = passedState => async dispatch => {
   let authenticatedToken = session.responseToken;
 
   // Creates a new session and gets us a session_id
-  const response = await tmdbClient.post(
-    '/authentication/session/new',
-    { request_token: authenticatedToken },
-    apiKeyParams
-  );
-
-  const sessionId = response.data.session_id;
-
-  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionId });
+  await tmdbClient
+    .post('/authentication/session/new', { request_token: authenticatedToken }, apiKeyParams)
+    .then(response => {
+      const sessionId = response.data.session_id;
+      dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionId });
+    })
+    .catch(error => {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    });
 };
 
 export const getAccountDetails = passedState => async dispatch => {
   // We need the sessionId here
   let { sessionId } = passedState.session;
 
-  const accountDetails = await tmdbClient.get('/account', {
-    params: { api_key: apiKey, session_id: sessionId }
-  });
-
-  const sessionDetails = {
-    sessionId,
-    accountDetails: accountDetails.data,
-    isLoggedIn: true
-  };
-
-  dispatch({ type: GET_ACCOUNT_DETAILS, payload: sessionDetails });
+  const accountDetails = await tmdbClient
+    .get('/account', {
+      params: { api_key: apiKey, session_id: sessionId }
+    })
+    .then(response => {
+      const sessionDetails = {
+        sessionId,
+        accountDetails: accountDetails.data,
+        isLoggedIn: true
+      };
+      dispatch({ type: GET_ACCOUNT_DETAILS, payload: sessionDetails });
+    })
+    .catch(error => {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    });
 };
 
 export const signIn = ({ username, password }) => (dispatch, getState) => {
+  dispatch(showLoading());
   dispatch(getNewToken())
     .then(() => {
       const state = getState();
@@ -100,13 +104,9 @@ export const signIn = ({ username, password }) => (dispatch, getState) => {
       return dispatch(getAccountDetails(state));
     })
     .then(() => {
+      dispatch(hideLoading());
       return dispatch(getWatchList());
     });
-};
-
-export const getUserDetails = loginFormParams => async dispatch => {
-  dispatch(showLoading());
-  dispatch(signIn(loginFormParams));
 };
 
 export const getWatchList = () => async (dispatch, getState) => {
