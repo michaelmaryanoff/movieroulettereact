@@ -62,26 +62,12 @@ export const createSessionId = passedState => async dispatch => {
     apiKeyParams
   );
 
-  //! Split this into another function
   const sessionId = response.data.session_id;
-
-  // Gets details about the authorized user
-  // const accountDetails = await tmdbClient.get('/account', {
-  //   params: { api_key: apiKey, session_id: sessionId }
-  // });
-
-  // // Creates a sessionDetails variable that has all the releveant info we need for future requests
-  // const sessionDetails = {
-  //   sessionId,
-  //   accountDetails: accountDetails.data,
-  //   isLoggedIn: true
-  // };
 
   dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionId });
 };
 
 export const getAccountDetails = passedState => async dispatch => {
-  console.log('passed state', passedState);
   // We need the sessionId here
   let { sessionId } = passedState.session;
 
@@ -112,6 +98,9 @@ export const signIn = ({ username, password }) => (dispatch, getState) => {
       const state = getState();
 
       return dispatch(getAccountDetails(state));
+    })
+    .then(() => {
+      return dispatch(getWatchList());
     });
 };
 
@@ -124,9 +113,6 @@ export const getWatchList = () => async (dispatch, getState) => {
   const state = getState();
   if (state.session.authError) {
     return;
-  }
-
-  if (!state.accountDetails) {
   }
 
   const { id } = state.session.accountDetails;
@@ -173,7 +159,7 @@ export const submitSpin = selection => async dispatch => {
   let dateTo = `${highYear}-12-31`;
 
   //! This is a purposely incorrect paramater that will give a blank response
-  //! For testing only.
+  //! For testing placeholder card only
   const incorrectDateFrom = '2000';
   const incorrectDateTo = '1955';
 
