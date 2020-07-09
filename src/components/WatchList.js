@@ -2,12 +2,17 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
+import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
+
 class WatchList extends React.Component {
   renderWatchList() {
     if (this.props.watchList) {
       return this.props.watchList.results.map(movie => {
-        // return <div>{movie}</div>;
         let imageURL = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
+
+        if (!movie.poster_path) {
+          imageURL = reelLogoPlaceHolder;
+        }
 
         return (
           <div className="ui card" key={`${movie.id}`}>
