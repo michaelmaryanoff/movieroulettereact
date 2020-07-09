@@ -23,8 +23,8 @@ class App extends React.Component {
               <Header />
               <Route path="/spin" exact component={SpinPage} />
               <Route path="/watchlist" exact component={WatchList} />
-              <Route component={ErrorPage} />
             </Fragment>
+            <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>
       </div>

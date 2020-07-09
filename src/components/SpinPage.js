@@ -207,70 +207,64 @@ class SpinPage extends React.Component {
 
   renderSpinForm() {
     return (
-      <div className="pusher">
-        <div className="ui middle aligned center aligned grid">
-          <div className="two column row">
-            <div className="column">
-              <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
-                <div className="ui segment">
-                  <h2 className="ui teal image header">
-                    <div className="content">Find a movie!</div>
-                  </h2>
-                  <div className="fields">
-                    <div className="field">
-                      <label>From</label>
-                      <select
-                        name="yearFrom"
-                        className="ui dropdown"
-                        value={this.state.yearFrom}
-                        onChange={this.handleUserInput(yearFromInput)}
-                      >
-                        {this.renderDropDown(yearFromInput)}
-                      </select>
-                    </div>
-                    <div className="field">
-                      <label>To</label>
-                      <select
-                        name="yearTo"
-                        className="ui dropdown"
-                        value={this.state.yearTo}
-                        onChange={this.handleUserInput(yearToInput)}
-                      >
-                        {this.renderDropDown(yearToInput)}
-                      </select>
-                    </div>
-                    <div className="field">
-                      <label>Minimum Rating</label>
-                      <select
-                        name="Minimum Rating"
-                        className="ui dropdown"
-                        value={this.state.minimumRating}
-                        onChange={this.handleUserInput(minimumRatingInput)}
-                      >
-                        {this.renderDropDown(minimumRatingInput)}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="field">
-                    <label>Genre</label>
-                    <select
-                      name="Genres"
-                      className="ui fluid dropdown"
-                      onChange={this.handleUserInput(genreInput)}
-                    >
-                      <option id="selectGenre" value="selectGenre">
-                        Select Genre
-                      </option>
-                      {this.renderDropDown(genreInput)}
-                    </select>
-                    <div className="ui basic segment"></div>
-                    <button className="ui fluid large teal submit button">Spin!</button>
-                  </div>
-                </div>
-              </form>
+      <div className="eight wide column">
+        <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
+          <div className="ui segment">
+            <h2 className="ui teal image header">
+              <div className="content">Find a movie!</div>
+            </h2>
+            <div className="fields">
+              <div className="field">
+                <label>From</label>
+                <select
+                  name="yearFrom"
+                  className="ui dropdown"
+                  value={this.state.yearFrom}
+                  onChange={this.handleUserInput(yearFromInput)}
+                >
+                  {this.renderDropDown(yearFromInput)}
+                </select>
+              </div>
+              <div className="field">
+                <label>To</label>
+                <select
+                  name="yearTo"
+                  className="ui dropdown"
+                  value={this.state.yearTo}
+                  onChange={this.handleUserInput(yearToInput)}
+                >
+                  {this.renderDropDown(yearToInput)}
+                </select>
+              </div>
+              <div className="field">
+                <label>Minimum Rating</label>
+                <select
+                  name="Minimum Rating"
+                  className="ui dropdown"
+                  value={this.state.minimumRating}
+                  onChange={this.handleUserInput(minimumRatingInput)}
+                >
+                  {this.renderDropDown(minimumRatingInput)}
+                </select>
+              </div>
+            </div>
+            <div className="field">
+              <label>Genre</label>
+              <select
+                name="Genres"
+                className="ui fluid dropdown"
+                onChange={this.handleUserInput(genreInput)}
+              >
+                <option id="selectGenre" value="selectGenre">
+                  Select Genre
+                </option>
+                {this.renderDropDown(genreInput)}
+              </select>
+              <div className="ui basic segment"></div>
+              <button className="ui fluid large teal submit button">Spin!</button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     );
   }
@@ -330,27 +324,23 @@ class SpinPage extends React.Component {
       }
       return (
         <div className="pusher">
-          <div className="ui middle aligned center aligned grid">
-            <div className="three column row">
-              <div className="column">
-                <div className="ui card" key={id}>
-                  <div className="content">
-                    <h3>
-                      <em>Tonight you're watching...</em>
-                    </h3>
-                    <h1>{original_title}</h1>
-                  </div>
-                  <div className="image">
-                    <img src={imageURL} alt={id} />
-                  </div>
-                  <div className="content">
-                    <div className="meta">Released: {release_date}</div>
-                    <div className="description">{overview}</div>
-                    <div className="extra content">Average Score: {vote_average}</div>
-                    <p />
-                    <div>{this.renderAddToWatchlistButton()}</div>
-                  </div>
-                </div>
+          <div className="eight wide column">
+            <div className="ui card" key={id}>
+              <div className="content">
+                <h3>
+                  <em>Tonight you're watching...</em>
+                </h3>
+                <h1>{original_title}</h1>
+              </div>
+              <div className="image">
+                <img src={imageURL} alt={id} />
+              </div>
+              <div className="content">
+                <div className="meta">Released: {release_date}</div>
+                <div className="description">{overview}</div>
+                <div className="extra content">Average Score: {vote_average}</div>
+                <p />
+                <div>{this.renderAddToWatchlistButton()}</div>
               </div>
             </div>
           </div>
@@ -377,9 +367,9 @@ class SpinPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="ui basic segment">{this.renderSpinForm()}</div>
-        <div className="ui basic segment">{this.renderSpinCard()}</div>
+      <div className="ui grid">
+        <div className="eight wide column">{this.renderSpinForm()}</div>
+        <div className="eight wide column">{this.renderSpinCard()}</div>
       </div>
     );
   }
