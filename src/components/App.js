@@ -6,6 +6,8 @@ import LoginForm from './LoginForm';
 import WatchList from './WatchList';
 import Header from './Header';
 import SpinPage from './SpinPage';
+import ErrorPage from './ErrorPage';
+
 import { LoadingBar } from 'react-redux-loading-bar';
 
 class App extends React.Component {
@@ -21,6 +23,7 @@ class App extends React.Component {
               <Header />
               <Route path="/spin" exact component={SpinPage} />
               <Route path="/watchlist" exact component={WatchList} />
+              <Route component={ErrorPage} />
             </Fragment>
           </Switch>
         </BrowserRouter>
