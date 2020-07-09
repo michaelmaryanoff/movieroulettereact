@@ -45,8 +45,6 @@ export const authorizeToken = (username, password, passedState) => async (dispat
       dispatch({ type: SIGN_IN, payload: response.data.request_token });
     })
     .catch(error => {
-      console.log(error.response.data);
-
       dispatch({ type: AUTH_ERROR, payload: error });
     });
 };
