@@ -123,7 +123,6 @@ class SpinPage extends React.Component {
   // ANCHOR: Render methods
   renderDropDown(inputType) {
     // This function will render the various dropdown menus
-    // It takes in
 
     // Creates an indexed array for ratings.
     // TMDB expects an integer that is not zero indexed

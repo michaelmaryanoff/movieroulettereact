@@ -187,6 +187,7 @@ export const submitSpin = selection => async dispatch => {
   let pageRange = totalPages * 0.4;
 
   let randomPage = Math.floor(Math.random() * pageRange) + 1;
+  console.log('genre code', genreCode);
 
   const movieResponse = await tmdbClient.get('/discover/movie', {
     params: {
