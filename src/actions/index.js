@@ -150,7 +150,13 @@ export const signOut = params => async (dispatch, getState) => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  const { genreCode, minimumRating, yearFrom, yearTo } = selection;
+  const { minimumRating, yearFrom, yearTo } = selection;
+
+  let genreCode = selection.genreCode;
+
+  if (genreCode === 'selectGenre') {
+    genreCode = '';
+  }
 
   let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
   let highYear = yearFrom >= yearTo ? yearFrom : yearTo;
