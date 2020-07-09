@@ -346,7 +346,7 @@ class SpinPage extends React.Component {
                   <div className="content">
                     <div className="meta">Released: {release_date}</div>
                     <div className="description">{overview}</div>
-                    <div className="extra content">Average Score:{vote_average}</div>
+                    <div className="extra content">Average Score: {vote_average}</div>
                     <p />
                     <div>{this.renderAddToWatchlistButton()}</div>
                   </div>
