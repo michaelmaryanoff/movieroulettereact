@@ -7,7 +7,7 @@ import {
   spinningStarted,
   spinningCompleted
 } from '../actions';
-import reelLogoPlaceHolder from '../images/reelLogoPlaceholder.jpg';
+import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class SpinPage extends React.Component {
