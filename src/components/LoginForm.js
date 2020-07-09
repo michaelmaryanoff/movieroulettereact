@@ -39,6 +39,7 @@ class LoginForm extends React.Component {
   renderLoginError = () => {
     if (this.props.authError) {
       this.props.hideLoading();
+
       return <div className="ui error message">Invalid username and/or password</div>;
     }
   };
