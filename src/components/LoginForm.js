@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { Link } from 'react-router-dom';
+import { hideLoading } from 'react-redux-loading-bar';
 import LoadingBar from 'react-redux-loading-bar';
 
 class LoginForm extends React.Component {
@@ -37,6 +38,7 @@ class LoginForm extends React.Component {
 
   renderLoginError = () => {
     if (this.props.authError) {
+      this.props.hideLoading();
       return <div className="ui error message">Invalid username and/or password</div>;
     }
   };
@@ -131,5 +133,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { signIn, getWatchList, getUserDetails })(LoginForm)
+  connect(mapStateToProps, { signIn, getWatchList, getUserDetails, hideLoading })(LoginForm)
 );
