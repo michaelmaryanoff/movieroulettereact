@@ -11,76 +11,103 @@ import {
   ADD_TO_WATCHLIST,
   AUTH_ERROR,
   VALIDATE_REQUEST_TOKEN,
-  IS_SPINNING
+  IS_SPINNING,
+  NEW_TOKEN,
+  GET_ACCOUNT_DETAILS
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
-import tmdbClient, { apiKey } from '../api/tmdbClient';
+import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
 
-export const signIn = ({ username, password }) => async dispatch => {
-  // Holds our api key
-  const apiKeyParams = { params: { api_key: apiKey } };
+// Action creator that gets the auth token
+export const getNewToken = () => async dispatch => {
+  await tmdbClient
+    .get('/authentication/token/new', apiKeyParams)
+    .then(response => {
+      dispatch({ type: NEW_TOKEN, payload: response.data.request_token });
+    })
+    .catch(error => {
+      return dispatch({ type: AUTH_ERROR, payload: error });
+    });
+};
 
-  // Creates an authorization token
-  const token = await tmdbClient.get('/authentication/token/new', apiKeyParams);
+export const authorizeToken = (username, password, passedState) => async (dispatch, getState) => {
+  let token = passedState.session.newToken;
 
-  const requestToken = token.data.request_token;
-
-  // Authorizes our token
   await tmdbClient
     .post(
       '/authentication/token/validate_with_login',
-      { username, password, request_token: requestToken },
+      { username: username, password: password, request_token: token },
       apiKeyParams
     )
     .then(response => {
       dispatch({ type: SIGN_IN, payload: response.data.request_token });
     })
     .catch(error => {
+      console.log(error.response.data);
+
       dispatch({ type: AUTH_ERROR, payload: error });
     });
-
-  // const authenticatedToken = authenticated.data.request_token;
 };
 
-export const validateRequestToken = () => async (dispatch, getState) => {
-  const state = getState();
-  const apiKeyParams = { params: { api_key: apiKey } };
+export const createSessionId = passedState => async dispatch => {
+  const { session } = passedState;
 
-  let authenticatedToken = state.session.responseToken;
+  let authenticatedToken = session.responseToken;
 
   // Creates a new session and gets us a session_id
-  const response = await tmdbClient.post(
-    '/authentication/session/new',
-    { request_token: authenticatedToken },
-    apiKeyParams
-  );
-
-  const sessionId = response.data.session_id;
-
-  // Gets details about the authorized user
-  const accountDetails = await tmdbClient.get('/account', {
-    params: { api_key: apiKey, session_id: sessionId }
-  });
-
-  // Creates a sessionDetails variable that has all the releveant info we need for future requests
-  const sessionDetails = {
-    sessionId,
-    accountDetails: accountDetails.data,
-    isLoggedIn: true
-  };
-
-  dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionDetails });
+  await tmdbClient
+    .post('/authentication/session/new', { request_token: authenticatedToken }, apiKeyParams)
+    .then(response => {
+      const sessionId = response.data.session_id;
+      dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionId });
+    })
+    .catch(error => {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    });
 };
 
-export const getUserDetails = loginFormParams => dispatch => {
+export const getAccountDetails = passedState => async dispatch => {
+  // We need the sessionId here
+  let { sessionId } = passedState.session;
+
+  await tmdbClient
+    .get('/account', {
+      params: { api_key: apiKey, session_id: sessionId }
+    })
+    .then(response => {
+      const sessionDetails = {
+        sessionId,
+        accountDetails: response.data,
+        isLoggedIn: true
+      };
+      dispatch({ type: GET_ACCOUNT_DETAILS, payload: sessionDetails });
+    })
+    .catch(error => {
+      dispatch({ type: AUTH_ERROR, payload: error });
+    });
+};
+
+export const signIn = ({ username, password }) => (dispatch, getState) => {
   dispatch(showLoading());
-  dispatch(signIn(loginFormParams))
-    .then(() => dispatch(validateRequestToken()))
+  dispatch(getNewToken())
     .then(() => {
-      dispatch(getWatchList());
+      const state = getState();
+
+      return dispatch(authorizeToken(username, password, state)).then(() => {
+        const state = getState();
+        return dispatch(createSessionId(state));
+      });
+    })
+    .then(() => {
+      const state = getState();
+
+      return dispatch(getAccountDetails(state));
+    })
+    .then(() => {
       dispatch(hideLoading());
+      return dispatch(getWatchList());
     });
 };
 
@@ -89,6 +116,7 @@ export const getWatchList = () => async (dispatch, getState) => {
   if (state.session.authError) {
     return;
   }
+
   const { id } = state.session.accountDetails;
   const { sessionId } = state.session;
 
@@ -133,7 +161,7 @@ export const submitSpin = selection => async dispatch => {
   let dateTo = `${highYear}-12-31`;
 
   //! This is a purposely incorrect paramater that will give a blank response
-  //! For testing only.
+  //! For testing placeholder card only
   const incorrectDateFrom = '2000';
   const incorrectDateTo = '1955';
 
@@ -183,12 +211,10 @@ export const submitSpin = selection => async dispatch => {
     dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
     return;
   }
-  console.log('break');
 
   let randomIndex = Math.floor(Math.random() * length);
 
   let selectedMovie = movieResponse.data.results[randomIndex];
-  console.log('selectedMovie', selectedMovie);
 
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };

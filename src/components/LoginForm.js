@@ -3,7 +3,7 @@ import reelLogo from '../../src/images/reel-logo.png';
 
 import { tempusername, temppassword } from '../testinfo/testinfo';
 
-import { signIn, getWatchList, getUserDetails } from '../actions';
+import { signIn, getWatchList } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -60,7 +60,8 @@ class LoginForm extends React.Component {
     }
 
     let params = { username: this.state.username, password: this.state.password };
-    this.props.getUserDetails(params);
+    // TODO: Change this back to get user details
+    this.props.signIn(params);
   };
 
   renderLoginForm() {
@@ -134,5 +135,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { signIn, getWatchList, getUserDetails, hideLoading })(LoginForm)
+  connect(mapStateToProps, { signIn, getWatchList, hideLoading })(LoginForm)
 );

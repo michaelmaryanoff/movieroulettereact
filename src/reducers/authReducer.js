@@ -3,7 +3,9 @@ import {
   SIGN_OUT,
   GET_WATCHLIST,
   AUTH_ERROR,
-  VALIDATE_REQUEST_TOKEN
+  VALIDATE_REQUEST_TOKEN,
+  NEW_TOKEN,
+  GET_ACCOUNT_DETAILS
 } from '../actions/types.js';
 
 const INITAL_STATE = {
@@ -11,6 +13,8 @@ const INITAL_STATE = {
 };
 export default (state = INITAL_STATE, action) => {
   switch (action.type) {
+    case NEW_TOKEN:
+      return { ...state, newToken: action.payload };
     case SIGN_IN:
       return { ...state, responseToken: action.payload, authError: null };
     case SIGN_OUT:
@@ -19,9 +23,13 @@ export default (state = INITAL_STATE, action) => {
         sessionId: null,
         accountDetails: null,
         isLoggedIn: false,
-        watchList: null
+        watchList: null,
+        newToken: null,
+        responseToken: null
       };
     case VALIDATE_REQUEST_TOKEN:
+      return { ...state, sessionId: action.payload };
+    case GET_ACCOUNT_DETAILS:
       return { ...state, ...action.payload };
     case AUTH_ERROR:
       return { ...state, authError: action.payload };

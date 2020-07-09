@@ -5,3 +5,4 @@ export default axios.create({
 });
 
 export const apiKey = '7a0af1084071dc4fc982afbfedbed521';
+export const apiKeyParams = { params: { api_key: apiKey } };
