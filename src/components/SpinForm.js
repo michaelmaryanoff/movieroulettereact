@@ -113,6 +113,7 @@ class SpinForm extends React.Component {
 
           {/* // ANCHOR: Fields */}
           <div className="fields">
+            <Dropdown inputtype={yearFromInput} />
             {/* ANCHOR: yearFrom */}
             <div className="field">
               <label>From</label>
