@@ -108,7 +108,7 @@ class SpinForm extends React.Component {
       <div className="ui segment">
         <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
           <h2 className="ui teal image header">
-            <div className="content">Find a movie!</div>
+            <div className="content">Find a movie!(SF)</div>
           </h2>
 
           {/* // ANCHOR: Fields */}
@@ -223,7 +223,7 @@ class SpinForm extends React.Component {
   }
 
   render() {
-    return <div></div>;
+    return <div>{this.renderSpinForm()}</div>;
   }
 }
 

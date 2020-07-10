@@ -213,7 +213,7 @@ class SpinPage extends React.Component {
       <div className="ui segment">
         <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
           <h2 className="ui teal image header">
-            <div className="content">Find a movie!</div>
+            <div className="content">Find a movie!(rsf())</div>
           </h2>
           <div className="fields">
             <div className="field">
@@ -368,6 +368,7 @@ class SpinPage extends React.Component {
     return (
       <div className="ui container">
         <div className="ui grid">
+          <div className="eight wide column">{this.renderSpinForm()}</div>
           <div className="eight wide column">
             <SpinForm />
           </div>
