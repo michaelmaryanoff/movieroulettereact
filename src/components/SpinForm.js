@@ -41,8 +41,13 @@ class SpinForm extends React.Component {
   }
 
   componentDidMount() {
-    // Since genre codes change over time, we need to make a network call to make sure we have
-    // the correct genre codes
+    /** Since genre codes change over time, we need to make a network call to make sure we have the correct genre codes.
+     *
+     * This is going to be used in our <Dropdown> component, but we don't want to call it within the
+     * component itself because it is not necessary to populate every dropdown component. Better to just pass it to our
+     * Redux store here to avoid unecessary network calls.
+     */
+
     this.props.getGenreCodes();
   }
 
@@ -108,12 +113,12 @@ class SpinForm extends React.Component {
       <div className="ui segment">
         <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
           <h2 className="ui teal image header">
-            <div className="content">Find a movie!(SF)</div>
+            <div className="content">Find a movie!(SpinForm render)</div>
           </h2>
 
           {/* // ANCHOR: Fields */}
           <div className="fields">
-            <Dropdown inputtype={yearFromInput} />
+            <Dropdown inputtype={yearFromInput} labeltext="From" />
             {/* ANCHOR: yearFrom */}
             <div className="field">
               <label>From</label>
@@ -127,6 +132,7 @@ class SpinForm extends React.Component {
               </select>
             </div>
 
+            <Dropdown inputtype={yearToInput} labeltext="To" />
             {/* ANCHOR: yearTo */}
             <div className="field">
               <label>To</label>
@@ -140,6 +146,7 @@ class SpinForm extends React.Component {
               </select>
             </div>
 
+            <Dropdown inputtype={minimumRatingInput} labeltext="Minimum Rating" />
             {/* ANCHOR: minimumRating */}
             <div className="field">
               <label>Minimum Rating</label>
@@ -153,18 +160,15 @@ class SpinForm extends React.Component {
               </select>
             </div>
           </div>
-
+          <Dropdown inputtype={genreInput} labeltext="Genre" />
           {/* ANCHOR: genre */}
           <div className="field">
-            <label>Genre</label>
+            <label>GenreRend</label>
             <select
               name="Genres"
               className="ui fluid dropdown"
               onChange={this.handleUserInput(genreInput)}
             >
-              <option id="selectGenre" value="selectGenre">
-                Select Genre
-              </option>
               {this.renderDropDown(genreInput)}
             </select>
 

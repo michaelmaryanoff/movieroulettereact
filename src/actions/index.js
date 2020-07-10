@@ -125,7 +125,7 @@ export const getWatchList = () => async (dispatch, getState) => {
   dispatch({ type: GET_WATCHLIST, payload: data });
 };
 
-export const getGenreCodes = () => async dispatch => {
+export const  getGenreCodes = () => async dispatch => {
   const { data } = await tmdbClient.get('/genre/movie/list', {
     params: { api_key: apiKey }
   });
@@ -166,8 +166,8 @@ export const submitSpin = selection => async dispatch => {
 
   //! This is a purposely incorrect paramater that will give a blank response
   //! For testing placeholder card only
-  const incorrectDateFrom = '2000';
-  const incorrectDateTo = '1955';
+  // const incorrectDateFrom = '2000';
+  // const incorrectDateTo = '1955';
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
     params: {

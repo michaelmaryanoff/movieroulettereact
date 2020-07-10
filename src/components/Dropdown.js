@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getGenreCodes } from '../actions';
+import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -29,15 +30,10 @@ class Dropdown extends Component {
       // The code of the currently selected genre (used for our network request)
       genreCode: '',
 
-      // The name of the field we are rendering
-      inputType: ''
+      labelText: '',
+
+      genreCodes: []
     };
-  }
-
-  componentDidMount() {
-    console.log('cdm props', this.props);
-
-    this.setState({ fieldName: this.props.inputtype });
   }
 
   generateYearArray() {
@@ -52,11 +48,96 @@ class Dropdown extends Component {
     return years;
   }
 
+  handleUserInput = () => event => {
+    const { target } = event;
+
+    if (this.props.inputtype === yearFromInput) {
+      this.setState({ yearFrom: target.value });
+    }
+
+    if (this.props.inputtype === yearToInput) {
+      this.setState({ yearTo: target.value });
+    }
+
+    if (this.props.inputtype === minimumRatingInput) {
+      this.setState({ minimumRating: target.value });
+    }
+
+    if (this.props.inputtype === genreInput) {
+      // We need these variables to get the text of the label in order to set the state
+      let index = event.nativeEvent.target.selectedIndex;
+      let label = event.nativeEvent.target[index].label;
+
+      this.setState({ genreCode: target.value, genreName: label });
+    }
+  };
+
+  renderDropDown(inputType) {
+    // This function will render the various dropdown menus
+
+    // Creates an indexed array for ratings.
+    // TMDB expects an integer
+    const ratingArray = Array.from(new Array(10), (i, index) => index + 1);
+
+    if (inputType === yearFromInput) {
+      return this.state.yearArray.map(year => {
+        return (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        );
+      });
+    }
+
+    if (inputType === yearToInput) {
+      return this.state.yearArray.map(year => {
+        return (
+          <option key={year} value={year}>
+            {year}
+          </option>
+        );
+      });
+    }
+    if (inputType === minimumRatingInput) {
+      return ratingArray.map(rating => {
+        let displayRating = rating * 10;
+
+        return (
+          <option key={displayRating} value={rating}>
+            {displayRating}%
+          </option>
+        );
+      });
+    }
+    if (inputType === genreInput && this.props.genreCodes) {
+      let newGenreCodeArray = this.props.genreCodes;
+      newGenreCodeArray.unshift({ id: 'selectGenre', name: 'Select Genre' });
+
+      return newGenreCodeArray.map(genre => {
+        return <option key={genre.name} label={genre.name} value={genre.id}></option>;
+      });
+    }
+  }
+
   render() {
-    return <div>Dropdown</div>;
+    return (
+      <div className="field">
+        <label>{this.props.labeltext}</label>
+        <select
+          name={this.props.inputtype}
+          className="ui dropdown"
+          value={this.state.yearFrom}
+          onChange={this.handleUserInput(this.props.inputtype)}
+        >
+          {this.renderDropDown(this.props.inputtype)}
+        </select>
+      </div>
+    );
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  genreCodes: state.spin.genres
+});
 
 export default connect(mapStateToProps, { getGenreCodes })(Dropdown);
