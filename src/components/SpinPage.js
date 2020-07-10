@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import SpinForm from './SpinForm';
+
 import {
   getGenreCodes,
   submitSpin,
@@ -366,7 +368,9 @@ class SpinPage extends React.Component {
     return (
       <div className="ui container">
         <div className="ui grid">
-          <div className="eight wide column">{this.renderSpinForm()}</div>
+          <div className="eight wide column">
+            <SpinForm />
+          </div>
           <div className="eight wide column">{this.renderSpinCard()}</div>
         </div>
       </div>

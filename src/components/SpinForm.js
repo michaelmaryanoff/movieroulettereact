@@ -59,7 +59,7 @@ class SpinForm extends React.Component {
   }
 
   // Will update component state based on user input
-  // TODO: Should we make this a <Drowdown> component?
+
   handleUserInput = inputType => event => {
     const { target } = event;
 
