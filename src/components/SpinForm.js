@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Dropdown from './Dropdown';
 
 import {
   getGenreCodes,
@@ -112,8 +113,7 @@ class SpinForm extends React.Component {
 
           {/* // ANCHOR: Fields */}
           <div className="fields">
-
-        {/* ANCHOR: yearFrom */}
+            {/* ANCHOR: yearFrom */}
             <div className="field">
               <label>From</label>
               <select
