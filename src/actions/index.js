@@ -13,7 +13,8 @@ import {
   VALIDATE_REQUEST_TOKEN,
   IS_SPINNING,
   NEW_TOKEN,
-  GET_ACCOUNT_DETAILS
+  GET_ACCOUNT_DETAILS,
+  GENRE_DROPDOWN_DATA_SOURCE
   // SUBMIT_SPIN,
   // SELECT_RANDOM_MOVIE
 } from './types';
@@ -125,12 +126,21 @@ export const getWatchList = () => async (dispatch, getState) => {
   dispatch({ type: GET_WATCHLIST, payload: data });
 };
 
-export const  getGenreCodes = () => async dispatch => {
+export const getGenreCodes = () => async dispatch => {
   const { data } = await tmdbClient.get('/genre/movie/list', {
     params: { api_key: apiKey }
   });
 
+  let genreArrayForDropdown = data.genres;
+  const selectGenresObject = { id: 'selectGenres', name: 'selectGenres' };
+
+  if (!genreArrayForDropdown.includes(selectGenresObject)) {
+    genreArrayForDropdown.unshift({ id: 'selectGenres', name: 'selectGenres' });
+  }
+  console.log('gen', genreArrayForDropdown);
+
   dispatch({ type: GET_GENRE_CODES, payload: data });
+  dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: genreArrayForDropdown });
 };
 
 export const signOut = params => async (dispatch, getState) => {
