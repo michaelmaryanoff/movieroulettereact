@@ -49,6 +49,7 @@ class SpinForm extends React.Component {
      */
 
     this.props.getGenreCodes();
+    console.log('genrecode', this.props);
   }
 
   generateYearArray() {
@@ -118,7 +119,7 @@ class SpinForm extends React.Component {
 
           {/* // ANCHOR: Fields */}
           <div className="fields">
-            <Dropdown inputtype={yearFromInput} labeltext="From" />
+            <Dropdown inputtype={yearFromInput} labeltext="From" value={'yearFrom'} />
             {/* ANCHOR: yearFrom */}
             <div className="field">
               <label>From</label>
@@ -132,7 +133,7 @@ class SpinForm extends React.Component {
               </select>
             </div>
 
-            <Dropdown inputtype={yearToInput} labeltext="To" />
+            <Dropdown inputtype={yearToInput} labeltext="To ren" />
             {/* ANCHOR: yearTo */}
             <div className="field">
               <label>To</label>
@@ -234,7 +235,7 @@ class SpinForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    genreCodes: state.spin.genres,
+    genreCodes: state.spin.genreDropdownDataSource,
     selectedMovie: state.spin.selectedMovie,
     isLoggedIn: state.session.isLoggedIn,
     watchListResponseStatus: state.spin.watchListResponse.status,

@@ -28,9 +28,9 @@ export default (state = INITIAL_STATE, action) => {
     case IS_SPINNING:
       return { ...state, isSpinning: action.payload };
     case GET_GENRE_CODES:
-      return { ...state, ...action.payload };
+      return { ...state, genreCodes: action.payload };
     case GENRE_DROPDOWN_DATA_SOURCE:
-      return { ...state, ...action.payload };
+      return { ...state, genreDropdownDataSource: action.payload };
     case ADD_TO_WATCHLIST:
       return { ...state, watchListResponse: action.payload };
     default:

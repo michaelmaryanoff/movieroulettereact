@@ -131,15 +131,14 @@ export const getGenreCodes = () => async dispatch => {
     params: { api_key: apiKey }
   });
 
-  let genreArrayForDropdown = data.genres;
-  const selectGenresObject = { id: 'selectGenres', name: 'selectGenres' };
+  const genreArrayForDropdown = data.genres;
+  const selectGenresObject = { id: 'selectGenres', name: 'Select Genres' };
 
   if (!genreArrayForDropdown.includes(selectGenresObject)) {
-    genreArrayForDropdown.unshift({ id: 'selectGenres', name: 'selectGenres' });
+    genreArrayForDropdown.unshift(selectGenresObject);
   }
-  console.log('gen', genreArrayForDropdown);
 
-  dispatch({ type: GET_GENRE_CODES, payload: data });
+  dispatch({ type: GET_GENRE_CODES, payload: data.genres });
   dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: genreArrayForDropdown });
 };
 

@@ -110,16 +110,18 @@ class Dropdown extends Component {
       });
     }
     if (inputType === genreInput && this.props.genreCodes) {
-      let newGenreCodeArray = this.props.genreCodes;
-      newGenreCodeArray.unshift({ id: 'selectGenre', name: 'Select Genre' });
+      //   let newGenreCodeArray = this.props.genreCodes;
+      //   newGenreCodeArray.unshift({ id: 'selectGenre', name: 'Select Genre' });
 
-      return newGenreCodeArray.map(genre => {
+      return this.props.genreCodes.map(genre => {
         return <option key={genre.name} label={genre.name} value={genre.id}></option>;
       });
     }
   }
 
   render() {
+    console.log('full state', this.props.fullState);
+
     return (
       <div className="field">
         <label>{this.props.labeltext}</label>
@@ -136,8 +138,11 @@ class Dropdown extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  genreCodes: state.spin.genres
-});
+const mapStateToProps = state => {
+  return {
+    genreCodes: state.spin.genres,
+    fullState: state
+  };
+};
 
 export default connect(mapStateToProps, { getGenreCodes })(Dropdown);
