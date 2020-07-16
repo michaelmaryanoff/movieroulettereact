@@ -115,69 +115,18 @@ class SpinForm extends React.Component {
           <h2 className="ui teal image header">
             <div className="content">Find a movie!(SpinForm render)</div>
           </h2>
-
-          {/* // ANCHOR: Fields */}
           <div className="fields">
             <Dropdown inputtype={yearFromInput} labeltext="From" value={'yearFrom'} />
-            {/* ANCHOR: yearFrom */}
-            <div className="field">
-              <label>From</label>
-              <select
-                name="yearFrom"
-                className="ui dropdown"
-                value={this.state.yearFrom}
-                onChange={this.handleUserInput(yearFromInput)}
-              >
-                {this.renderDropDown(yearFromInput)}
-              </select>
-            </div>
 
             <Dropdown inputtype={yearToInput} labeltext="To ren" />
-            {/* ANCHOR: yearTo */}
-            <div className="field">
-              <label>To</label>
-              <select
-                name="yearTo"
-                className="ui dropdown"
-                value={this.state.yearTo}
-                onChange={this.handleUserInput(yearToInput)}
-              >
-                {this.renderDropDown(yearToInput)}
-              </select>
-            </div>
 
             <Dropdown inputtype={minimumRatingInput} labeltext="Minimum Rating" />
-            {/* ANCHOR: minimumRating */}
-            <div className="field">
-              <label>Minimum Rating</label>
-              <select
-                name="Minimum Rating"
-                className="ui dropdown"
-                value={this.state.minimumRating}
-                onChange={this.handleUserInput(minimumRatingInput)}
-              >
-                {this.renderDropDown(minimumRatingInput)}
-              </select>
-            </div>
-          </div>
-          <Dropdown inputtype={genreInput} labeltext="Genre" />
-          {/* ANCHOR: genre */}
-          <div className="field">
-            <label>GenreRend</label>
-            <select
-              name="Genres"
-              className="ui fluid dropdown"
-              onChange={this.handleUserInput(genreInput)}
-            >
-              {this.renderDropDown(genreInput)}
-            </select>
 
-            {/* ANCHOR: division segment */}
+            <Dropdown inputtype={genreInput} labeltext="Genre" />
+
             <div className="ui basic segment"></div>
-
-            {/* ANCHOR: Submit button */}
-            <button className="ui fluid large teal submit button">Spin!</button>
           </div>
+          <button className="ui fluid large teal submit button">Spin!</button>
         </form>
       </div>
     );
