@@ -117,13 +117,9 @@ class SpinForm extends React.Component {
           </h2>
           <div className="fields">
             <Dropdown inputtype={yearFromInput} labeltext="From" value={'yearFrom'} />
-
             <Dropdown inputtype={yearToInput} labeltext="To ren" />
-
             <Dropdown inputtype={minimumRatingInput} labeltext="Minimum Rating" />
-
             <Dropdown inputtype={genreInput} labeltext="Genre" />
-
             <div className="ui basic segment"></div>
           </div>
           <button className="ui fluid large teal submit button">Spin!</button>

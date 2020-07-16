@@ -50,8 +50,6 @@ class Dropdown extends Component {
   }
 
   handleUserInput = () => event => {
-    console.log(event);
-
     const { target } = event;
 
     if (this.props.inputtype === yearFromInput) {
@@ -113,9 +111,6 @@ class Dropdown extends Component {
       });
     }
     if (inputType === genreInput && this.props.genreCodes) {
-      //   let newGenreCodeArray = this.props.genreCodes;
-      //   newGenreCodeArray.unshift({ id: 'selectGenre', name: 'Select Genre' });
-
       return this.props.genreCodes.map(genre => {
         return <option key={genre.name} label={genre.name} value={genre.id}></option>;
       });
@@ -141,7 +136,7 @@ class Dropdown extends Component {
 
 const mapStateToProps = state => {
   return {
-    genreCodes: state.spin.genres,
+    genreCodes: state.spin.genreCodes,
     fullState: state
   };
 };
