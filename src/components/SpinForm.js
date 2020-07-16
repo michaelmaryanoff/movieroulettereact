@@ -49,7 +49,6 @@ class SpinForm extends React.Component {
      */
 
     this.props.getGenreCodes();
-    console.log('genrecode', this.props);
   }
 
   generateYearArray() {

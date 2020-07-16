@@ -163,7 +163,7 @@ export const submitSpin = selection => async dispatch => {
 
   let genreCode = selection.genreCode;
 
-  if (genreCode === 'selectGenre') {
+  if (genreCode === 'selectGenres') {
     genreCode = '';
   }
 
@@ -191,6 +191,7 @@ export const submitSpin = selection => async dispatch => {
       'primary_release_date.lte': dateTo
     }
   });
+
   let totalPages = pageResponse.data.total_pages;
 
   /** In order to increase the randomness of the movies selected, we want to select a random page
@@ -202,7 +203,6 @@ export const submitSpin = selection => async dispatch => {
   let pageRange = totalPages * 0.4;
 
   let randomPage = Math.floor(Math.random() * pageRange) + 1;
-  console.log('genre code', genreCode);
 
   const movieResponse = await tmdbClient.get('/discover/movie', {
     params: {

@@ -35,6 +35,7 @@ class Dropdown extends Component {
       genreCodes: []
     };
   }
+  componentDidMount() {}
 
   generateYearArray() {
     // Creates an array of genres in order to populate the dropdown lists
@@ -49,6 +50,8 @@ class Dropdown extends Component {
   }
 
   handleUserInput = () => event => {
+    console.log(event);
+
     const { target } = event;
 
     if (this.props.inputtype === yearFromInput) {
@@ -120,8 +123,6 @@ class Dropdown extends Component {
   }
 
   render() {
-    console.log('full state', this.props.fullState);
-
     return (
       <div className="field">
         <label>{this.props.labeltext}</label>
