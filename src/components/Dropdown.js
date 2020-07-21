@@ -6,7 +6,6 @@ import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './in
 
 class Dropdown extends Component {
   handleUserInput = event => {
-    console.log('event', event.target.selectedOptions[0].dataset.genreid);
     const { genreid } = event.target.selectedOptions[0].dataset;
     const { value } = event.target;
     this.props.onChange(value, genreid);
