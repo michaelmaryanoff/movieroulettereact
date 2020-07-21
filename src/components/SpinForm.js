@@ -66,8 +66,6 @@ class SpinForm extends React.Component {
   // Will update component state based on user input
 
   handleUserInput = (event, inputType) => {
-    const { target } = event;
-
     if (inputType === yearFromInput) {
       this.setState({ yearFrom: event });
     }
@@ -81,11 +79,10 @@ class SpinForm extends React.Component {
     }
 
     if (inputType === genreInput) {
-      // We need these variables to get the text of the label in order to set the state
-      let index = event.nativeEvent.target.selectedIndex;
-      let label = event.nativeEvent.target[index].label;
+      console.log('event', JSON.parse(event));
 
-      this.setState({ genreCode: target.value, genreName: label });
+      // We need these variables to get the text of the label in order to set the state
+      this.setState({ genreCode: event });
     }
   };
 

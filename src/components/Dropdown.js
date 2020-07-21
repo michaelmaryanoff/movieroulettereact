@@ -49,7 +49,13 @@ class Dropdown extends Component {
     }
     if (inputType === genreInput && this.props.genreCodes) {
       return this.props.genreCodes.map(genre => {
-        return <option key={genre.name} label={genre.name} value={genre.id}></option>;
+        return (
+          <option
+            key={genre.name}
+            label={genre.name}
+            value={JSON.stringify({ genreInfo: { name: genre.name, id: genre.id } })}
+          ></option>
+        );
       });
     }
   }
