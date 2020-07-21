@@ -173,6 +173,8 @@ export const submitSpin = selection => async dispatch => {
   let dateFrom = `${lowYear}-01-01`;
   let dateTo = `${highYear}-12-31`;
 
+  console.log(genreCode, dateFrom, dateTo, minimumRating);
+
   //! This is a purposely incorrect paramater that will give a blank response
   //! For testing placeholder card only
   // const incorrectDateFrom = '2000';
