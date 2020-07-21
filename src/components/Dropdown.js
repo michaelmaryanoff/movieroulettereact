@@ -6,8 +6,10 @@ import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './in
 
 class Dropdown extends Component {
   handleUserInput = event => {
+    console.log('event', event.target.selectedOptions[0].dataset.genreid);
+    const { genreid } = event.target.selectedOptions[0].dataset;
     const { value } = event.target;
-    this.props.onChange(value);
+    this.props.onChange(value, genreid);
   };
 
   renderDropDown(inputType) {
@@ -51,9 +53,10 @@ class Dropdown extends Component {
       return this.props.genreCodes.map(genre => {
         return (
           <option
-            key={genre.name}
+            data-genreid={genre.id}
+            key={genre.id}
             label={genre.name}
-            value={JSON.stringify({ genreInfo: { name: genre.name, id: genre.id } })}
+            value={genre.name}
           ></option>
         );
       });
@@ -68,7 +71,7 @@ class Dropdown extends Component {
           name={this.props.inputtype}
           className="ui dropdown"
           value={this.props.value}
-          onChange={event => this.handleUserInput(event)}
+          onChange={this.handleUserInput}
         >
           {this.renderDropDown(this.props.inputtype)}
         </select>
