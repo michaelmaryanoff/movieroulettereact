@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { addToWatchlist } from '../actions';
+
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
+import WatchlistAddButton from './WatchlistAddButton';
 
 export class SpinCard extends Component {
   constructor(props) {
@@ -142,7 +145,10 @@ export class SpinCard extends Component {
                 <div className="description">{overview}</div>
                 <div className="extra content">Average Score: {vote_average}</div>
                 <p />
-                <div>{this.renderAddToWatchlistButton()}</div>
+                {/* <div>{this.renderAddToWatchlistButton()}</div> */}
+                <div>
+                  <WatchlistAddButton isUpdating={this.state.isUpdatingWatchlist} isUpdated={this.state.watchListIsUpdated} handleAdd={this.handleAddToWatchlist}/>
+                </div>
               </div>
             </div>
           </div>
@@ -180,4 +186,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(SpinCard);
+export default connect(mapStateToProps, { addToWatchlist })(SpinCard);
