@@ -1,19 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import SpinForm from './SpinForm';
-import SpinCard from './SpinCard';
-
-import {
-  getGenreCodes,
-  submitSpin,
-  addToWatchlist,
-  spinningStarted,
-  spinningCompleted
-} from '../actions';
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 
-class SpinPage extends React.Component {
+export class SpinCard extends Component {
   constructor(props) {
     super(props);
 
@@ -177,21 +167,13 @@ class SpinPage extends React.Component {
 
   render() {
     return (
-      <div className="ui container">
-        <div className="ui grid">
-          <div className="eight wide column">
-            <SpinForm />
-          </div>
-          <div className="eight wide column">{this.renderSpinCard()}</div>
-          <div className="eight wide column">
-            <SpinCard />
-          </div>
-        </div>
+      <div>
+        yar
+        {this.renderSpinCard()}
       </div>
     );
   }
 }
-
 const mapStateToProps = state => {
   return {
     genreCodes: state.spin.genres,
@@ -203,10 +185,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getGenreCodes,
-  submitSpin,
-  addToWatchlist,
-  spinningStarted,
-  spinningCompleted
-})(SpinPage);
+export default connect(mapStateToProps)(SpinCard);
