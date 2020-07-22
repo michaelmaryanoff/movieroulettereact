@@ -166,12 +166,7 @@ export class SpinCard extends Component {
   }
 
   render() {
-    return (
-      <div>
-        yar
-        {this.renderSpinCard()}
-      </div>
-    );
+    return <div>{this.renderSpinCard()}</div>;
   }
 }
 const mapStateToProps = state => {

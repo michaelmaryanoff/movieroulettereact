@@ -182,7 +182,7 @@ class SpinPage extends React.Component {
           <div className="eight wide column">
             <SpinForm />
           </div>
-          <div className="eight wide column">{this.renderSpinCard()}</div>
+          {/* <div className="eight wide column">{this.renderSpinCard()}</div> */}
           <div className="eight wide column">
             <SpinCard />
           </div>
