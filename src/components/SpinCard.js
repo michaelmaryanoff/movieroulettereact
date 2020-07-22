@@ -35,45 +35,6 @@ export class SpinCard extends Component {
     });
   };
 
-  renderAddToWatchlistButton() {
-    // Renders a the "Add to watchlist button"
-    if (this.props.isLoggedIn && this.state.watchListIsUpdated === false) {
-      return (
-        <div>
-          <button
-            className="ui fluid large teal submit button"
-            onClick={event => this.handleAddToWatchlist(event)}
-          >
-            Add to Watchlist
-          </button>
-        </div>
-      );
-    }
-
-    if (this.props.isLoggedIn && this.state.watchListIsUpdated === true) {
-      return (
-        <div>
-          <button
-            className="ui fluid large inactive submit button"
-            onClick={event => this.handleAddToWatchlist(event)}
-            disabled={true}
-          >
-            Added to Watchlist!
-          </button>
-        </div>
-      );
-    }
-    if (!this.props.isLoggedIn) {
-      return (
-        <div>
-          <button disabled={true} className="ui fluid large inactive submit button">
-            Log in to add to Watchlist
-          </button>
-        </div>
-      );
-    }
-  }
-
   renderSpinCard() {
     if (this.props.selectedMovie === 'NO_RESULTS') {
       return (
@@ -145,9 +106,12 @@ export class SpinCard extends Component {
                 <div className="description">{overview}</div>
                 <div className="extra content">Average Score: {vote_average}</div>
                 <p />
-                {/* <div>{this.renderAddToWatchlistButton()}</div> */}
                 <div>
-                  <WatchlistAddButton isUpdating={this.state.isUpdatingWatchlist} isUpdated={this.state.watchListIsUpdated} handleAdd={this.handleAddToWatchlist}/>
+                  <WatchlistAddButton
+                    // isUpdating={this.state.isUpdatingWatchlist}
+                    isUpdated={this.state.watchListIsUpdated}
+                    handleAdd={this.handleAddToWatchlist}
+                  />
                 </div>
               </div>
             </div>
@@ -172,6 +136,7 @@ export class SpinCard extends Component {
   }
 
   render() {
+    
     return <div>{this.renderSpinCard()}</div>;
   }
 }

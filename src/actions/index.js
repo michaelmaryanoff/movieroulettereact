@@ -14,9 +14,9 @@ import {
   IS_SPINNING,
   NEW_TOKEN,
   GET_ACCOUNT_DETAILS,
-  GENRE_DROPDOWN_DATA_SOURCE
-  // SUBMIT_SPIN,
-  // SELECT_RANDOM_MOVIE
+  GENRE_DROPDOWN_DATA_SOURCE,
+  WATCHLIST_UPDATING
+
 } from './types';
 import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
@@ -173,8 +173,6 @@ export const submitSpin = selection => async dispatch => {
   let dateFrom = `${lowYear}-01-01`;
   let dateTo = `${highYear}-12-31`;
 
-  console.log(genreCode, dateFrom, dateTo, minimumRating);
-
   //! This is a purposely incorrect paramater that will give a blank response
   //! For testing placeholder card only
   // const incorrectDateFrom = '2000';
@@ -261,8 +259,16 @@ export const addToWatchlist = selection => async (dispatch, getState) => {
   dispatch({ type: ADD_TO_WATCHLIST, payload: response });
 };
 
-export const spinningStarted = () => {
-  return { type: IS_SPINNING, payload: true };
+export const updatingWatchListStarted = dispatch => {
+  dispatch({ type: WATCHLIST_UPDATING, payload: false });
+};
+
+export const updatingWatchListCompleted = dispatch => {
+  dispatch({ type: WATCHLIST_UPDATING, payload: true });
+};
+
+export const spinningStarted = dispatch => {
+  dispatch({ type: IS_SPINNING, payload: true });
 };
 
 export const spinningCompleted = () => {

@@ -79,9 +79,6 @@ class SpinForm extends React.Component {
     }
 
     if (inputType === genreInput) {
-      console.log('id', id);
-      console.log('event', event);
-
       // We need these variables to get the text of the label in order to set the state
       this.setState({ genreName: event, genreCode: id });
     }

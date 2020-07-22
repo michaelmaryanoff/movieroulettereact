@@ -40,6 +40,7 @@ export class WatchlistAddButton extends Component {
     }
   }
   render() {
+    
     return <div>{this.renderButton()}</div>;
   }
 }

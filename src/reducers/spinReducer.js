@@ -7,7 +7,8 @@ import {
   GET_GENRE_CODES,
   ADD_TO_WATCHLIST,
   IS_SPINNING,
-  GENRE_DROPDOWN_DATA_SOURCE
+  GENRE_DROPDOWN_DATA_SOURCE,
+  WATCHLIST_UPDATING
 } from '../actions/types';
 
 //* There is a possiblity here that we will need to have some sort of intial state that specifies default values since we are going to have to check for null when forming out url in the reducer.
@@ -33,6 +34,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, genreDropdownDataSource: action.payload };
     case ADD_TO_WATCHLIST:
       return { ...state, watchListResponse: action.payload };
+    case WATCHLIST_UPDATING:
+      return { ...state, isWatchListUpdating: action.payload };
     default:
       return state;
   }
