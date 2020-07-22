@@ -16,7 +16,6 @@ import {
   GET_ACCOUNT_DETAILS,
   GENRE_DROPDOWN_DATA_SOURCE,
   WATCHLIST_UPDATING
-
 } from './types';
 import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
@@ -267,8 +266,8 @@ export const updatingWatchListCompleted = dispatch => {
   dispatch({ type: WATCHLIST_UPDATING, payload: true });
 };
 
-export const spinningStarted = dispatch => {
-  dispatch({ type: IS_SPINNING, payload: true });
+export const spinningStarted = () => {
+  return { type: IS_SPINNING, payload: true };
 };
 
 export const spinningCompleted = () => {

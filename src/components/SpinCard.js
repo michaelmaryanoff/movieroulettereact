@@ -136,7 +136,6 @@ export class SpinCard extends Component {
   }
 
   render() {
-    
     return <div>{this.renderSpinCard()}</div>;
   }
 }
