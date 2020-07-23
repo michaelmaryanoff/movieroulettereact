@@ -14,12 +14,14 @@ class SpinPage extends React.Component {
   render() {
     return (
       <div className="ui container">
-        <div className="ui grid">
-          <div className="eight wide column">
-            <SpinForm />
-          </div>
-          <div className="eight wide column">
-            <SpinCard />
+        <div className="ui segment">
+          <div class="ui two column very relaxed grid">
+            <div className="eight wide column">
+              <SpinForm />
+            </div>
+            <div className="eight wide column">
+              <SpinCard />
+            </div>
           </div>
         </div>
       </div>

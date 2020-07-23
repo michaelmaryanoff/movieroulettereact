@@ -106,52 +106,51 @@ class SpinForm extends React.Component {
 
   renderSpinForm() {
     return (
-      <div className="ui segment">
-        <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
-          <h2 className="ui teal image header">
-            <div className="content">Find a movie!(SpinForm render)</div>
-          </h2>
-          <div className="fields">
-            <Dropdown
-              inputtype={yearFromInput}
-              labeltext="From"
-              yearArray={this.state.yearArray}
-              value={this.state.yearFrom}
-              onChange={event => {
-                this.handleUserInput(event, yearFromInput);
-              }}
-            />
-            <Dropdown
-              inputtype={yearToInput}
-              labeltext="To ren"
-              yearArray={this.state.yearArray}
-              value={this.state.yearTo}
-              onChange={event => {
-                this.handleUserInput(event, yearToInput);
-              }}
-            />
-            <Dropdown
-              inputtype={minimumRatingInput}
-              labeltext="Minimum Rating"
-              value={this.state.minimumRating}
-              onChange={event => {
-                this.handleUserInput(event, minimumRatingInput);
-              }}
-            />
-            <Dropdown
-              inputtype={genreInput}
-              labeltext="Genre"
-              genreCodes={this.props.genreCodes}
-              value={this.state.genreName}
-              onChange={(event, id) => {
-                this.handleUserInput(event, genreInput, id);
-              }}
-            />
-            <div className="ui basic segment"></div>
-          </div>
-          <button className="ui fluid large teal submit button">Spin!</button>
-        </form>
-      </div>
+      <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
+        <h2 className="ui teal image header">
+          <div className="content">Find a movie!</div>
+        </h2>
+        <div className="fields">
+          <Dropdown
+            inputtype={yearFromInput}
+            labeltext="From"
+            yearArray={this.state.yearArray}
+            value={this.state.yearFrom}
+            onChange={event => {
+              this.handleUserInput(event, yearFromInput);
+            }}
+          />
+          <Dropdown
+            inputtype={yearToInput}
+            labeltext="To ren"
+            yearArray={this.state.yearArray}
+            value={this.state.yearTo}
+            onChange={event => {
+              this.handleUserInput(event, yearToInput);
+            }}
+          />
+          <Dropdown
+            inputtype={minimumRatingInput}
+            labeltext="Minimum Rating"
+            value={this.state.minimumRating}
+            onChange={event => {
+              this.handleUserInput(event, minimumRatingInput);
+            }}
+          />
+          <Dropdown
+            inputtype={genreInput}
+            labeltext="Genre"
+            genreCodes={this.props.genreCodes}
+            value={this.state.genreName}
+            onChange={(event, id) => {
+              this.handleUserInput(event, genreInput, id);
+            }}
+          />
+          <div className="ui basic segment"></div>
+          <p />
+        </div>
+        <button className="ui fluid large teal submit button">Spin!</button>
+      </form>
     );
   }
 
