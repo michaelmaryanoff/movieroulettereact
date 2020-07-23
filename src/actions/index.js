@@ -168,14 +168,19 @@ export const submitSpin = selection => async dispatch => {
 
   let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
   let highYear = yearFrom >= yearTo ? yearFrom : yearTo;
-
+  // eslint-disable-next-line
   let dateFrom = `${lowYear}-01-01`;
+  
+  // eslint-disable-next-line
   let dateTo = `${highYear}-12-31`;
 
   //! This is a purposely incorrect paramater that will give a blank response
   //! For testing placeholder card only
-  // const incorrectDateFrom = '2000';
-  // const incorrectDateTo = '1955';
+  // eslint-disable-next-line
+  const incorrectDateFrom = '2000';
+
+  // eslint-disable-next-line
+  const incorrectDateTo = '1955';
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
     params: {
@@ -186,8 +191,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: 1,
       with_genres: genreCode,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
+      'primary_release_date.gte': incorrectDateFrom,
+      'primary_release_date.lte': incorrectDateTo
     }
   });
 
@@ -212,8 +217,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: randomPage,
       with_genres: genreCode,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
+      'primary_release_date.gte': incorrectDateFrom,
+      'primary_release_date.lte': incorrectDateTo
     }
   });
   let { length } = movieResponse.data.results;

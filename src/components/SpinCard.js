@@ -28,12 +28,13 @@ export class SpinCard extends Component {
   };
 
   renderSpinCard() {
-    if (this.props.selectedMovie === 'NO_RESULTS') {
-      return <NoResultsCard />;
-    }
 
     if (this.props.isSpinning === true) {
       return <LoadingCard />;
+    }
+
+    if (this.props.selectedMovie === 'NO_RESULTS') {
+      return <NoResultsCard />;
     }
 
     if (this.props.selectedMovie) {
