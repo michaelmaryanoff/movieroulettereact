@@ -5,6 +5,8 @@ import { addToWatchlist, resetWatchlistUpdateStatus } from '../actions';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 import WatchlistAddButton from './WatchlistAddButton';
+import LoadingCard from './LoadingCard';
+import { NoResultsCard } from './NoResultsCard';
 
 export class SpinCard extends Component {
   constructor(props) {
@@ -27,40 +29,11 @@ export class SpinCard extends Component {
 
   renderSpinCard() {
     if (this.props.selectedMovie === 'NO_RESULTS') {
-      return (
-        <div className="pusher">
-          <div className="ui middle aligned center aligned grid">
-            <div className="three column row">
-              <div className="column">
-                <div className="ui card" key="placeholder">
-                  <div className="content">
-                    <h3>
-                      <em>No movies match this criteria</em>
-                    </h3>
-                    <h1>Please try again</h1>
-                  </div>
-                  <div className="image">
-                    <img
-                      className="ui medium bordered image"
-                      src={reelLogoPlaceHolder}
-                      alt="No results found"
-                    />
-                  </div>
-                  <div className="content">
-                    <div className="description">Please spin again</div>
-                    <p />
-                    <div>{this.renderAddToWatchlistButton()}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return <NoResultsCard />;
     }
 
     if (this.props.isSpinning === true) {
-      return <div>{this.renderLoadingCard()}</div>;
+      return <LoadingCard />;
     }
 
     if (this.props.selectedMovie) {
@@ -110,26 +83,11 @@ export class SpinCard extends Component {
     }
   }
 
-  renderLoadingCard() {
-    return (
-      <div className="pusher">
-        <div className="ui middle aligned center aligned grid">
-          <div className="column">
-            <div className="ui active dimmer">
-              <div className="ui loader"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   render() {
     return <div>{this.renderSpinCard()}</div>;
   }
 }
 const mapStateToProps = state => {
-  console.log('isWatchListUpdating', state.spin.isWatchListUpdated);
   return {
     genreCodes: state.spin.genres,
     selectedMovie: state.spin.selectedMovie,
