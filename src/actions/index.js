@@ -15,7 +15,7 @@ import {
   NEW_TOKEN,
   GET_ACCOUNT_DETAILS,
   GENRE_DROPDOWN_DATA_SOURCE,
-  WATCHLIST_UPDATING
+  WATCHLIST_UPDATED
 } from './types';
 import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
@@ -255,15 +255,18 @@ export const addToWatchlist = selection => async (dispatch, getState) => {
   const response = await tmdbClient.post(url, bodyParams, { params: pathParams });
   dispatch(getWatchList());
 
+  dispatch(updatingWatchListCompleted());
   dispatch({ type: ADD_TO_WATCHLIST, payload: response });
 };
 
-export const updatingWatchListStarted = dispatch => {
-  dispatch({ type: WATCHLIST_UPDATING, payload: false });
+export const resetWatchlistUpdateStatus = dispatch => {
+  // This method is primarily used for updating the watchlist button
+  return { type: WATCHLIST_UPDATED, payload: false };
 };
 
 export const updatingWatchListCompleted = dispatch => {
-  dispatch({ type: WATCHLIST_UPDATING, payload: true });
+  // This method is primarily used for inactivating the watchlist button
+  return { type: WATCHLIST_UPDATED, payload: true };
 };
 
 export const spinningStarted = () => {

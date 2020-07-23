@@ -16,7 +16,7 @@ export const GENRE_DROPDOWN_DATA_SOURCE = 'GENRE_DROPDOWN_DATA_SOURCE';
 
 // Adding to watchlist
 export const ADD_TO_WATCHLIST = 'ADD_TO_WATCHLIST';
-export const WATCHLIST_UPDATING = 'WATCHLIST_UPDATING';
+export const WATCHLIST_UPDATED = 'WATCHLIST_UPDATED';
 
 // Spin
 //* We may not need these if we user redux form

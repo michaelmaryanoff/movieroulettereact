@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addToWatchlist } from '../actions';
+import { addToWatchlist, resetWatchlistUpdateStatus } from '../actions';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 import WatchlistAddButton from './WatchlistAddButton';
@@ -12,25 +12,15 @@ export class SpinCard extends Component {
 
     this.state = {
       // Let's us know if spin was clicked
-      isSpinning: false,
-
-      // Let's us know if we are updating the watchlist
-      isUpdatingWatchlist: false,
-
-      // Used for rendering the watchlist button once watchlist is updated
-      watchListIsUpdated: false
+      isSpinning: false
     };
   }
 
   handleAddToWatchlist = event => {
     event.preventDefault();
 
-    this.setState({ isUpdatingWatchlist: true });
-
     this.props.addToWatchlist(this.props.selectedMovie.id).then(() => {
       if (this.props.watchListResponseStatus >= 200 && this.props.watchListResponseStatus <= 299) {
-        this.setState({ isUpdatingWatchlist: false });
-        this.setState({ watchListIsUpdated: true });
       }
     });
   };
@@ -108,7 +98,6 @@ export class SpinCard extends Component {
                 <p />
                 <div>
                   <WatchlistAddButton
-                    // isUpdating={this.state.isUpdatingWatchlist}
                     isUpdated={this.state.watchListIsUpdated}
                     handleAdd={this.handleAddToWatchlist}
                   />
@@ -140,6 +129,7 @@ export class SpinCard extends Component {
   }
 }
 const mapStateToProps = state => {
+  console.log('isWatchListUpdating', state.spin.isWatchListUpdated);
   return {
     genreCodes: state.spin.genres,
     selectedMovie: state.spin.selectedMovie,
@@ -150,4 +140,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addToWatchlist })(SpinCard);
+export default connect(mapStateToProps, { addToWatchlist, resetWatchlistUpdateStatus })(SpinCard);

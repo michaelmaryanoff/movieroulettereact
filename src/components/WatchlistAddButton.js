@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 export class WatchlistAddButton extends Component {
   renderButton() {
-    if (this.props.isLoggedIn && this.props.isUpdated === false) {
+    if (this.props.isLoggedIn && this.props.isWatchListUpdated === false) {
       return (
         <div>
           <button
@@ -16,7 +16,7 @@ export class WatchlistAddButton extends Component {
       );
     }
 
-    if (this.props.isLoggedIn && this.props.isUpdated === true) {
+    if (this.props.isLoggedIn && this.props.isWatchListUpdated === true) {
       return (
         <div>
           <button
@@ -40,18 +40,14 @@ export class WatchlistAddButton extends Component {
     }
   }
   render() {
-    
     return <div>{this.renderButton()}</div>;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    genreCodes: state.spin.genres,
-    selectedMovie: state.spin.selectedMovie,
     isLoggedIn: state.session.isLoggedIn,
-    watchListResponseStatus: state.spin.watchListResponse.status,
-    isSpinning: state.spin.isSpinning,
+    isWatchListUpdated: state.spin.isWatchListUpdated,
     currentState: state
   };
 };

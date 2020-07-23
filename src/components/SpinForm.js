@@ -7,7 +7,8 @@ import {
   submitSpin,
   addToWatchlist,
   spinningStarted,
-  spinningCompleted
+  spinningCompleted,
+  resetWatchlistUpdateStatus
 } from '../actions';
 
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
@@ -88,6 +89,7 @@ class SpinForm extends React.Component {
   // Some of these will use actions
   handleSpin = event => {
     this.props.spinningStarted();
+    this.props.resetWatchlistUpdateStatus();
     event.preventDefault();
 
     this.setState({ watchListIsUpdated: false });
@@ -219,5 +221,6 @@ export default connect(mapStateToProps, {
   submitSpin,
   addToWatchlist,
   spinningStarted,
-  spinningCompleted
+  spinningCompleted,
+  resetWatchlistUpdateStatus
 })(SpinForm);

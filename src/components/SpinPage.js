@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import SpinForm from './SpinForm';
 import SpinCard from './SpinCard';
 
+import { resetWatchlistUpdateStatus } from '../actions';
+
 import {
   getGenreCodes,
   submitSpin,
@@ -27,6 +29,10 @@ class SpinPage extends React.Component {
       // Used for rendering the watchlist button once watchlist is updated
       watchListIsUpdated: false
     };
+  }
+
+  componentDidMount() {
+    this.props.resetWatchlistUpdateStatus();
   }
 
   handleAddToWatchlist = event => {
@@ -208,5 +214,6 @@ export default connect(mapStateToProps, {
   submitSpin,
   addToWatchlist,
   spinningStarted,
-  spinningCompleted
+  spinningCompleted,
+  resetWatchlistUpdateStatus
 })(SpinPage);
