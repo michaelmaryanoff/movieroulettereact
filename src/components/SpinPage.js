@@ -13,7 +13,6 @@ import {
   spinningStarted,
   spinningCompleted
 } from '../actions';
-import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 
 class SpinPage extends React.Component {
   constructor(props) {
@@ -47,125 +46,6 @@ class SpinPage extends React.Component {
       }
     });
   };
-
-  renderAddToWatchlistButton() {
-    // Renders a the "Add to watchlist button"
-    if (this.props.isLoggedIn && this.state.watchListIsUpdated === false) {
-      return (
-        <div>
-          <button
-            className="ui fluid large teal submit button"
-            onClick={event => this.handleAddToWatchlist(event)}
-          >
-            Add to Watchlist
-          </button>
-        </div>
-      );
-    }
-
-    if (this.props.isLoggedIn && this.state.watchListIsUpdated === true) {
-      return (
-        <div>
-          <button
-            className="ui fluid large inactive submit button"
-            onClick={event => this.handleAddToWatchlist(event)}
-            disabled={true}
-          >
-            Added to Watchlist!
-          </button>
-        </div>
-      );
-    }
-    if (!this.props.isLoggedIn) {
-      return (
-        <div>
-          <button disabled={true} className="ui fluid large inactive submit button">
-            Log in to add to Watchlist
-          </button>
-        </div>
-      );
-    }
-  }
-
-  renderSpinCard() {
-    if (this.props.selectedMovie === 'NO_RESULTS') {
-      return (
-        <div className="pusher">
-          <div className="ui middle aligned center aligned grid">
-            <div className="three column row">
-              <div className="column">
-                <div className="ui card" key="placeholder">
-                  <div className="content">
-                    <h3>
-                      <em>No movies match this criteria</em>
-                    </h3>
-                    <h1>Please try again</h1>
-                  </div>
-                  <div className="image">
-                    <img
-                      className="ui medium bordered image"
-                      src={reelLogoPlaceHolder}
-                      alt="No results found"
-                    />
-                  </div>
-                  <div className="content">
-                    <div className="description">Please spin again</div>
-                    <p />
-                    <div>{this.renderAddToWatchlistButton()}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (this.props.isSpinning === true) {
-      return <div>{this.renderLoadingCard()}</div>;
-    }
-
-    if (this.props.selectedMovie) {
-      let {
-        poster_path,
-        id,
-        original_title,
-        release_date,
-        overview,
-        vote_average
-      } = this.props.selectedMovie;
-
-      let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
-
-      if (!this.props.selectedMovie.poster_path) {
-        imageURL = reelLogoPlaceHolder;
-      }
-      return (
-        <div className="pusher">
-          <div className="eight wide column">
-            <div className="ui card" key={id}>
-              <div className="content">
-                <h3>
-                  <em>Tonight you're watching...</em>
-                </h3>
-                <h1>{original_title}</h1>
-              </div>
-              <div className="image">
-                <img src={imageURL} alt={id} />
-              </div>
-              <div className="content">
-                <div className="meta">Released: {release_date}</div>
-                <div className="description">{overview}</div>
-                <div className="extra content">Average Score: {vote_average}</div>
-                <p />
-                <div>{this.renderAddToWatchlistButton()}</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  }
 
   renderLoadingCard() {
     return (
