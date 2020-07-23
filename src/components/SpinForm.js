@@ -5,7 +5,6 @@ import Dropdown from './Dropdown';
 import {
   getGenreCodes,
   submitSpin,
-  addToWatchlist,
   spinningStarted,
   spinningCompleted,
   resetWatchlistUpdateStatus
@@ -156,50 +155,6 @@ class SpinForm extends React.Component {
     );
   }
 
-  renderDropDown(inputType) {
-    // This function will render the various dropdown menus
-
-    // Creates an indexed array for ratings.
-    // TMDB expects an integer that is not zero indexed
-    const ratingArray = Array.from(new Array(10), (i, index) => index + 1);
-
-    if (inputType === yearFromInput) {
-      return this.state.yearArray.map(year => {
-        return (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        );
-      });
-    }
-
-    if (inputType === yearToInput) {
-      return this.state.yearArray.map(year => {
-        return (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        );
-      });
-    }
-    if (inputType === minimumRatingInput) {
-      return ratingArray.map(rating => {
-        let displayRating = rating * 10;
-
-        return (
-          <option key={displayRating} value={rating}>
-            {displayRating}%
-          </option>
-        );
-      });
-    }
-    if (inputType === genreInput && this.props.genreCodes) {
-      return this.props.genreCodes.map(genre => {
-        return <option key={genre.name} label={genre.name} value={genre.id}></option>;
-      });
-    }
-  }
-
   render() {
     return <div>{this.renderSpinForm()}</div>;
   }
@@ -207,19 +162,13 @@ class SpinForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    genreCodes: state.spin.genreDropdownDataSource,
-    selectedMovie: state.spin.selectedMovie,
-    isLoggedIn: state.session.isLoggedIn,
-    watchListResponseStatus: state.spin.watchListResponse.status,
-    isSpinning: state.spin.isSpinning,
-    currentState: state
+    genreCodes: state.spin.genreDropdownDataSource
   };
 };
 
 export default connect(mapStateToProps, {
   getGenreCodes,
   submitSpin,
-  addToWatchlist,
   spinningStarted,
   spinningCompleted,
   resetWatchlistUpdateStatus
