@@ -19,9 +19,11 @@ class SpinPage extends React.Component {
             <div className="eight wide column">
               <SpinForm />
             </div>
-            <div className="eight wide column">
+
+            <div>
               <SpinCard />
             </div>
+            <div class="ui vertical divider">/</div>
           </div>
         </div>
       </div>

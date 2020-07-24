@@ -28,7 +28,6 @@ export class SpinCard extends Component {
   };
 
   renderSpinCard() {
-
     if (this.props.isSpinning === true) {
       return <LoadingCard />;
     }
@@ -53,29 +52,27 @@ export class SpinCard extends Component {
         imageURL = reelLogoPlaceHolder;
       }
       return (
-        <div className="pusher">
-          <div className="eight wide column">
-            <div className="ui card" key={id}>
-              <div className="content">
-                <h3>
-                  <em>Tonight you're watching...</em>
-                </h3>
-                <h1>{original_title}</h1>
-              </div>
-              <div className="image">
+        <div className="eight wide column">
+          <div className="ui card centered" key={id}>
+            <div className="content">
+              <h3>
+                <em>Tonight you're watching...</em>
+              </h3>
+              <h3 className="header">{original_title}</h3>
+              <div className="meta">Released: {release_date}</div>
+              <p />
+              <div className="left floated small ui image">
                 <img src={imageURL} alt={id} />
               </div>
-              <div className="content">
-                <div className="meta">Released: {release_date}</div>
-                <div className="description">{overview}</div>
-                <div className="extra content">Average Score: {vote_average}</div>
-                <p />
-                <div>
-                  <WatchlistAddButton
-                    isUpdated={this.state.watchListIsUpdated}
-                    handleAdd={this.handleAddToWatchlist}
-                  />
-                </div>
+
+              <div className="description">{overview}</div>
+              <div className="extra content">Average Score: {vote_average}</div>
+              <p />
+              <div>
+                <WatchlistAddButton
+                  isUpdated={this.state.watchListIsUpdated}
+                  handleAdd={this.handleAddToWatchlist}
+                />
               </div>
             </div>
           </div>

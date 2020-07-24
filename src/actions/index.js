@@ -170,7 +170,7 @@ export const submitSpin = selection => async dispatch => {
   let highYear = yearFrom >= yearTo ? yearFrom : yearTo;
   // eslint-disable-next-line
   let dateFrom = `${lowYear}-01-01`;
-  
+
   // eslint-disable-next-line
   let dateTo = `${highYear}-12-31`;
 
@@ -191,8 +191,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: 1,
       with_genres: genreCode,
-      'primary_release_date.gte': incorrectDateFrom,
-      'primary_release_date.lte': incorrectDateTo
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo
     }
   });
 
@@ -217,8 +217,8 @@ export const submitSpin = selection => async dispatch => {
       'vote_average.gte': minimumRating,
       page: randomPage,
       with_genres: genreCode,
-      'primary_release_date.gte': incorrectDateFrom,
-      'primary_release_date.lte': incorrectDateTo
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo
     }
   });
   let { length } = movieResponse.data.results;

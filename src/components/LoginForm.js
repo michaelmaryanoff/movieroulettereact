@@ -69,51 +69,49 @@ class LoginForm extends React.Component {
 
   renderLoginForm() {
     return (
-      <div className="two column row">
-        <div className="column">
-          <h2 className="ui teal image header">
-            <img src={reelLogo} className="image" alt="logo" />
-            <div className="content">Log in to your TMDB Account</div>
-          </h2>
-          <form className="ui large form error" onSubmit={this.handleSubmit}>
-            <div className="ui stacked segment">
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user icon" />
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    onChange={this.handleUserInput}
-                    value={this.state.username}
-                  />
-                </div>
-                <div>{this.renderFieldError('username')}</div>
+      <div className="ui basic segment">
+        <h2 className="ui teal image header">
+          <img src={reelLogo} className="image" alt="logo" />
+          <div className="content">Log in to your TMDB Account</div>
+        </h2>
+        <form className="ui large form error" onSubmit={this.handleSubmit}>
+          <div className="ui stacked segment">
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="user icon" />
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  onChange={this.handleUserInput}
+                  value={this.state.username}
+                />
               </div>
-
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="lock icon" />
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={this.handleUserInput}
-                    value={this.state.password}
-                  />
-                </div>
-                <div>{this.renderFieldError('password')}</div>
-              </div>
-              <button className="ui fluid large teal submit button">Login</button>
-              <div>{this.renderLoginError()}</div>
-              <div className="ui message">
-                Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
-                <p />
-                {<a href="https://www.themoviedb.org/account/signup">Click here to sign up</a>}
-              </div>
+              <div>{this.renderFieldError('username')}</div>
             </div>
-          </form>
-        </div>
+
+            <div className="field">
+              <div className="ui left icon input">
+                <i className="lock icon" />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.handleUserInput}
+                  value={this.state.password}
+                />
+              </div>
+              <div>{this.renderFieldError('password')}</div>
+            </div>
+            <button className="ui fluid large teal submit button">Login</button>
+            <div>{this.renderLoginError()}</div>
+            <div className="ui message">
+              Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
+              <p />
+              {<a href="https://www.themoviedb.org/account/signup">Click here to sign up</a>}
+            </div>
+          </div>
+        </form>
       </div>
     );
   }
