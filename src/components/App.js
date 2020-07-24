@@ -14,6 +14,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container">
+        <div></div>
         <BrowserRouter>
           <LoadingBar progressIncrease={100} showFastActions />
           <Switch>

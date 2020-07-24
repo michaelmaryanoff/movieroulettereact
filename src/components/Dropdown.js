@@ -68,7 +68,7 @@ class Dropdown extends Component {
         <label>{this.props.labeltext}</label>
         <select
           name={this.props.inputtype}
-          className="ui dropdown"
+          className="ui fluid dropdown"
           value={this.props.value}
           onChange={this.handleUserInput}
         >
