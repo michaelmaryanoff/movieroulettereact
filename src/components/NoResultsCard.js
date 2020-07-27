@@ -1,38 +1,28 @@
 import React from 'react';
-import { WatchlistAddButton } from './WatchlistAddButton';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 
 export const NoResultsCard = () => {
   return (
-    <div className="pusher">
-      <div className="ui middle aligned center aligned grid">
-        <div className="three column row">
-          <div className="column">
-            <div className="ui card" key="placeholder">
-              <div className="content">
-                <h3>
-                  <em>No movies match this criteria</em>
-                </h3>
-                <h1>Please try again</h1>
-              </div>
-              <div className="image">
-                <img
-                  className="ui medium bordered image"
-                  src={reelLogoPlaceHolder}
-                  alt="No results found"
-                />
-              </div>
-              <div className="content">
-                <div className="description">Please spin again</div>
-                <p />
-                <div>
-                  <WatchlistAddButton />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="ui card centered" key="no results">
+      <div className="content">
+        <h3>
+          <em>No movies match this criteria</em>
+        </h3>
+        <h1>Please spin again</h1>
+      </div>
+      <div className="ui centered small image">
+        <img src={reelLogoPlaceHolder} alt="No results found" />
+      </div>
+      <p />
+      <div>
+        <button
+          className="ui fluid large inactive submit button"
+          onClick={event => this.props.handleAdd(event)}
+          disabled={true}
+        >
+          Click "Spin!" to spin again
+        </button>
       </div>
     </div>
   );
