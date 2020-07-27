@@ -6,7 +6,13 @@ import WatchlistCard from './WatchlistCard';
 
 class WatchList extends React.Component {
   render() {
-    return <WatchlistCard />;
+    return (
+      <div className="ui container">
+        <div className="ui basic segment">
+          <WatchlistCard />
+        </div>
+      </div>
+    );
   }
 }
 

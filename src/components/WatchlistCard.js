@@ -14,7 +14,7 @@ class WatchlistCard extends React.Component {
         }
 
         return (
-          <div className="ui card" key={`${movie.id}`}>
+          <div className="ui centered card" key={`${movie.id}`}>
             <div className="image">
               <img src={imageURL} alt={movie.id} />
             </div>
@@ -37,7 +37,7 @@ class WatchlistCard extends React.Component {
   render() {
     console.log('props wlc', this.props);
 
-    return <div>{this.renderWatchList()}</div>;
+    return <div className="ui link cards">{this.renderWatchList()}</div>;
   }
 }
 
