@@ -29,7 +29,11 @@ class WatchList extends React.Component {
         );
       });
     }
-    return <div>You must be logged in to access this page</div>;
+    return (
+      <div className="ui center aligned segment">
+        <h3>You must be logged in to access this page.</h3>
+      </div>
+    );
   }
   render() {
     return <div>{this.renderWatchList()}</div>;
