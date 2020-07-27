@@ -13,16 +13,23 @@ class WatchlistCard extends React.Component {
           imageURL = reelLogoPlaceHolder;
         }
 
+        const { id, original_title, release_date, overview, vote_average } = movie;
+
+        const modifiedOverview = `${overview.slice(0, 250)}...`;
+        const movieLink = `https://www.themoviedb.org/movie/${id}`;
+
         return (
-          <div className="ui centered card" key={`${movie.id}`}>
-            <div className="image">
-              <img src={imageURL} alt={movie.id} />
+          <div className="ui centered card" key={`${id}`}>
+            <div className="ui image">
+              <a href={movieLink}>
+                <img src={imageURL} alt={id} />
+              </a>
             </div>
             <div className="content">
-              <div className="header">{movie.original_title}</div>
-              <div className="meta">Released: {movie.release_date}</div>
-              <div className="description">{movie.overview}</div>
-              <div className="extra content">Average Score:{movie.vote_average}</div>
+              <div className="header">{original_title}</div>
+              <div className="meta">Released: {release_date}</div>
+              <div className="description">{modifiedOverview}</div>
+              <div className="extra content">Average Score:{vote_average}</div>
             </div>
           </div>
         );
@@ -35,9 +42,7 @@ class WatchlistCard extends React.Component {
     );
   }
   render() {
-    console.log('props wlc', this.props);
-
-    return <div className="ui link cards">{this.renderWatchList()}</div>;
+    return <div className="ui cards">{this.renderWatchList()}</div>;
   }
 }
 
