@@ -31,7 +31,7 @@ class Header extends React.Component {
             </Link>
           </div>
           <div className="right menu">
-            <button className="header item" onClick={this.handleLogout}>
+            <button className="ui button item" onClick={this.handleLogout}>
               Logout
             </button>
           </div>
@@ -39,7 +39,7 @@ class Header extends React.Component {
       );
     } else {
       return (
-        <div className="ui menu">
+        <div className="ui stackable menu">
           <div>
             <Link to="/spin" className="header item">
               Spin
@@ -62,9 +62,6 @@ class Header extends React.Component {
   }
 
   render() {
-    if (this.props.history.location.pathname) {
-    }
-
     return <div>{this.renderHeader()}</div>;
   }
 }
