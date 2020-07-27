@@ -31,7 +31,6 @@ class Header extends React.Component {
             </Link>
           </div>
           <div className="right menu">
-            <div className="item">Welcome, {this.props.sessionDetails.accountDetails.name}!</div>
             <button className="header item" onClick={this.handleLogout}>
               Logout
             </button>
