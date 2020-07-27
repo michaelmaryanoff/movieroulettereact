@@ -19,7 +19,7 @@ class Header extends React.Component {
   renderHeader() {
     if (this.props.isLoggedIn) {
       return (
-        <div className="ui menu">
+        <div className="ui stackable menu">
           <div>
             <Link to="/watchlist" className="header item">
               Watchlist
