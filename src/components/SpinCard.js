@@ -49,6 +49,7 @@ export class SpinCard extends Component {
       let modifiedOverview = `${overview.slice(0, 250)}...`;
 
       let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
+      const movieURL = `https://www.themoviedb.org/movie/${id}`;
 
       if (!this.props.selectedMovie.poster_path) {
         imageURL = reelLogoPlaceHolder;
@@ -63,7 +64,9 @@ export class SpinCard extends Component {
             <div className="meta">Released: {release_date}</div>
             <p />
             <div className="ui centered small image">
-              <img src={imageURL} alt={id} />
+              <a href={movieURL}>
+                <img src={imageURL} alt={id} />
+              </a>
             </div>
 
             <div className="description">{modifiedOverview}</div>

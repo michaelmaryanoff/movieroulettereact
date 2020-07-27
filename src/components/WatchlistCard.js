@@ -16,12 +16,12 @@ class WatchlistCard extends React.Component {
         const { id, original_title, release_date, overview, vote_average } = movie;
 
         const modifiedOverview = `${overview.slice(0, 250)}...`;
-        const movieLink = `https://www.themoviedb.org/movie/${id}`;
+        const movieURL = `https://www.themoviedb.org/movie/${id}`;
 
         return (
           <div className="ui centered card" key={`${id}`}>
             <div className="ui image">
-              <a href={movieLink}>
+              <a href={movieURL}>
                 <img src={imageURL} alt={id} />
               </a>
             </div>
