@@ -46,6 +46,8 @@ export class SpinCard extends Component {
         vote_average
       } = this.props.selectedMovie;
 
+      let modifiedOverview = `${overview.slice(0, 250)}...`;
+
       let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
 
       if (!this.props.selectedMovie.poster_path) {
@@ -60,11 +62,11 @@ export class SpinCard extends Component {
             <h3 className="header">{original_title}</h3>
             <div className="meta">Released: {release_date}</div>
             <p />
-            <div className="left floated small ui image">
+            <div className="ui centered small image">
               <img src={imageURL} alt={id} />
             </div>
 
-            <div className="description">{overview}</div>
+            <div className="description">{modifiedOverview}</div>
             <div className="extra content">Average Score: {vote_average}</div>
             <p />
             <div>

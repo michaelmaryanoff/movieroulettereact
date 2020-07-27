@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import Dropdown from './Dropdown';
 
@@ -140,16 +140,17 @@ class SpinForm extends React.Component {
 
           <div className="ui basic segment"></div>
           <p />
+          <Dropdown
+            inputtype={genreInput}
+            labeltext="Genre"
+            genreCodes={this.props.genreCodes}
+            value={this.state.genreName}
+            onChange={(event, id) => {
+              this.handleUserInput(event, genreInput, id);
+            }}
+          />
         </div>
-        <Dropdown
-          inputtype={genreInput}
-          labeltext="Genre"
-          genreCodes={this.props.genreCodes}
-          value={this.state.genreName}
-          onChange={(event, id) => {
-            this.handleUserInput(event, genreInput, id);
-          }}
-        />
+
         <div className="ui basic segment"></div>
         <button className="ui fluid large teal submit button">Spin!</button>
       </form>
