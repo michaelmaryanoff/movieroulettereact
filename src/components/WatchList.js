@@ -3,13 +3,14 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import WatchlistCard from './WatchlistCard';
+import { WatchlistLoginError } from './WatchlistLoginError';
 
 class WatchList extends React.Component {
   render() {
     return (
       <div className="ui container">
         <div className="ui basic segment">
-          <WatchlistCard />
+          {this.props.watchList ? <WatchlistCard /> : <WatchlistLoginError />}
         </div>
       </div>
     );
