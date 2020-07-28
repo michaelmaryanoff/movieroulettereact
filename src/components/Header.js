@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -19,8 +19,28 @@ class Header extends React.Component {
   renderBlankHeader() {
     return <div></div>;
   }
+  // componentDidMount() {
+  //   let thisPropsMatch = this.props.match.path === '/';
+  //   console.log(
+  //     `this.props.match.path === ('/login' || '/') in cdm: `,
+  //     this.props.match.path === ('/login' && '/')
+  //   );
+
+  //   console.log('thisPropsMatch', thisPropsMatch);
+  // }
+
+  // componentDidUpdate() {
+  //   let thisPropsMatch = this.props.match.path === '/';
+  //   console.log(
+  //     `this.props.location.pathname === ('/login' || '/') in cdu: `,
+  //     this.props.match.path === ('/login' || '/')
+  //   );
+
+  //   console.log('thisPropsMatch', thisPropsMatch);
+  // }
 
   renderHeader() {
+    console.log('render header');
     if (this.props.isLoggedIn) {
       return (
         <div className="ui stackable menu">
@@ -66,9 +86,16 @@ class Header extends React.Component {
   }
 
   render() {
+    console.log('match path', this.props.match.path);
+    console.log(
+      `this.props.location.pathname === ('/login' || '/') in rend: `,
+      this.props.match.path === '/login' || this.props.match.path === '/'
+    );
+    console.log('full props', this.props.location.pathname);
+
     return (
       <div>
-        {this.props.location.pathname === ('/login' || '/')
+        {this.props.location.pathname === '/login' || this.props.location.pathname === '/'
           ? this.renderBlankHeader()
           : this.renderHeader()}
       </div>
