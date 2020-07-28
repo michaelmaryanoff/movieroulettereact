@@ -11,7 +11,8 @@ import { loadingBarReducer } from 'react-redux-loading-bar';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['session', 'form', 'loadingBar', 'spin']
+  whitelist: ['session', 'form', 'spin'],
+  blcklist: ['loadingBar']
 };
 
 const rootReducer = combineReducers({
