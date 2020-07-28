@@ -10,7 +10,7 @@ class WatchList extends React.Component {
     return (
       <div className="ui container">
         <div className="ui basic segment">
-          {this.props.watchList ? <WatchlistCard /> : <WatchlistLoginError />}
+          {this.props.isLoggedIn ? <WatchlistCard /> : <WatchlistLoginError />}
         </div>
       </div>
     );
