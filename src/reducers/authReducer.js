@@ -25,7 +25,8 @@ export default (state = INITAL_STATE, action) => {
         isLoggedIn: false,
         watchList: null,
         newToken: null,
-        responseToken: null
+        responseToken: null,
+        serverResponse: action.payload
       };
     case VALIDATE_REQUEST_TOKEN:
       return { ...state, sessionId: action.payload };
