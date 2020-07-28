@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { addToWatchlist, resetWatchlistUpdateStatus } from '../actions';
+import { addToWatchlist, resetWatchlistUpdateStatus, spinningCompleted } from '../actions';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 import WatchlistAddButton from './WatchlistAddButton';
@@ -9,22 +9,13 @@ import LoadingCard from './LoadingCard';
 import { NoResultsCard } from './NoResultsCard';
 
 export class SpinCard extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // Let's us know if spin was clicked
-      isSpinning: false
-    };
+  componentDidMount() {
+    this.props.spinningCompleted();
   }
-
   handleAddToWatchlist = event => {
     event.preventDefault();
 
-    this.props.addToWatchlist(this.props.selectedMovie.id).then(() => {
-      if (this.props.watchListResponseStatus >= 200 && this.props.watchListResponseStatus <= 299) {
-      }
-    });
+    this.props.addToWatchlist(this.props.selectedMovie.id);
   };
 
   renderSpinCard() {
@@ -77,10 +68,7 @@ export class SpinCard extends Component {
             <div className="extra content">Average Score: {vote_average}</div>
             <p />
             <div>
-              <WatchlistAddButton
-                isUpdated={this.state.watchListIsUpdated}
-                handleAdd={this.handleAddToWatchlist}
-              />
+              <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
             </div>
           </div>
         </div>
@@ -103,4 +91,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addToWatchlist, resetWatchlistUpdateStatus })(SpinCard);
+export default connect(mapStateToProps, {
+  addToWatchlist,
+  resetWatchlistUpdateStatus,
+  spinningCompleted
+})(SpinCard);
