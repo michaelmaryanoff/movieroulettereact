@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-export class WatchlistAddButton extends Component {
+class WatchlistAddButton extends Component {
   renderButton() {
     if (this.props.isLoggedIn && this.props.isWatchListUpdated === false) {
       return (
