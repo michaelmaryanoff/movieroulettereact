@@ -69,7 +69,11 @@ export class SpinCard extends Component {
               </a>
             </div>
 
-            <div className="description">{modifiedOverview}</div>
+            <div className="description">
+              <p />
+              <p />
+              {modifiedOverview}
+            </div>
             <div className="extra content">Average Score: {vote_average}</div>
             <p />
             <div>
