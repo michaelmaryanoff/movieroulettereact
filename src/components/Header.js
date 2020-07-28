@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -15,6 +15,10 @@ class Header extends React.Component {
   handleLogout = () => {
     this.props.signOut().then(this.props.history.push('/login'));
   };
+
+  renderBlankHeader() {
+    return <div></div>;
+  }
 
   renderHeader() {
     if (this.props.isLoggedIn) {
@@ -62,7 +66,13 @@ class Header extends React.Component {
   }
 
   render() {
-    return <div>{this.renderHeader()}</div>;
+    return (
+      <div>
+        {this.props.location.pathname === ('/login' || '/')
+          ? this.renderBlankHeader()
+          : this.renderHeader()}
+      </div>
+    );
   }
 }
 

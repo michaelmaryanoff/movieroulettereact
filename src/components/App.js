@@ -17,14 +17,12 @@ class App extends React.Component {
         <div></div>
         <BrowserRouter>
           <LoadingBar progressIncrease={100} showFastActions />
+          <Header />
           <Switch>
             <Route path="/login" exact component={LoginForm} />
             <Route path="/" exact component={LoginForm} />
-            <Fragment>
-              <Header />
-              <Route path="/spin" exact component={SpinPage} />
-              <Route path="/watchlist" exact component={WatchList} />
-            </Fragment>
+            <Route path="/spin" exact component={SpinPage} />
+            <Route path="/watchlist" exact component={WatchList} />
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>
