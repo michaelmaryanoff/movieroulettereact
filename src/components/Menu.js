@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 
 import { signOut } from '../actions';
 
-class Header extends React.Component {
+class Menu extends React.Component {
   constructor(props) {
     super(props);
 
@@ -87,4 +87,4 @@ const mapStateToProps = state => {
 };
 
 // get our props into our header
-export default withRouter(connect(mapStateToProps, { signOut })(Header));
+export default withRouter(connect(mapStateToProps, { signOut })(Menu));

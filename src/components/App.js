@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import LoginForm from './LoginForm';
 import WatchList from './WatchList';
-import Header from './Header';
+import Menu from './Menu';
 import SpinPage from './SpinPage';
 import ErrorPage from './ErrorPage';
 
@@ -16,7 +16,7 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <LoadingBar progressIncrease={100} showFastActions />
-          <Header />
+          <Menu />
           <Switch>
             <Route path="/login" exact component={LoginForm} />
             <Route path="/" exact component={LoginForm} />
