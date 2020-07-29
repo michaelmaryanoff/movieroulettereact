@@ -48,16 +48,15 @@ class Header extends React.Component {
         <div className="ui secondary pointing menu">
           <div className="ui container">
             <div>
-              <Link to="/spin" className="header item">
-                SPIN
-              </Link>
-            </div>
-            <div>
               <Link to="/login" className="header item">
                 LOG IN TO SEE WATCHLIST
               </Link>
             </div>
-
+            <div>
+              <Link to="/spin" className="header item">
+                SPIN
+              </Link>
+            </div>
             <div className="right menu">
               <Link to="/login" className="header item">
                 LOG IN
