@@ -23,8 +23,8 @@ class Header extends React.Component {
   renderHeader() {
     if (this.props.isLoggedIn) {
       return (
-        <div className="ui container">
-          <div className="ui large secondary network menu">
+        <div className="ui secondary pointing menu">
+          <div className="ui container">
             <div>
               <Link to="/watchlist" className="header item">
                 WATCHLIST
@@ -45,11 +45,11 @@ class Header extends React.Component {
       );
     } else {
       return (
-        <div className="ui container">
-          <div className="ui large secondary network menu">
+        <div className="ui secondary pointing menu">
+          <div className="ui container">
             <div>
               <Link to="/spin" className="header item">
-                WATCHLIST
+                SPIN
               </Link>
             </div>
             <div>
