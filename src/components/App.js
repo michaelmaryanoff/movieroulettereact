@@ -13,8 +13,7 @@ import { LoadingBar } from 'react-redux-loading-bar';
 class App extends React.Component {
   render() {
     return (
-      <div className="ui container">
-        <div></div>
+      <div>
         <BrowserRouter>
           <LoadingBar progressIncrease={100} showFastActions />
           <Header />
