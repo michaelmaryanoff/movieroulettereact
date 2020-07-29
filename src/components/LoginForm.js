@@ -112,7 +112,7 @@ class LoginForm extends React.Component {
             </div>
             <button className="ui fluid large teal submit button">Login</button>
             <div>{this.renderLoginError()}</div>
-            <div className="ui message">
+            <div style={{ textAlign: 'center' }} className="ui message">
               Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
               <p />
               {<a href="https://www.themoviedb.org/account/signup">Click here to sign up</a>}
