@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { signOut } from '../actions';
+import Header from './Header';
+import LoggedInHeader from './LoggedInHeader';
+import LoggedOutHeader from './LoggedOutHeader';
 
 class Menu extends React.Component {
   constructor(props) {
@@ -12,10 +15,6 @@ class Menu extends React.Component {
     this.state = { headerShouldRender: true };
   }
 
-  handleLogout = () => {
-    this.props.signOut().then(this.props.history.push('/login'));
-  };
-
   renderBlankHeader() {
     return <div></div>;
   }
@@ -23,47 +22,15 @@ class Menu extends React.Component {
   renderHeader() {
     if (this.props.isLoggedIn) {
       return (
-        <div className="ui secondary pointing menu">
-          <div className="ui container">
-            <div>
-              <Link to="/watchlist" className="header item">
-                WATCHLIST
-              </Link>
-            </div>
-            <div>
-              <Link to="/spin" className="header item">
-                SPIN
-              </Link>
-            </div>
-            <div className="right menu">
-              <button className="ui button item" onClick={this.handleLogout}>
-                LOGOUT
-              </button>
-            </div>
-          </div>
-        </div>
+        <Header>
+          <LoggedInHeader />
+        </Header>
       );
     } else {
       return (
-        <div className="ui secondary pointing menu">
-          <div className="ui container">
-            <div>
-              <Link to="/login" className="header item">
-                LOG IN TO SEE WATCHLIST
-              </Link>
-            </div>
-            <div>
-              <Link to="/spin" className="header item">
-                SPIN
-              </Link>
-            </div>
-            <div className="right menu">
-              <Link to="/login" className="header item">
-                LOG IN
-              </Link>
-            </div>
-          </div>
-        </div>
+        <Header>
+          <LoggedOutHeader />
+        </Header>
       );
     }
   }
