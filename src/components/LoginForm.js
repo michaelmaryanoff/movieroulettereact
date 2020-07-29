@@ -20,6 +20,13 @@ class LoginForm extends React.Component {
       hasSubmitted: false
     };
   }
+
+  componentDidMount() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push('/spin');
+    }
+  }
+
   componentDidUpdate() {
     if (this.props.isLoggedIn) {
       this.props.history.push('/spin');
@@ -117,11 +124,13 @@ class LoginForm extends React.Component {
   }
   render() {
     return (
-      <div className="pusher">
-        <LoadingBar />
-        <div className="ui basic segment"></div>
-        <div className="ui basic segment"></div>
-        <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
+      <div className="ui container">
+        <div className="pusher">
+          <LoadingBar />
+          <div className="ui basic segment"></div>
+          <div className="ui basic segment"></div>
+          <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
+        </div>
       </div>
     );
   }
