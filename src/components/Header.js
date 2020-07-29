@@ -23,42 +23,46 @@ class Header extends React.Component {
   renderHeader() {
     if (this.props.isLoggedIn) {
       return (
-        <div className="ui stackable menu">
-          <div>
-            <Link to="/watchlist" className="header item">
-              Watchlist
-            </Link>
-          </div>
-          <div>
-            <Link to="/spin" className="header item">
-              Spin
-            </Link>
-          </div>
-          <div className="right menu">
-            <button className="ui button item" onClick={this.handleLogout}>
-              Logout
-            </button>
+        <div className="ui container">
+          <div className="ui large secondary network menu">
+            <div>
+              <Link to="/watchlist" className="header item">
+                WATCHLIST
+              </Link>
+            </div>
+            <div>
+              <Link to="/spin" className="header item">
+                SPIN
+              </Link>
+            </div>
+            <div className="right menu">
+              <button className="ui button item" onClick={this.handleLogout}>
+                LOGOUT
+              </button>
+            </div>
           </div>
         </div>
       );
     } else {
       return (
-        <div className="ui stackable menu">
-          <div>
-            <Link to="/spin" className="header item">
-              Spin
-            </Link>
-          </div>
-          <div>
-            <Link to="/login" className="header item">
-              Log in to see Watchlist
-            </Link>
-          </div>
+        <div className="ui container">
+          <div className="ui large secondary network menu">
+            <div>
+              <Link to="/spin" className="header item">
+                WATCHLIST
+              </Link>
+            </div>
+            <div>
+              <Link to="/login" className="header item">
+                LOG IN TO SEE WATCHLIST
+              </Link>
+            </div>
 
-          <div className="right menu">
-            <Link to="/login" className="header item">
-              Log in
-            </Link>
+            <div className="right menu">
+              <Link to="/login" className="header item">
+                LOG IN
+              </Link>
+            </div>
           </div>
         </div>
       );

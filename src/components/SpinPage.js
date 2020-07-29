@@ -13,15 +13,19 @@ class SpinPage extends React.Component {
 
   render() {
     return (
-      <div className="ui center aligned segment">
-        <div className="ui two column stackable center aligned grid">
-          <div className="ui vertical divider"></div>
-          <div className="ui middle aligned row">
-            <div className="column">
-              <SpinForm />
-            </div>
-            <div className="column">
-              <SpinCard />
+      <div className="ui container">
+        <div className="ui basic segment">
+          <div className="ui center aligned segment">
+            <div className="ui two column stackable center aligned grid">
+              <div className="ui vertical divider"></div>
+              <div className="ui middle aligned row">
+                <div className="column">
+                  <SpinForm />
+                </div>
+                <div className="column">
+                  <SpinCard />
+                </div>
+              </div>
             </div>
           </div>
         </div>
