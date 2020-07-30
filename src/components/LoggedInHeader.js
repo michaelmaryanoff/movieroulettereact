@@ -7,7 +7,7 @@ import { signOut } from '../actions';
 
 class LoggedInHeader extends React.Component {
   handleLogout = () => {
-    this.props.signOut().then(this.props.history.push('/login'));
+    this.props.signOut();
   };
   render() {
     return (
