@@ -108,7 +108,7 @@ class SpinForm extends React.Component {
     return (
       <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
         <h2 className="ui teal image header">
-          <div className="content">Find a movie!</div>
+          <div className="content">Find a movie to watch tonight!</div>
         </h2>
         <div className="fields">
           <Dropdown
