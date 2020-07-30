@@ -32,6 +32,4 @@ class LoggedInHeader extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({});
-
-export default withRouter(connect(mapStateToProps, { signOut })(LoggedInHeader));
+export default withRouter(connect(null, { signOut })(LoggedInHeader));
