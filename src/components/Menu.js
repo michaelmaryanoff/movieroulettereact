@@ -13,13 +13,7 @@ class Menu extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.props.location.pathname === '/login' || this.props.location.pathname === '/'
-          ? null
-          : this.renderHeader()}
-      </div>
-    );
+    return <div>{this.props.location.pathname === '/login' ? null : this.renderHeader()}</div>;
   }
 }
 

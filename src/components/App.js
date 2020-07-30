@@ -19,7 +19,7 @@ class App extends React.Component {
           <Menu />
           <Switch>
             <Route path="/login" exact component={LoginForm} />
-            <Route path="/" exact component={LoginForm} />
+            <Route path="/" exact component={SpinPage} />
             <Route path="/spin" exact component={SpinPage} />
             <Route path="/watchlist" exact component={WatchList} />
             <Route component={ErrorPage} />
