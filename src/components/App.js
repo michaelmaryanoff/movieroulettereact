@@ -2,23 +2,20 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import LoginForm from './LoginForm';
+import LoginPage from './LoginPage';
 import WatchList from './WatchList';
 import Menu from './Menu';
 import SpinPage from './SpinPage';
 import ErrorPage from './ErrorPage';
-
-import { LoadingBar } from 'react-redux-loading-bar';
 
 class App extends React.Component {
   render() {
     return (
       <div>
         <BrowserRouter>
-          <LoadingBar progressIncrease={100} showFastActions />
           <Menu />
           <Switch>
-            <Route path="/login" exact component={LoginForm} />
+            <Route path="/login" exact component={LoginPage} />
             <Route path="/" exact component={SpinPage} />
             <Route path="/spin" exact component={SpinPage} />
             <Route path="/watchlist" exact component={WatchList} />
@@ -32,7 +29,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.session.isLoggedIn
+    currentState: state
   };
 };
 

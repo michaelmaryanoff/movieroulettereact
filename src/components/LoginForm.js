@@ -55,7 +55,6 @@ class LoginForm extends React.Component {
   };
 
   handleUserInput = event => {
-    // You might want to try using an if statement here so we don't reset the state every time
     const name = event.target.name;
     const value = event.target.value;
     this.setState({ [name]: value });
@@ -123,16 +122,7 @@ class LoginForm extends React.Component {
     );
   }
   render() {
-    return (
-      <div className="ui container">
-        <div className="pusher">
-          <LoadingBar />
-          <div className="ui basic segment"></div>
-          <div className="ui basic segment"></div>
-          <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>
-        </div>
-      </div>
-    );
+    return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
   }
 }
 
