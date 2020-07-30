@@ -15,7 +15,7 @@ class SpinPage extends React.Component {
     return (
       <div className="ui container">
         <div className="ui sizer basic centered vertical segment">
-          <div className="ui large center aligned header">Welcome to Movie Roulette!</div>
+          <div className="ui large teal center aligned header">Welcome to Movie Roulette</div>
         </div>
         <div className="ui basic segment">
           <div className="ui center aligned segment">
