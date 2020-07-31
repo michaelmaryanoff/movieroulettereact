@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
-import { getGenreCodes } from '../actions';
 
 class Dropdown extends Component {
   handleUserInput = event => {
+    // These arguments are passed for the parent form to create a controlled component
     const { rawvalue } = event.target.selectedOptions[0].dataset;
     const { value } = event.target;
 
@@ -28,11 +26,4 @@ class Dropdown extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    genreCodes: state.spin.genreCodes,
-    fullState: state
-  };
-};
-
-export default connect(mapStateToProps, { getGenreCodes })(Dropdown);
+export default Dropdown;
