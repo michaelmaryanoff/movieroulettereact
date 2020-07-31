@@ -19,8 +19,7 @@ class Menu extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sessionDetails: state.session,
-    isLoggedIn: state.session.isLoggedIn
+    currentState: state
   };
 };
 

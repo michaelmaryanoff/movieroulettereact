@@ -66,21 +66,17 @@ class SpinForm extends React.Component {
   // Will update component state based on user input
 
   handleUserInput = (event, inputType, id) => {
-    if (inputType === yearFromInput) {
-      this.setState({ yearFrom: event });
-    }
-
-    if (inputType === yearToInput) {
-      this.setState({ yearTo: event });
-    }
-
-    if (inputType === minimumRatingInput) {
-      this.setState({ minimumRating: event });
-    }
-
-    if (inputType === genreInput) {
-      // We need these variables to get the text of the label in order to set the state
-      this.setState({ genreName: event, genreCode: id });
+    switch (inputType) {
+      case yearFromInput:
+        return this.setState({ yearFrom: event });
+      case yearToInput:
+        return this.setState({ yearTo: event });
+      case minimumRatingInput:
+        return this.setState({ minimumRating: event });
+      case genreInput:
+        return this.setState({ genreName: event, genreCode: id });
+      default:
+        return;
     }
   };
 

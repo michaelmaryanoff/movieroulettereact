@@ -29,6 +29,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    // This is here in case we need to access app state for debugging
     currentState: state
   };
 };
