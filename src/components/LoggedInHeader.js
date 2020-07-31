@@ -10,6 +10,7 @@ class LoggedInHeader extends React.Component {
     this.props.signOut();
   };
   render() {
+    
     return (
       <Fragment>
         <div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 class LoggedOutHeader extends React.Component {
   render() {
+    console.log('loggedoutheader');
     return (
       <Fragment>
         <div>
