@@ -40,6 +40,8 @@ class SpinForm extends React.Component {
 
       minimumRating: 0,
 
+      minimumRatingDisplay: '10%',
+
       // The title of the currently selected genre
       genreName: '',
 
@@ -120,7 +122,7 @@ class SpinForm extends React.Component {
       case yearToInput:
         return this.setState({ yearTo: event });
       case minimumRatingInput:
-        return this.setState({ minimumRating: event });
+        return this.setState({ minimumRatingDisplay: event, minimumRating: id });
       case genreInput:
         return this.setState({ genreName: event, genreCode: id });
       default:
@@ -139,8 +141,8 @@ class SpinForm extends React.Component {
             inputtype={yearFromInput}
             labeltext="From"
             value={this.state.yearFrom}
-            onChange={event => {
-              this.handleUserInput(event, yearFromInput);
+            onChange={(event, id) => {
+              this.handleUserInput(event, yearFromInput, id);
             }}
           >
             <DropdownOptions optiondata={this.state.yearArray} />
@@ -149,8 +151,8 @@ class SpinForm extends React.Component {
             inputtype={yearToInput}
             labeltext="To"
             value={this.state.yearTo}
-            onChange={event => {
-              this.handleUserInput(event, yearToInput);
+            onChange={(event, id) => {
+              this.handleUserInput(event, yearToInput, id);
             }}
           >
             <DropdownOptions optiondata={this.state.yearArray} />
@@ -158,9 +160,9 @@ class SpinForm extends React.Component {
           <Dropdown
             inputtype={minimumRatingInput}
             labeltext="Minimum Rating"
-            value={this.state.minimumRating}
-            onChange={event => {
-              this.handleUserInput(event, minimumRatingInput);
+            value={this.state.minimumRatingDisplay}
+            onChange={(event, id) => {
+              this.handleUserInput(event, minimumRatingInput, id);
             }}
           >
             <DropdownOptions optiondata={this.state.ratingsArray} />
