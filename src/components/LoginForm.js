@@ -9,7 +9,6 @@ import { withRouter } from 'react-router';
 
 import { Link } from 'react-router-dom';
 import { hideLoading } from 'react-redux-loading-bar';
-import LoadingBar from 'react-redux-loading-bar';
 
 class LoginForm extends React.Component {
   constructor(props) {

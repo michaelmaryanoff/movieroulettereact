@@ -73,6 +73,7 @@ class Dropdown extends Component {
           onChange={this.handleUserInput}
         >
           {this.renderDropDown(this.props.inputtype)}
+
         </select>
       </div>
     );
