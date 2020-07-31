@@ -6,7 +6,7 @@ import { addToWatchlist, resetWatchlistUpdateStatus, spinningCompleted } from '.
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 import WatchlistAddButton from './WatchlistAddButton';
 import LoadingCard from './LoadingCard';
-import { NoResultsCard } from './NoResultsCard';
+import NoResultsCard from './NoResultsCard';
 
 export class SpinCard extends Component {
   componentDidMount() {

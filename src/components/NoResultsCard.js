@@ -2,12 +2,12 @@ import React from 'react';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 
-export const NoResultsCard = () => {
+const NoResultsCard = () => {
   return (
     <div className="ui card centered" key="no results">
       <div className="content">
         <h3>
-          <em>No movies match this criteria</em>
+          <em>No movies match these criteria</em>
         </h3>
         <h1>Please spin again</h1>
       </div>
@@ -27,3 +27,5 @@ export const NoResultsCard = () => {
     </div>
   );
 };
+
+export default NoResultsCard;
