@@ -6,9 +6,9 @@ import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './in
 
 class Dropdown extends Component {
   handleUserInput = event => {
-    const { genreid } = event.target.selectedOptions[0].dataset;
+    const { rawvalue } = event.target.selectedOptions[0].dataset;
     const { value } = event.target;
-    this.props.onChange(value, genreid);
+    this.props.onChange(value, rawvalue);
   };
 
   renderDropDown(inputType) {
@@ -20,31 +20,27 @@ class Dropdown extends Component {
 
     if (inputType === yearFromInput) {
       return this.props.yearArray.map(year => {
-        return (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        );
+        return <option data-rawvalue={year} key={year} value={year} label={year} />;
       });
     }
 
     if (inputType === yearToInput) {
       return this.props.yearArray.map(year => {
-        return (
-          <option key={year} value={year}>
-            {year}
-          </option>
-        );
+        return <option data-rawvalue={year} key={year} value={year} label={year} />;
       });
     }
     if (inputType === minimumRatingInput) {
       return ratingArray.map(rating => {
-        let displayRating = rating * 10;
+        const displayRating = rating * 10;
+        const displayRatingLabel = `${displayRating}%`;
 
         return (
-          <option key={displayRating} value={rating}>
-            {displayRating}%
-          </option>
+          <option
+            data-rawvalue={rating}
+            key={displayRating}
+            value={rating}
+            label={displayRatingLabel}
+          />
         );
       });
     }
@@ -52,7 +48,7 @@ class Dropdown extends Component {
       return this.props.genreCodes.map(genre => {
         return (
           <option
-            data-genreid={genre.id}
+            data-rawvalue={genre.id}
             key={genre.id}
             label={genre.name}
             value={genre.name}
@@ -73,7 +69,6 @@ class Dropdown extends Component {
           onChange={this.handleUserInput}
         >
           {this.renderDropDown(this.props.inputtype)}
-
         </select>
       </div>
     );
