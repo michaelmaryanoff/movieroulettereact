@@ -2,14 +2,25 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SpinForm from './SpinForm';
-import SpinCard from './SpinCard';
+
+import LoadingCard from './LoadingCard';
 
 import { resetWatchlistUpdateStatus } from '../actions';
 import WelcomeHeader from './WelcomeHeader';
+import NoResultsCard from './NoResultsCard';
+import SpinResultCard from './SpinResultCard';
 
 class SpinPage extends React.Component {
   componentDidMount() {
     this.props.resetWatchlistUpdateStatus();
+  }
+
+  renderResults() {
+    if (this.props.isSpinning) {
+      return null;
+    } else {
+      return this.props.selectedMovie === 'NO_RESULTS' ? <NoResultsCard /> : <SpinResultCard />;
+    }
   }
 
   render() {
@@ -25,7 +36,8 @@ class SpinPage extends React.Component {
                   <SpinForm />
                 </div>
                 <div className="column">
-                  <SpinCard />
+                  <LoadingCard />
+                  {this.renderResults()}
                 </div>
               </div>
             </div>
@@ -36,6 +48,12 @@ class SpinPage extends React.Component {
   }
 }
 
-export default connect(null, {
+const mapStateToProps = state => {
+  return {
+    isSpinning: state.spin.isSpinning
+  };
+};
+
+export default connect(mapStateToProps, {
   resetWatchlistUpdateStatus
 })(SpinPage);
