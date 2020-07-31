@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Dropdown from './Dropdown';
 
 import {
   getGenreCodes,
@@ -12,23 +11,32 @@ import {
 
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
+import Dropdown from './Dropdown';
+import DropdownOptions from './DropdownOptions';
+
 class SpinForm extends React.Component {
   constructor(props) {
     super(props);
     const yearArray = this.generateYearArray();
+    const ratingsArray = this.generateRatingArray();
+    const genreArray = this.generateGenreArray();
 
     this.state = {
       // An array of years used to populate dropdown menu
       yearArray,
 
+      ratingsArray,
+
+      genreArray,
+
       // A default "yearFrom" set to 1955, since people are probably not going
       // To be wanding to look much earlier than that
       // This will be used to manage to make the dropdown a controlled component
-      yearFrom: yearArray[35],
+      yearFrom: yearArray[35].value,
 
       // A default "yearTo", set at the current year
       // This will be used to manage to make the dropdown a controlled component
-      yearTo: yearArray[yearArray.length - 1],
+      yearTo: yearArray[yearArray.length - 1].value,
 
       minimumRating: 0,
 
@@ -49,6 +57,7 @@ class SpinForm extends React.Component {
      */
 
     this.props.getGenreCodes();
+    this.generateRatingArray();
   }
 
   generateYearArray() {
@@ -58,27 +67,30 @@ class SpinForm extends React.Component {
     let years = [];
 
     for (let i = firstYear; i <= currentYear; i++) {
-      years.push(i);
+      years.push({ id: i, value: i });
     }
     return years;
   }
 
-  // Will update component state based on user input
+  generateRatingArray() {
+    // Creates an indexed array for ratings.
+    // TMDB expects an integer
 
-  handleUserInput = (event, inputType, id) => {
-    switch (inputType) {
-      case yearFromInput:
-        return this.setState({ yearFrom: event });
-      case yearToInput:
-        return this.setState({ yearTo: event });
-      case minimumRatingInput:
-        return this.setState({ minimumRating: event });
-      case genreInput:
-        return this.setState({ genreName: event, genreCode: id });
-      default:
-        return;
+    let ratingsArray = [];
+
+    for (let i = 1; i <= 10; i++) {
+      ratingsArray.push({ id: i, value: `${i}0%` });
     }
-  };
+    return ratingsArray;
+  }
+
+  generateGenreArray() {
+    if (this.props.genreCodes) {
+      return this.props.genreCodes.map(genre => ({ id: genre.id, value: genre.name }));
+    } else {
+      return [];
+    }
+  }
 
   // Handle the spin
   // Some of these will use actions
@@ -100,6 +112,22 @@ class SpinForm extends React.Component {
     this.props.submitSpin(submissionObject).then(this.props.spinningCompleted);
   };
 
+  // Will update component state based on user input
+  handleUserInput = (event, inputType, id) => {
+    switch (inputType) {
+      case yearFromInput:
+        return this.setState({ yearFrom: event });
+      case yearToInput:
+        return this.setState({ yearTo: event });
+      case minimumRatingInput:
+        return this.setState({ minimumRating: event });
+      case genreInput:
+        return this.setState({ genreName: event, genreCode: id });
+      default:
+        return;
+    }
+  };
+
   renderSpinForm() {
     return (
       <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
@@ -110,21 +138,23 @@ class SpinForm extends React.Component {
           <Dropdown
             inputtype={yearFromInput}
             labeltext="From"
-            yearArray={this.state.yearArray}
             value={this.state.yearFrom}
             onChange={event => {
               this.handleUserInput(event, yearFromInput);
             }}
-          />
+          >
+            <DropdownOptions optiondata={this.state.yearArray} />
+          </Dropdown>
           <Dropdown
             inputtype={yearToInput}
             labeltext="To"
-            yearArray={this.state.yearArray}
             value={this.state.yearTo}
             onChange={event => {
               this.handleUserInput(event, yearToInput);
             }}
-          />
+          >
+            <DropdownOptions optiondata={this.state.yearArray} />
+          </Dropdown>
           <Dropdown
             inputtype={minimumRatingInput}
             labeltext="Minimum Rating"
@@ -132,19 +162,22 @@ class SpinForm extends React.Component {
             onChange={event => {
               this.handleUserInput(event, minimumRatingInput);
             }}
-          />
+          >
+            <DropdownOptions optiondata={this.state.ratingsArray} />
+          </Dropdown>
 
           <div className="ui basic segment"></div>
           <p />
           <Dropdown
             inputtype={genreInput}
             labeltext="Genre"
-            genreCodes={this.props.genreCodes}
             value={this.state.genreName}
             onChange={(event, id) => {
               this.handleUserInput(event, genreInput, id);
             }}
-          />
+          >
+            <DropdownOptions optiondata={this.state.genreArray} />
+          </Dropdown>
         </div>
 
         <div className="ui basic segment"></div>
