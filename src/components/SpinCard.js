@@ -5,7 +5,11 @@ import SpinNoResultsCard from './SpinNoResultsCard';
 import SpinResultCard from './SpinResultCard';
 
 const SpinCard = props => {
-  return props.selectedMovie === 'NO_RESULTS' ? <SpinNoResultsCard /> : <SpinResultCard />;
+  if (props.selectedMovie) {
+    return props.selectedMovie === 'NO_RESULTS' ? <SpinNoResultsCard /> : <SpinResultCard />;
+  } else {
+    return <div></div>;
+  }
 };
 
 const mapStateToProps = state => {
