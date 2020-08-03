@@ -30,12 +30,12 @@ class SpinForm extends React.Component {
       genreArray,
 
       // A default "yearFrom" set to 1955, since people are probably not going
-      // To be wanding to look much earlier than that
-      // This will be used to manage to make the dropdown a controlled component
+      // to looking for a movie much earlier than that.
+      // This will be used to to make the dropdown a controlled component.
       yearFrom: yearArray[35].value,
 
       // A default "yearTo", set at the current year
-      // This will be used to manage to make the dropdown a controlled component
+      // This will be used to to make the dropdown a controlled component.
       yearTo: yearArray[yearArray.length - 1].value,
 
       minimumRating: 0,
@@ -77,7 +77,6 @@ class SpinForm extends React.Component {
   generateRatingArray() {
     // Creates an indexed array for ratings.
     // TMDB expects an integer
-
     let ratingsArray = [];
 
     for (let i = 1; i <= 10; i++) {
@@ -87,19 +86,18 @@ class SpinForm extends React.Component {
   }
 
   generateGenreArray() {
-    if (this.props.genreCodes) {
-      return this.props.genreCodes.map(genre => ({ id: genre.id, value: genre.name }));
-    } else {
-      return [];
-    }
+    return this.props.genreCodes
+      ? this.props.genreCodes.map(genre => ({ id: genre.id, value: genre.name }))
+      : [];
   }
 
   // Handle the spin
   // Some of these will use actions
   handleSpin = event => {
+    event.preventDefault();
+
     this.props.spinningStarted();
     this.props.resetWatchlistUpdateStatus();
-    event.preventDefault();
 
     this.setState({ watchListIsUpdated: false });
     let { yearFrom, yearTo, minimumRating, genreCode } = this.state;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 
-const NoResultsCard = () => {
+const SpinNoResultsCard = () => {
   return (
     <div className="ui card centered" key="no results">
       <div className="content">
@@ -28,4 +28,4 @@ const NoResultsCard = () => {
   );
 };
 
-export default NoResultsCard;
+export default SpinNoResultsCard;

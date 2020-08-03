@@ -7,24 +7,15 @@ import LoadingCard from './LoadingCard';
 
 import { resetWatchlistUpdateStatus } from '../actions';
 import WelcomeHeader from './WelcomeHeader';
-import NoResultsCard from './NoResultsCard';
-import SpinResultCard from './SpinResultCard';
+
+import SpinCard from './SpinCard';
 
 class SpinPage extends React.Component {
   componentDidMount() {
     this.props.resetWatchlistUpdateStatus();
   }
 
-  renderResults() {
-    if (this.props.isSpinning) {
-      return null;
-    } else {
-      return this.props.selectedMovie === 'NO_RESULTS' ? <NoResultsCard /> : <SpinResultCard />;
-    }
-  }
-
   render() {
-    console.log('selectedmovie', this.props.selectedMovie);
     return (
       <div className="ui container">
         <WelcomeHeader />
@@ -38,7 +29,7 @@ class SpinPage extends React.Component {
                 </div>
                 <div className="column">
                   <LoadingCard />
-                  {this.renderResults()}
+                  {this.props.isSpinning ? null : <SpinCard />}
                 </div>
               </div>
             </div>
