@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const WatchlistLoginError = () => {
+const WatchlistLoginError = () => {
   return (
     <div className="ui center aligned basic segment">
       <h3>
@@ -14,3 +14,5 @@ export const WatchlistLoginError = () => {
     </div>
   );
 };
+
+export default WatchlistLoginError;

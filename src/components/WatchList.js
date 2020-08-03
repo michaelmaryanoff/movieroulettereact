@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
 import WatchlistCards from './WatchlistCards';
-import { WatchlistLoginError } from './WatchlistLoginError';
+import WatchlistLoginError from './WatchlistLoginError';
 
 class Watchlist extends React.Component {
   render() {
