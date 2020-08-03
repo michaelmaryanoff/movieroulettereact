@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+import { addToWatchlist } from '../actions';
 
-class WatchlistAddButton extends Component {
+export class AuthedWatchListAddButton extends React.Component {
+  // This component will render the watchlist button when the user is logged in
+  handleAddToWatchlist = event => {
+    event.preventDefault();
+
+    this.props.addToWatchlist(this.props.selectedMovie.id);
+  };
+
   renderButton() {
-    if (!this.props.isLoggedIn) {
-      return (
-        <div>
-          <button disabled={true} className="ui fluid large inactive submit button">
-            Log in to add to Watchlist
-          </button>
-        </div>
-      );
-    }
-
     if (this.props.isLoggedIn && this.props.isWatchListUpdated === false) {
       return (
         <div>
@@ -37,8 +35,9 @@ class WatchlistAddButton extends Component {
       );
     }
   }
+
   render() {
-    return <div>{this.renderButton()}</div>;
+    return <div></div>;
   }
 }
 
@@ -49,4 +48,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(WatchlistAddButton);
+export default connect(mapStateToProps)(AuthedWatchListAddButton);

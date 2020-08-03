@@ -19,9 +19,7 @@ class WatchList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    sessionDetails: state.session,
-    isLoggedIn: state.session.isLoggedIn,
-    watchList: state.session.watchList
+    isLoggedIn: state.session.isLoggedIn
   };
 };
 
