@@ -24,6 +24,7 @@ class SpinPage extends React.Component {
   }
 
   render() {
+    console.log('selectedmovie', this.props.selectedMovie);
     return (
       <div className="ui container">
         <WelcomeHeader />
@@ -50,7 +51,8 @@ class SpinPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isSpinning: state.spin.isSpinning
+    isSpinning: state.spin.isSpinning,
+    selectedMovie: state.spin.selectedMovie
   };
 };
 

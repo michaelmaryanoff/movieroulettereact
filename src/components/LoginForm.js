@@ -13,6 +13,8 @@ import { hideLoading } from 'react-redux-loading-bar';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+    // You will need to turn these into empty strings
+    // pre-filled fields are for testing only.
     this.state = {
       username: tempusername,
       password: temppassword,
@@ -68,7 +70,7 @@ class LoginForm extends React.Component {
     }
 
     let params = { username: this.state.username, password: this.state.password };
-    // TODO: Change this back to get user details
+
     this.props.signIn(params);
   };
 
