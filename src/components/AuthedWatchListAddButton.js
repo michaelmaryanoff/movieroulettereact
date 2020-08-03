@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addToWatchlist } from '../actions';
 
-export class AuthedWatchListAddButton extends React.Component {
+class AuthedWatchListAddButton extends React.Component {
   // This component will render the watchlist button when the user is logged in
   handleAddToWatchlist = event => {
     event.preventDefault();
@@ -11,41 +11,37 @@ export class AuthedWatchListAddButton extends React.Component {
   };
 
   renderButton() {
-    if (this.props.isLoggedIn && this.props.isWatchListUpdated === false) {
-      return (
-        <div>
-          <button
-            className="ui fluid large teal submit button"
-            disabled={false}
-            onClick={event => this.props.handleAdd(event)}
-          >
-            Add to Watchlist
-          </button>
-        </div>
-      );
-    }
+    let { isWatchListUpdated } = this.props;
+    let buttonClassName = isWatchListUpdated
+      ? 'ui fluid large inactive submit button'
+      : 'ui fluid large teal submit button';
+    let buttonLabel = isWatchListUpdated ? 'Added to Watchlist!' : 'Add to Watchlist';
+    let isButtonDisabled = isWatchListUpdated ? true : false;
 
-    if (this.props.isLoggedIn && this.props.isWatchListUpdated === true) {
-      return (
-        <div>
-          <button disabled={true} className="ui fluid large inactive submit button">
-            Added to Watchlist!
-          </button>
-        </div>
-      );
-    }
+    return (
+      <div>
+        <button
+          disabled={isButtonDisabled}
+          className={buttonClassName}
+          onClick={event => this.handleAddToWatchlist(event)}
+        >
+          {buttonLabel}
+        </button>
+      </div>
+    );
   }
 
   render() {
-    return <div></div>;
+    return <div>{this.renderButton()}</div>;
   }
 }
 
 const mapStateToProps = state => {
   return {
     isLoggedIn: state.session.isLoggedIn,
-    isWatchListUpdated: state.spin.isWatchListUpdated
+    isWatchListUpdated: state.spin.isWatchListUpdated,
+    selectedMovie: state.spin.selectedMovie
   };
 };
 
-export default connect(mapStateToProps)(AuthedWatchListAddButton);
+export default connect(mapStateToProps, { addToWatchlist })(AuthedWatchListAddButton);
