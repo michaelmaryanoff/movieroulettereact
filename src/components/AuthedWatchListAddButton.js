@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addToWatchlist } from '../actions';
 
-class AuthedWatchListAddButton extends React.Component {
+class AuthedWatchlistAddButton extends React.Component {
   // This component will render the watchlist button when the user is logged in
   handleAddToWatchlist = event => {
     event.preventDefault();
@@ -44,4 +44,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addToWatchlist })(AuthedWatchListAddButton);
+export default connect(mapStateToProps, { addToWatchlist })(AuthedWatchlistAddButton);

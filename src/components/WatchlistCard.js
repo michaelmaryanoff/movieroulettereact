@@ -1,10 +1,8 @@
 import React from 'react';
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
 
-class WatchListCard extends React.Component {
+class WatchlistCard extends React.Component {
   render() {
-    console.log('render call');
-
     const {
       id,
       original_title,
@@ -39,4 +37,4 @@ class WatchListCard extends React.Component {
   }
 }
 
-export default WatchListCard;
+export default WatchlistCard;

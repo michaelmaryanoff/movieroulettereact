@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import WatchlistCards from './WatchlistCards';
 import { WatchlistLoginError } from './WatchlistLoginError';
 
-class WatchList extends React.Component {
+class Watchlist extends React.Component {
   render() {
     return (
       <div className="ui container">
@@ -23,4 +23,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(WatchList));
+export default withRouter(connect(mapStateToProps)(Watchlist));

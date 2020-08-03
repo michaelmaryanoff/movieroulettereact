@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GuestWatchListAddButton = () => {
+const GuestWatchlistAddButton = () => {
   return (
     <div>
       <button disabled={true} className="ui fluid large inactive submit button">
@@ -10,4 +10,4 @@ const GuestWatchListAddButton = () => {
   );
 };
 
-export default GuestWatchListAddButton;
+export default GuestWatchlistAddButton;

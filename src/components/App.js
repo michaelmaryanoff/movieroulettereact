@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import LoginPage from './LoginPage';
-import WatchList from './WatchList';
+import Watchlist from './Watchlist';
 import Menu from './Menu';
 import SpinPage from './SpinPage';
 import ErrorPage from './ErrorPage';
@@ -18,7 +18,7 @@ class App extends React.Component {
             <Route path="/login" exact component={LoginPage} />
             <Route path="/" exact component={SpinPage} />
             <Route path="/spin" exact component={SpinPage} />
-            <Route path="/watchlist" exact component={WatchList} />
+            <Route path="/watchlist" exact component={Watchlist} />
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>

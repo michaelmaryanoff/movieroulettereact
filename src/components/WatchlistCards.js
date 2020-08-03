@@ -2,12 +2,12 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 import WatchlistFetchError from './WatchlistFetchError';
-import WatchListCard from './WatchListCard';
+import WatchlistCard from './WatchlistCard';
 
 class WatchlistCards extends React.Component {
   renderWatchList() {
     return this.props.watchList.results.map(movie => (
-      <WatchListCard movie={movie} key={movie.id} />
+      <WatchlistCard movie={movie} key={movie.id} />
     ));
   }
 
