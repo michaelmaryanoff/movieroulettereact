@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { generateYearArray, generateRatingArray } from '../utils';
 
 import {
   getGenreCodes,
@@ -17,16 +18,14 @@ import DropdownOptions from './DropdownOptions';
 class SpinForm extends React.Component {
   constructor(props) {
     super(props);
-    const yearArray = this.generateYearArray();
-    const ratingsArray = this.generateRatingArray();
+    const yearArray = generateYearArray();
+    const ratingsArray = generateRatingArray();
     const genreArray = this.generateGenreArray();
 
     this.state = {
-      // An array of years used to populate dropdown menu
+      // These arrays are used to populate dropdown menu
       yearArray,
-
       ratingsArray,
-
       genreArray,
 
       // A default "yearFrom" set to 1955, since people are probably not going
@@ -59,30 +58,6 @@ class SpinForm extends React.Component {
      */
 
     this.props.getGenreCodes();
-    this.generateRatingArray();
-  }
-
-  generateYearArray() {
-    // Creates an array of genres in order to populate the dropdown lists
-    let currentYear = new Date().getFullYear();
-    let firstYear = 1920;
-    let years = [];
-
-    for (let i = firstYear; i <= currentYear; i++) {
-      years.push({ id: i, value: i });
-    }
-    return years;
-  }
-
-  generateRatingArray() {
-    // Creates an indexed array for ratings.
-    // TMDB expects an integer
-    let ratingsArray = [];
-
-    for (let i = 1; i <= 10; i++) {
-      ratingsArray.push({ id: i, value: `${i}0%` });
-    }
-    return ratingsArray;
   }
 
   generateGenreArray() {
