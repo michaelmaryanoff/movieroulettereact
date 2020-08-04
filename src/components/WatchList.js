@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import WatchlistCards from './WatchlistCards';
 import WatchlistLoginError from './WatchlistLoginError';
+import Footer from './Footer';
 
 class Watchlist extends React.Component {
   render() {
@@ -12,6 +13,7 @@ class Watchlist extends React.Component {
         <div className="ui basic segment">
           {this.props.isLoggedIn ? <WatchlistCards /> : <WatchlistLoginError />}
         </div>
+        <Footer />
       </div>
     );
   }

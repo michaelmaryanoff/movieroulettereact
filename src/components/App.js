@@ -7,6 +7,7 @@ import Watchlist from './Watchlist';
 import Menu from './Menu';
 import SpinPage from './SpinPage';
 import ErrorPage from './ErrorPage';
+import Footer from './Footer';
 
 class App extends React.Component {
   render() {
@@ -22,6 +23,7 @@ class App extends React.Component {
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>
+        
       </div>
     );
   }
