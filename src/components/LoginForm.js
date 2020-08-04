@@ -12,6 +12,7 @@ import { hideLoading } from 'react-redux-loading-bar';
 import TextInputFieldError from './TextInputFieldError';
 import LoginHeader from './LoginHeader';
 import TextInputField from './TextInputField';
+import LoginError from './LoginError';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -37,17 +38,6 @@ class LoginForm extends React.Component {
     }
   }
 
-  renderLoginError = () => {
-    if (this.props.authError) {
-      if (this.props.authError.message === 'Network Error') {
-        return <div className="ui error message">There was an error with your network</div>;
-      }
-      if (this.props.authError) {
-        return <div className="ui error message">Invalid username and/or password</div>;
-      }
-    }
-  };
-
   handleUserInput = event => {
     const name = event.target.name;
     const value = event.target.value;
@@ -65,6 +55,17 @@ class LoginForm extends React.Component {
     let params = { username: this.state.username, password: this.state.password };
 
     this.props.signIn(params);
+  };
+
+  renderLoginError = () => {
+    if (this.props.authError) {
+      if (this.props.authError.message === 'Network Error') {
+        return <div className="ui error message">There was an error with your network</div>;
+      }
+      if (this.props.authError) {
+        return <div className="ui error message">Invalid username and/or password</div>;
+      }
+    }
   };
 
   renderLoginForm() {
@@ -103,7 +104,7 @@ class LoginForm extends React.Component {
               />
             </TextInputField>
             <button className="ui fluid large teal submit button">Login</button>
-            <div>{this.renderLoginError()}</div>
+            <LoginError authError={this.props.authError} />
             <div style={{ textAlign: 'center' }} className="ui message">
               Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
               <p />
@@ -120,6 +121,7 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('state.session.authError', state.session.authError);
   return {
     sessionDetails: state.session,
     isLoggedIn: state.session.isLoggedIn,
