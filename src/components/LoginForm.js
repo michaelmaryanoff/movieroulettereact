@@ -6,13 +6,13 @@ import { signIn, getWatchList } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { Link } from 'react-router-dom';
 import { hideLoading } from 'react-redux-loading-bar';
 
 import TextInputFieldError from './TextInputFieldError';
 import LoginHeader from './LoginHeader';
 import TextInputField from './TextInputField';
 import LoginError from './LoginError';
+import LoginFooter from './LoginFooter';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -105,11 +105,7 @@ class LoginForm extends React.Component {
             </TextInputField>
             <button className="ui fluid large teal submit button">Login</button>
             <LoginError authError={this.props.authError} />
-            <div style={{ textAlign: 'center' }} className="ui message">
-              Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
-              <p />
-              {<a href="https://www.themoviedb.org/account/signup">Click here to sign up</a>}
-            </div>
+            <LoginFooter />
           </div>
         </form>
       </div>
@@ -121,7 +117,6 @@ class LoginForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state.session.authError', state.session.authError);
   return {
     sessionDetails: state.session,
     isLoggedIn: state.session.isLoggedIn,
