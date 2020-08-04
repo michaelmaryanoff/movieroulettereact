@@ -45,7 +45,9 @@ class SpinForm extends React.Component {
       genreName: '',
 
       // The code of the currently selected genre (used for our network request)
-      genreCode: ''
+      genreCode: '',
+
+      testValue: 'testValue'
     };
   }
 
