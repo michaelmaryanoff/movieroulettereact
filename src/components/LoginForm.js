@@ -10,14 +10,16 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { hideLoading } from 'react-redux-loading-bar';
 
+import TextInputFieldError from './TextInputFieldError';
+
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     // You will need to turn these into empty strings
     // pre-filled fields are for testing only.
     this.state = {
-      username: tempusername,
-      password: temppassword,
+      username: '',
+      password: '',
       hasSubmitted: false
     };
   }
@@ -33,16 +35,6 @@ class LoginForm extends React.Component {
       this.props.history.push('/spin');
     }
   }
-
-  renderFieldError = fieldName => {
-    if (fieldName === 'username' && !this.state.username && this.state.hasSubmitted) {
-      return <div className="ui error message">Please enter a username</div>;
-    }
-
-    if (fieldName === 'password' && !this.state.password && this.state.hasSubmitted) {
-      return <div className="ui error message">Please enter a password</div>;
-    }
-  };
 
   renderLoginError = () => {
     if (this.props.authError) {
@@ -77,6 +69,7 @@ class LoginForm extends React.Component {
   renderLoginForm() {
     return (
       <div className="ui basic segment">
+        {/* Loing header */}
         <h2 className="ui teal image header">
           <img src={reelLogo} className="image" alt="logo" />
           <div className="content">Log in to your TMDB Account</div>
@@ -94,7 +87,13 @@ class LoginForm extends React.Component {
                   value={this.state.username}
                 />
               </div>
-              <div>{this.renderFieldError('username')}</div>
+              <div>
+                <TextInputFieldError
+                  message="Please enter a username"
+                  field={this.state.username}
+                  hasSubmitted={this.state.hasSubmitted}
+                />
+              </div>
             </div>
 
             <div className="field">
@@ -108,7 +107,13 @@ class LoginForm extends React.Component {
                   value={this.state.password}
                 />
               </div>
-              <div>{this.renderFieldError('password')}</div>
+              <div>
+                <TextInputFieldError
+                  message="Please enter a password"
+                  field={this.state.password}
+                  hasSubmitted={this.state.hasSubmitted}
+                />
+              </div>
             </div>
             <button className="ui fluid large teal submit button">Login</button>
             <div>{this.renderLoginError()}</div>
