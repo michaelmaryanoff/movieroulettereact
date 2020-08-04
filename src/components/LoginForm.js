@@ -1,5 +1,5 @@
 import React from 'react';
-import reelLogo from '../../src/images/reel-logo.png';
+
 
 import { tempusername, temppassword } from '../testinfo/testinfo';
 
@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { hideLoading } from 'react-redux-loading-bar';
 
 import TextInputFieldError from './TextInputFieldError';
+import LoginHeader from './LoginHeader';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -69,11 +70,7 @@ class LoginForm extends React.Component {
   renderLoginForm() {
     return (
       <div className="ui basic segment">
-        {/* Loing header */}
-        <h2 className="ui teal image header">
-          <img src={reelLogo} className="image" alt="logo" />
-          <div className="content">Log in to your TMDB Account</div>
-        </h2>
+      <LoginHeader />
         <form className="ui large form error" onSubmit={this.handleSubmit}>
           <div className="ui stacked segment">
             <div className="field">
