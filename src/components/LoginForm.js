@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { tempusername, temppassword } from '../testinfo/testinfo';
-
 import { signIn, getWatchList, clearAuthError } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
