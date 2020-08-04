@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import { tempusername, temppassword } from '../testinfo/testinfo';
 
 import { signIn, getWatchList } from '../actions';
@@ -12,6 +11,7 @@ import { hideLoading } from 'react-redux-loading-bar';
 
 import TextInputFieldError from './TextInputFieldError';
 import LoginHeader from './LoginHeader';
+import TextInputField from './TextInputField';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -70,48 +70,38 @@ class LoginForm extends React.Component {
   renderLoginForm() {
     return (
       <div className="ui basic segment">
-      <LoginHeader />
+        <LoginHeader />
         <form className="ui large form error" onSubmit={this.handleSubmit}>
           <div className="ui stacked segment">
-            <div className="field">
-              <div className="ui left icon input">
-                <i className="user icon" />
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  onChange={this.handleUserInput}
-                  value={this.state.username}
-                />
-              </div>
-              <div>
-                <TextInputFieldError
-                  message="Please enter a username"
-                  field={this.state.username}
-                  hasSubmitted={this.state.hasSubmitted}
-                />
-              </div>
-            </div>
+            <TextInputField
+              name="username"
+              type="text"
+              placeholder="Username"
+              icon="user"
+              handleUserInput={this.handleUserInput}
+              value={this.state.username}
+            >
+              <TextInputFieldError
+                message="Please enter a username"
+                field={this.state.username}
+                hasSubmitted={this.state.hasSubmitted}
+              />
+            </TextInputField>
 
-            <div className="field">
-              <div className="ui left icon input">
-                <i className="lock icon" />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={this.handleUserInput}
-                  value={this.state.password}
-                />
-              </div>
-              <div>
-                <TextInputFieldError
-                  message="Please enter a password"
-                  field={this.state.password}
-                  hasSubmitted={this.state.hasSubmitted}
-                />
-              </div>
-            </div>
+            <TextInputField
+              name="password"
+              placeholder="Password"
+              type="password"
+              handleUserInput={this.handleUserInput}
+              value={this.state.password}
+              icon="lock"
+            >
+              <TextInputFieldError
+                message="Please enter a password"
+                field={this.state.password}
+                hasSubmitted={this.state.hasSubmitted}
+              />
+            </TextInputField>
             <button className="ui fluid large teal submit button">Login</button>
             <div>{this.renderLoginError()}</div>
             <div style={{ textAlign: 'center' }} className="ui message">

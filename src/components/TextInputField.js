@@ -1,18 +1,22 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
 
-class TextInputField extends React.Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
-}
+const TextInputField = props => {
+  return (
+    <div className="field">
+      <div className="ui left icon input">
+        <i className={`${props.icon} icon`} />
+        <input
+          type={props.type}
+          name={props.name}
+          placeholder={props.placeholder}
+          onChange={props.handleUserInput}
+          value={props.value}
+        />
+      </div>
+      {/* This is where we render the error */}
+      <div>{props.children}</div>
+    </div>
+  );
+};
 
-const mapStateToProps = (state) => ({
-    
-})
-
-export default connect(mapStateToProps)(TextInputField)
+export default TextInputField;
