@@ -2,7 +2,7 @@ import React from 'react';
 
 import { tempusername, temppassword } from '../testinfo/testinfo';
 
-import { signIn, getWatchList } from '../actions';
+import { signIn, getWatchList, clearAuthError } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
@@ -17,7 +17,7 @@ import LoginFooter from './LoginFooter';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    // You will need to turn these into empty strings
+    // You will need to turn these into empty strings (if they aren't already):
     // pre-filled fields are for testing only.
     this.state = {
       username: '',
@@ -30,6 +30,8 @@ class LoginForm extends React.Component {
     if (this.props.isLoggedIn) {
       this.props.history.push('/spin');
     }
+
+    this.props.clearAuthError();
   }
 
   componentDidUpdate() {
@@ -125,5 +127,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { signIn, getWatchList, hideLoading })(LoginForm)
+  connect(mapStateToProps, { signIn, getWatchList, hideLoading, clearAuthError })(LoginForm)
 );

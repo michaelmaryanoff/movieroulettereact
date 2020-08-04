@@ -157,6 +157,10 @@ export const signOut = params => async (dispatch, getState) => {
   });
 };
 
+export const clearAuthError = () => dispatch => {
+  dispatch({ type: AUTH_ERROR, payload: null });
+};
+
 export const submitSpin = selection => async dispatch => {
   const { minimumRating, yearFrom, yearTo } = selection;
 
