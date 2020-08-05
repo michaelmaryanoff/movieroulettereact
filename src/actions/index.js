@@ -1,10 +1,6 @@
 import {
   SIGN_IN,
   SIGN_OUT,
-  SELECT_GENRES,
-  SELECT_YEAR_FROM,
-  SELECT_YEAR_TO,
-  SELECT_RATING,
   GET_WATCHLIST,
   GET_GENRE_CODES,
   SUBMIT_SPIN,
@@ -284,38 +280,4 @@ export const spinningStarted = () => {
 
 export const spinningCompleted = () => {
   return { type: IS_SPINNING, payload: false };
-};
-
-export const selectGenres = genres => {
-  // A funciton that saves the genres we have selected
-  return {
-    type: SELECT_GENRES,
-    payload: genres
-  };
-};
-
-export const selectYearFrom = yearFrom => {
-  // A funciton that saves the year from
-  return {
-    type: SELECT_YEAR_FROM,
-    payload: yearFrom
-  };
-};
-
-export const selectYearTo = yearTo => {
-  // A funciton that saves the year to
-  return {
-    type: SELECT_YEAR_TO,
-    payload: yearTo
-  };
-};
-
-export const selectRating = rating => {
-  // A funciton that saves the rating we want
-  // Might this be good as a zero indexed integer list
-  // instead of actual rating?
-  return {
-    type: SELECT_RATING,
-    payload: rating
-  };
 };
