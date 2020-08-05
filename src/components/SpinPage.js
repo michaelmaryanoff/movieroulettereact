@@ -14,7 +14,7 @@ import Footer from './Footer';
 class SpinPage extends React.Component {
   componentDidMount() {
     this.props.resetWatchlistUpdateStatus();
-    console.log('build');
+    console.log('builder');
   }
 
   render() {
