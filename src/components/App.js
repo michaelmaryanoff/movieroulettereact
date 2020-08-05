@@ -15,10 +15,11 @@ class App extends React.Component {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Menu />
           <Switch>
-            <Route path="/login" exact component={LoginPage} />
-            <Route path="/" exact component={SpinPage} />
-            <Route path="/spin" exact component={SpinPage} />
-            <Route path="/watchlist" exact component={Watchlist} />
+            <Route path={process.env.PUBLIC_URL + '/login'} exact component={LoginPage} />
+            <Route path={process.env.PUBLIC_URL + '/login'} exact component={LoginPage} />
+            <Route path={process.env.PUBLIC_URL + '/'} exact component={SpinPage} />
+            <Route path={process.env.PUBLIC_URL + '/spin'} exact component={SpinPage} />
+            <Route path={process.env.PUBLIC_URL + '/watchlist'} exact component={Watchlist} />
             <Route component={ErrorPage} />
           </Switch>
         </BrowserRouter>

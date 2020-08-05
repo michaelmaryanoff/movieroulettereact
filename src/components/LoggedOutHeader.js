@@ -5,12 +5,12 @@ const LoggedOutHeader = () => {
   return (
     <Fragment>
       <div>
-        <Link to="/login" className="header item">
+        <Link to={process.env.PUBLIC_URL + '/login'} className="header item">
           LOG IN TO SEE WATCHLIST
         </Link>
       </div>
       <div>
-        <Link to="/spin" className="header item">
+        <Link to="movieroulettereact/spin" className="header item">
           SPIN
         </Link>
       </div>
