@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
 
   componentDidMount() {
     if (this.props.isLoggedIn) {
-      this.props.history.push(process.env.PUBLIC_URL + '/spin');
+      this.props.history.push('/spin');
     }
 
     this.props.clearAuthError();
@@ -34,7 +34,7 @@ class LoginForm extends React.Component {
 
   componentDidUpdate() {
     if (this.props.isLoggedIn) {
-      this.props.history.push(process.env.PUBLIC_URL + '/spin');
+      this.props.history.push('/spin');
     }
   }
 
