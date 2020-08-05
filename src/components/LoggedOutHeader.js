@@ -10,8 +10,8 @@ const LoggedOutHeader = () => {
         </Link>
       </div>
       <div>
-        <Link to="movieroulettereact/spin" className="header item">
-          SPIN
+        <Link to="/spin" className="header item">
+          SPIN_
         </Link>
       </div>
       <div className="right menu">
