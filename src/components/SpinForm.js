@@ -169,6 +169,7 @@ class SpinForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log('label', state.spin.isFetchingGenres);
   return {
     genreCodes: state.spin.genreDropdownDataSource
   };

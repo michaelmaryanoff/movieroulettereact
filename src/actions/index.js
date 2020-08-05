@@ -11,7 +11,8 @@ import {
   NEW_TOKEN,
   GET_ACCOUNT_DETAILS,
   GENRE_DROPDOWN_DATA_SOURCE,
-  WATCHLIST_UPDATED
+  WATCHLIST_UPDATED,
+  IS_FETCHING_GENRES
 } from './types';
 import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
@@ -122,6 +123,7 @@ export const getWatchList = () => async (dispatch, getState) => {
 };
 
 export const getGenreCodes = () => async dispatch => {
+  dispatch(fetchGenresStarted());
   const { data } = await tmdbClient.get('/genre/movie/list', {
     params: { api_key: apiKey }
   });
@@ -132,6 +134,7 @@ export const getGenreCodes = () => async dispatch => {
   if (!genreArrayForDropdown.includes(selectGenresObject)) {
     genreArrayForDropdown.unshift(selectGenresObject);
   }
+  dispatch(fetchGenresCompleted());
 
   dispatch({ type: GET_GENRE_CODES, payload: data.genres });
   dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: genreArrayForDropdown });
@@ -280,4 +283,12 @@ export const spinningStarted = () => {
 
 export const spinningCompleted = () => {
   return { type: IS_SPINNING, payload: false };
+};
+
+export const fetchGenresStarted = () => {
+  return { type: IS_FETCHING_GENRES, payload: true };
+};
+
+export const fetchGenresCompleted = () => {
+  return { type: IS_FETCHING_GENRES, payload: false };
 };
