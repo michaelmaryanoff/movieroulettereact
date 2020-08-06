@@ -4,6 +4,7 @@ import { addToWatchlist } from '../actions';
 
 class AuthedWatchlistAddButton extends React.Component {
   // This component will render the watchlist button when the user is logged in
+  //
   handleAddToWatchlist = event => {
     event.preventDefault();
 
