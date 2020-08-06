@@ -1,68 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Movie Roulette 
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+Movie Roulette is a great tool to use when you can't figure out which movie to watch. Using a simple interface, you can enter parameters for a movie you'd like to see and "Spin" the movie roulette wheel. I have definitely found some hidden gems (along with hidden not-so-gems) while creating this app.
 
-### `yarn start`
+Movie Roulette supports authentication using the TMDb API.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Movie roulette was built with [React](https://reactjs.org/) and is powered by [The Movie Database](https://www.themoviedb.org/) API.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[Try it out for yourself!](https://movieroulette-eaf13.web.app/)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## You can select a movie
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+<p align="center">
+  <img src="./demo_imgs/SpinDemo.gif" alt="Spin" width="700">
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## And add to your watchlist with TMDb integration.
 
-### `yarn eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<p align="center">
+  <img src="./demo_imgs/AddToWatchlistDemo.gif" alt="Spin" width="700">
+</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## What's under the hood
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- **React**: v16.13.1
+- **React Redux:** v7.2.0
+- **Redux Thunk:** v2.3.0
+- **React Router:** v5.2.0
+- **Redux Persist:** v6.0.0
+- **Axios:** v0.19.2
 
-## Learn More
+- **TMDB API:** v3
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Hosted on Firebase**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Installation instructions
 
-### Code Splitting
+---
+Make sure you have `npm` installed on your m
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Once repository is downloaded, `cd` to top level directory and run:
 
-### Analyzing the Bundle Size
+`npm install`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Once installed, run:
 
-### Making a Progressive Web App
+`yarn start` or `npm start`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Happy spinning!
