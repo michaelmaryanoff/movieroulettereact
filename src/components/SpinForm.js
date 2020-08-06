@@ -14,19 +14,19 @@ import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './in
 
 import Dropdown from './Dropdown';
 import DropdownOptions from './DropdownOptions';
+import GenreDropdownOptions from './GenreDropdownOptions';
 
 class SpinForm extends React.Component {
   constructor(props) {
     super(props);
     const yearArray = generateYearArray();
     const ratingsArray = generateRatingArray();
-    const genreArray = this.generateGenreArray();
 
     this.state = {
       // These arrays are used to populate dropdown menu
       yearArray,
       ratingsArray,
-      genreArray,
+      genreArray: [{ id: 'Loading...', value: 'Loading...' }],
 
       // A default "yearFrom" set to 1955, since people are probably not going
       // to looking for a movie much earlier than that.
@@ -60,12 +60,6 @@ class SpinForm extends React.Component {
      */
 
     this.props.getGenreCodes();
-  }
-
-  generateGenreArray() {
-    return this.props.genreCodes
-      ? this.props.genreCodes.map(genre => ({ id: genre.id, value: genre.name }))
-      : [];
   }
 
   // Handle the spin
@@ -145,16 +139,16 @@ class SpinForm extends React.Component {
 
           <div className="ui basic segment"></div>
           <p />
-          <Dropdown
+
+          <GenreDropdownOptions
             inputtype={genreInput}
             labeltext="Genre"
             value={this.state.genreName}
             onChange={(event, id) => {
               this.handleUserInput(event, genreInput, id);
             }}
-          >
-            <DropdownOptions optiondata={this.state.genreArray} />
-          </Dropdown>
+            optiondata={this.state.genreArray}
+          />
         </div>
 
         <div className="ui basic segment"></div>
@@ -169,9 +163,9 @@ class SpinForm extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('label', state.spin.isFetchingGenres);
   return {
-    genreCodes: state.spin.genreDropdownDataSource
+    genreCodes: state.spin.genreDropdownDataSource,
+    isFetchingGenres: state.spin.isFetchingGenres
   };
 };
 
