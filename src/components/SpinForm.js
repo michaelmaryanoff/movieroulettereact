@@ -14,8 +14,7 @@ import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './in
 
 import Dropdown from './Dropdown';
 import DropdownOptions from './DropdownOptions';
-import GenreDropdownOptions from './GenreDropdownOptions';
-
+import GenreDropDownOptionList from './GenreDropDownOptionList';
 class SpinForm extends React.Component {
   constructor(props) {
     super(props);
@@ -139,16 +138,17 @@ class SpinForm extends React.Component {
 
           <div className="ui basic segment"></div>
           <p />
-
-          <GenreDropdownOptions
+          <Dropdown
             inputtype={genreInput}
             labeltext="Genre"
             value={this.state.genreName}
             onChange={(event, id) => {
               this.handleUserInput(event, genreInput, id);
             }}
-            optiondata={this.state.genreArray}
-          />
+          >
+            <GenreDropDownOptionList />
+          </Dropdown>
+          <p />
         </div>
 
         <div className="ui basic segment"></div>
