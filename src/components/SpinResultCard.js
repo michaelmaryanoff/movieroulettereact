@@ -66,7 +66,8 @@ class SpinResultCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedMovie: state.spin.selectedMovie
+    selectedMovie: state.spin.selectedMovie,
+    
   };
 };
 

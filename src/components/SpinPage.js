@@ -10,8 +10,12 @@ import WelcomeHeader from './WelcomeHeader';
 
 import SpinCard from './SpinCard';
 import Footer from './Footer';
+import FirstLoadSpinCard from './FirstLoadSpinCard';
 
 class SpinPage extends React.Component {
+  // Node that both <LoadingCard /> and <FirstLoadSpinCard /> contain logic that will render
+  // them when necessary. (i.e. LoadingCard will only render when loading, FirstLoadSpinCard
+  // will only render on first load).
   componentDidMount() {
     this.props.resetWatchlistUpdateStatus();
   }
@@ -31,6 +35,7 @@ class SpinPage extends React.Component {
                   </div>
                   <div className="column">
                     <LoadingCard />
+                    <FirstLoadSpinCard />
                     {this.props.isSpinning ? null : <SpinCard />}
                   </div>
                 </div>
