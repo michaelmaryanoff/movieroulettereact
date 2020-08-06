@@ -10,25 +10,15 @@ class GenreDropDownOptionList extends Component {
   }
 
   render() {
-    let { genreCodes } = this.props;
-
-    if (genreCodes) {
-      return genreCodes.map(option => {
-        let { id, name } = option;
-        return (
-          <option data-rawvalue={id} key={id} value={name} label={name}>
-            {name}
-          </option>
-        );
-      });
-    } else {
-      const { id, name } = this.state;
+    let genreArrayToMap = this.props.genreCodes ? this.props.genreCodes : this.state.genreArray;
+    return genreArrayToMap.map(option => {
+      let { id, name } = option;
       return (
         <option data-rawvalue={id} key={id} value={name} label={name}>
-          {name}Loading...
+          {name}
         </option>
       );
-    }
+    });
   }
 }
 
