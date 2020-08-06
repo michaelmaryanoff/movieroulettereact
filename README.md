@@ -1,7 +1,5 @@
 # Movie Roulette 
 
----
-
 Movie Roulette is a great tool to use when you can't figure out which movie to watch. Using a simple interface, you can enter parameters for a movie you'd like to see and "Spin" the movie roulette wheel. I have definitely found some hidden gems (along with hidden not-so-gems) while creating this app.
 
 Movie Roulette supports authentication using the TMDb API.
