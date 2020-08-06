@@ -104,7 +104,7 @@ class SpinForm extends React.Component {
         <h2 className="ui teal image header">
           <div className="content">Find a movie to watch tonight!</div>
         </h2>
-        <div className="fields">
+        <div className="three fields">
           <Dropdown
             inputtype={yearFromInput}
             labeltext="From"
@@ -137,20 +137,17 @@ class SpinForm extends React.Component {
           </Dropdown>
 
           <div className="ui basic segment"></div>
-          <p />
-          <Dropdown
-            inputtype={genreInput}
-            labeltext="Genre"
-            value={this.state.genreName}
-            onChange={(event, id) => {
-              this.handleUserInput(event, genreInput, id);
-            }}
-          >
-            <GenreDropDownOptionList />
-          </Dropdown>
-          <p />
         </div>
-
+        <Dropdown
+          inputtype={genreInput}
+          labeltext="Genre"
+          value={this.state.genreName}
+          onChange={(event, id) => {
+            this.handleUserInput(event, genreInput, id);
+          }}
+        >
+          <GenreDropDownOptionList />
+        </Dropdown>
         <div className="ui basic segment"></div>
         <button className="ui fluid large teal submit button">Spin!</button>
       </form>
