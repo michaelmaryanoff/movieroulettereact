@@ -1,10 +1,10 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
 import { addToWatchlist } from '../actions';
 
 class AuthedWatchlistAddButton extends React.Component {
   // This component will render the watchlist button when the user is logged in
-  //
   handleAddToWatchlist = event => {
     event.preventDefault();
 
@@ -12,6 +12,7 @@ class AuthedWatchlistAddButton extends React.Component {
   };
 
   renderButton() {
+    // We are making sure that the button is not active while we are adding to the user's watchlist
     let { isWatchListUpdated } = this.props;
     let buttonClassName = isWatchListUpdated
       ? 'ui fluid large inactive submit button'

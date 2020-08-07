@@ -1,13 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import SpinForm from './SpinForm';
-
-import LoadingCard from './LoadingCard';
-
 import { resetWatchlistUpdateStatus } from '../actions';
-import WelcomeHeader from './WelcomeHeader';
 
+import SpinForm from './SpinForm';
+import LoadingCard from './LoadingCard';
+import WelcomeHeader from './WelcomeHeader';
 import SpinCard from './SpinCard';
 import Footer from './Footer';
 import FirstLoadSpinCard from './FirstLoadSpinCard';

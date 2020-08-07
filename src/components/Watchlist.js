@@ -9,6 +9,9 @@ import WatchlistLoginError from './WatchlistLoginError';
 import Footer from './Footer';
 
 class Watchlist extends React.Component {
+  // This will display the watchlist of our logged in user.
+  // If our user is not logged in, it will display an error message
+  // (hence the conditional render below)
   componentDidMount() {
     this.props.getWatchList();
 
