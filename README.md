@@ -6,7 +6,7 @@ Movie Roulette supports authentication using the TMDb API.
 
 Movie Roulette was built with [React](https://reactjs.org/) and is powered by [The Movie Database](https://www.themoviedb.org/) API.
 
-[Try it out for yourself!](https://movieroulette-eaf13.web.app/)
+[Try it out for yourself!](https://play-movie-roulette.web.app/)
 
 ## You can select a movie
 
