@@ -23,9 +23,9 @@ class SpinForm extends React.Component {
 
     this.state = {
       // These arrays are used to populate dropdown menu
+      // The genre dropdown is populated using a custom component, due to its async nature
       yearArray,
       ratingsArray,
-      genreArray: [{ id: 'Loading...', value: 'Loading...' }],
 
       // A default "yearFrom" set to 1955, since people are probably not going
       // to looking for a movie much earlier than that.
@@ -38,6 +38,7 @@ class SpinForm extends React.Component {
 
       minimumRating: 0,
 
+      // This is used for making a minimum rating a controlled component
       minimumRatingDisplay: '10%',
 
       // The title of the currently selected genre
@@ -53,9 +54,7 @@ class SpinForm extends React.Component {
   componentDidMount() {
     /** Since genre codes change over time, we need to make a network
      * call to make sure we have the correct genre codes.
-     * This is going to be used in our <Dropdown> component, but we don't want to call it within the
-     * component itself because it is not necessary to populate every dropdown component.
-     * Better to just pass it to our Redux store here to avoid unecessary network calls.
+     * This is going to be used to populate the GenreDropDownOptionList component
      */
 
     this.props.getGenreCodes();
@@ -84,6 +83,7 @@ class SpinForm extends React.Component {
 
   // Will update component state based on user input
   handleUserInput = (event, inputType, id) => {
+    // This switch is used to control our components
     switch (inputType) {
       case yearFromInput:
         return this.setState({ yearFrom: event });
@@ -99,6 +99,8 @@ class SpinForm extends React.Component {
   };
 
   renderSpinForm() {
+    // Note that our genre Dropdown is populated with a custom GenreDropDownOptionList component.
+    // It depends on an async call, so the process of populating it is very different from the other components.
     return (
       <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
         <h2 className="ui teal image header">
