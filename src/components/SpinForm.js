@@ -114,7 +114,6 @@ class SpinForm extends React.Component {
   };
 
   handleSemanticDropDownChange = (event, data) => {
-
     this.setState({ languageCode: data.value });
   };
 
@@ -133,8 +132,6 @@ class SpinForm extends React.Component {
           search
           selection
           options={this.state.languageArray}
-          // Change this for controlled component
-          text={this.state.displayLanguage}
         />
 
         <div className="fields">

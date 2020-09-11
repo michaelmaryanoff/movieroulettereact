@@ -1,5 +1,10 @@
 export const languageList = [
   {
+    key: 'en',
+    value: 'en',
+    text: 'English'
+  },
+  {
     key: 'aa',
     value: 'aa',
     text: 'Afar'
@@ -184,11 +189,7 @@ export const languageList = [
     value: 'el',
     text: 'Greek (modern)'
   },
-  {
-    key: 'en',
-    value: 'en',
-    text: 'English'
-  },
+
   {
     key: 'eo',
     value: 'eo',
