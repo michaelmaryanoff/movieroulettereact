@@ -161,7 +161,7 @@ export const clearAuthError = () => dispatch => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  const { minimumRating, yearFrom, yearTo } = selection;
+  const { minimumRating, yearFrom, yearTo, languageCode } = selection;
 
   let genreCode = selection.genreCode;
 
@@ -195,7 +195,8 @@ export const submitSpin = selection => async dispatch => {
       page: 1,
       with_genres: genreCode,
       'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
+      'primary_release_date.lte': dateTo,
+      with_original_language: languageCode
     }
   });
 
@@ -221,7 +222,8 @@ export const submitSpin = selection => async dispatch => {
       page: randomPage,
       with_genres: genreCode,
       'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
+      'primary_release_date.lte': dateTo,
+      with_original_language: languageCode
     }
   });
   let { length } = movieResponse.data.results;

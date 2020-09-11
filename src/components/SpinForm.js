@@ -84,13 +84,14 @@ class SpinForm extends React.Component {
     this.props.resetWatchlistUpdateStatus();
 
     this.setState({ watchListIsUpdated: false });
-    let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
+    let { yearFrom, yearTo, minimumRating, genreCode, languageCode } = this.state;
 
     let submissionObject = {
-      yearFrom: yearFrom,
-      yearTo: yearTo,
-      minimumRating: minimumRating,
-      genreCode: genreCode
+      yearFrom,
+      yearTo,
+      minimumRating,
+      genreCode,
+      languageCode
     };
 
     this.props.submitSpin(submissionObject).then(this.props.spinningCompleted);
