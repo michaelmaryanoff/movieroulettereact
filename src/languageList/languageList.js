@@ -1,922 +1,922 @@
 export const languageList = [
   {
     key: 'aa',
-    code: 'aa',
-    name: 'Afar'
+    value: 'aa',
+    text: 'Afar'
   },
   {
     key: 'ab',
-    code: 'ab',
-    name: 'Abkhaz'
+    value: 'ab',
+    text: 'Abkhaz'
   },
   {
     key: 'ae',
-    code: 'ae',
-    name: 'Avestan'
+    value: 'ae',
+    text: 'Avestan'
   },
   {
     key: 'af',
-    code: 'af',
-    name: 'Afrikaans'
+    value: 'af',
+    text: 'Afrikaans'
   },
   {
     key: 'ak',
-    code: 'ak',
-    name: 'Akan'
+    value: 'ak',
+    text: 'Akan'
   },
   {
     key: 'am',
-    code: 'am',
-    name: 'Amharic'
+    value: 'am',
+    text: 'Amharic'
   },
   {
     key: 'an',
-    code: 'an',
-    name: 'Aragonese'
+    value: 'an',
+    text: 'Aragonese'
   },
   {
     key: 'ar',
-    code: 'ar',
-    name: 'Arabic'
+    value: 'ar',
+    text: 'Arabic'
   },
   {
     key: 'as',
-    code: 'as',
-    name: 'Assamese'
+    value: 'as',
+    text: 'Assamese'
   },
   {
     key: 'av',
-    code: 'av',
-    name: 'Avaric'
+    value: 'av',
+    text: 'Avaric'
   },
   {
     key: 'ay',
-    code: 'ay',
-    name: 'Aymara'
+    value: 'ay',
+    text: 'Aymara'
   },
   {
     key: 'az',
-    code: 'az',
-    name: 'Azerbaijani'
+    value: 'az',
+    text: 'Azerbaijani'
   },
   {
     key: 'ba',
-    code: 'ba',
-    name: 'Bashkir'
+    value: 'ba',
+    text: 'Bashkir'
   },
   {
     key: 'be',
-    code: 'be',
-    name: 'Belarusian'
+    value: 'be',
+    text: 'Belarusian'
   },
   {
     key: 'bg',
-    code: 'bg',
-    name: 'Bulgarian'
+    value: 'bg',
+    text: 'Bulgarian'
   },
   {
     key: 'bh',
-    code: 'bh',
-    name: 'Bihari'
+    value: 'bh',
+    text: 'Bihari'
   },
   {
     key: 'bi',
-    code: 'bi',
-    name: 'Bislama'
+    value: 'bi',
+    text: 'Bislama'
   },
   {
     key: 'bm',
-    code: 'bm',
-    name: 'Bambara'
+    value: 'bm',
+    text: 'Bambara'
   },
   {
     key: 'bn',
-    code: 'bn',
-    name: 'Bengali, Bangla'
+    value: 'bn',
+    text: 'Bengali, Bangla'
   },
   {
     key: 'bo',
-    code: 'bo',
-    name: 'Tibetan Standard, Tibetan, Central'
+    value: 'bo',
+    text: 'Tibetan Standard, Tibetan, Central'
   },
   {
     key: 'br',
-    code: 'br',
-    name: 'Breton'
+    value: 'br',
+    text: 'Breton'
   },
   {
     key: 'bs',
-    code: 'bs',
-    name: 'Bosnian'
+    value: 'bs',
+    text: 'Bosnian'
   },
   {
     key: 'ca',
-    code: 'ca',
-    name: 'Catalan'
+    value: 'ca',
+    text: 'Catalan'
   },
   {
     key: 'ce',
-    code: 'ce',
-    name: 'Chechen'
+    value: 'ce',
+    text: 'Chechen'
   },
   {
     key: 'ch',
-    code: 'ch',
-    name: 'Chamorro'
+    value: 'ch',
+    text: 'Chamorro'
   },
   {
     key: 'co',
-    code: 'co',
-    name: 'Corsican'
+    value: 'co',
+    text: 'Corsican'
   },
   {
     key: 'cr',
-    code: 'cr',
-    name: 'Cree'
+    value: 'cr',
+    text: 'Cree'
   },
   {
     key: 'cs',
-    code: 'cs',
-    name: 'Czech'
+    value: 'cs',
+    text: 'Czech'
   },
   {
     key: 'cu',
-    code: 'cu',
-    name: 'Old Church Slavonic, Church Slavonic, Old Bulgarian'
+    value: 'cu',
+    text: 'Old Church Slavonic, Church Slavonic, Old Bulgarian'
   },
   {
     key: 'cv',
-    code: 'cv',
-    name: 'Chuvash'
+    value: 'cv',
+    text: 'Chuvash'
   },
   {
     key: 'cy',
-    code: 'cy',
-    name: 'Welsh'
+    value: 'cy',
+    text: 'Welsh'
   },
   {
     key: 'da',
-    code: 'da',
-    name: 'Danish'
+    value: 'da',
+    text: 'Danish'
   },
   {
     key: 'de',
-    code: 'de',
-    name: 'German'
+    value: 'de',
+    text: 'German'
   },
   {
     key: 'dv',
-    code: 'dv',
-    name: 'Divehi, Dhivehi, Maldivian'
+    value: 'dv',
+    text: 'Divehi, Dhivehi, Maldivian'
   },
   {
     key: 'dz',
-    code: 'dz',
-    name: 'Dzongkha'
+    value: 'dz',
+    text: 'Dzongkha'
   },
   {
     key: 'ee',
-    code: 'ee',
-    name: 'Ewe'
+    value: 'ee',
+    text: 'Ewe'
   },
   {
     key: 'el',
-    code: 'el',
-    name: 'Greek (modern)'
+    value: 'el',
+    text: 'Greek (modern)'
   },
   {
     key: 'en',
-    code: 'en',
-    name: 'English'
+    value: 'en',
+    text: 'English'
   },
   {
     key: 'eo',
-    code: 'eo',
-    name: 'Esperanto'
+    value: 'eo',
+    text: 'Esperanto'
   },
   {
     key: 'es',
-    code: 'es',
-    name: 'Spanish'
+    value: 'es',
+    text: 'Spanish'
   },
   {
     key: 'et',
-    code: 'et',
-    name: 'Estonian'
+    value: 'et',
+    text: 'Estonian'
   },
   {
     key: 'eu',
-    code: 'eu',
-    name: 'Basque'
+    value: 'eu',
+    text: 'Basque'
   },
   {
     key: 'fa',
-    code: 'fa',
-    name: 'Persian (Farsi)'
+    value: 'fa',
+    text: 'Persian (Farsi)'
   },
   {
     key: 'ff',
-    code: 'ff',
-    name: 'Fula, Fulah, Pulaar, Pular'
+    value: 'ff',
+    text: 'Fula, Fulah, Pulaar, Pular'
   },
   {
     key: 'fi',
-    code: 'fi',
-    name: 'Finnish'
+    value: 'fi',
+    text: 'Finnish'
   },
   {
     key: 'fj',
-    code: 'fj',
-    name: 'Fijian'
+    value: 'fj',
+    text: 'Fijian'
   },
   {
     key: 'fo',
-    code: 'fo',
-    name: 'Faroese'
+    value: 'fo',
+    text: 'Faroese'
   },
   {
     key: 'fr',
-    code: 'fr',
-    name: 'French'
+    value: 'fr',
+    text: 'French'
   },
   {
     key: 'fy',
-    code: 'fy',
-    name: 'Western Frisian'
+    value: 'fy',
+    text: 'Western Frisian'
   },
   {
     key: 'ga',
-    code: 'ga',
-    name: 'Irish'
+    value: 'ga',
+    text: 'Irish'
   },
   {
     key: 'gd',
-    code: 'gd',
-    name: 'Scottish Gaelic, Gaelic'
+    value: 'gd',
+    text: 'Scottish Gaelic, Gaelic'
   },
   {
     key: 'gl',
-    code: 'gl',
-    name: 'Galician'
+    value: 'gl',
+    text: 'Galician'
   },
   {
     key: 'gn',
-    code: 'gn',
-    name: 'Guaraní'
+    value: 'gn',
+    text: 'Guaraní'
   },
   {
     key: 'gu',
-    code: 'gu',
-    name: 'Gujarati'
+    value: 'gu',
+    text: 'Gujarati'
   },
   {
     key: 'gv',
-    code: 'gv',
-    name: 'Manx'
+    value: 'gv',
+    text: 'Manx'
   },
   {
     key: 'ha',
-    code: 'ha',
-    name: 'Hausa'
+    value: 'ha',
+    text: 'Hausa'
   },
   {
     key: 'he',
-    code: 'he',
-    name: 'Hebrew (modern)'
+    value: 'he',
+    text: 'Hebrew (modern)'
   },
   {
     key: 'hi',
-    code: 'hi',
-    name: 'Hindi'
+    value: 'hi',
+    text: 'Hindi'
   },
   {
     key: 'ho',
-    code: 'ho',
-    name: 'Hiri Motu'
+    value: 'ho',
+    text: 'Hiri Motu'
   },
   {
     key: 'hr',
-    code: 'hr',
-    name: 'Croatian'
+    value: 'hr',
+    text: 'Croatian'
   },
   {
     key: 'ht',
-    code: 'ht',
-    name: 'Haitian, Haitian Creole'
+    value: 'ht',
+    text: 'Haitian, Haitian Creole'
   },
   {
     key: 'hu',
-    code: 'hu',
-    name: 'Hungarian'
+    value: 'hu',
+    text: 'Hungarian'
   },
   {
     key: 'hy',
-    code: 'hy',
-    name: 'Armenian'
+    value: 'hy',
+    text: 'Armenian'
   },
   {
     key: 'hz',
-    code: 'hz',
-    name: 'Herero'
+    value: 'hz',
+    text: 'Herero'
   },
   {
     key: 'ia',
-    code: 'ia',
-    name: 'Interlingua'
+    value: 'ia',
+    text: 'Interlingua'
   },
   {
     key: 'id',
-    code: 'id',
-    name: 'Indonesian'
+    value: 'id',
+    text: 'Indonesian'
   },
   {
     key: 'ie',
-    code: 'ie',
-    name: 'Interlingue'
+    value: 'ie',
+    text: 'Interlingue'
   },
   {
     key: 'ig',
-    code: 'ig',
-    name: 'Igbo'
+    value: 'ig',
+    text: 'Igbo'
   },
   {
     key: 'ii',
-    code: 'ii',
-    name: 'Nuosu'
+    value: 'ii',
+    text: 'Nuosu'
   },
   {
     key: 'ik',
-    code: 'ik',
-    name: 'Inupiaq'
+    value: 'ik',
+    text: 'Inupiaq'
   },
   {
     key: 'io',
-    code: 'io',
-    name: 'Ido'
+    value: 'io',
+    text: 'Ido'
   },
   {
     key: 'is',
-    code: 'is',
-    name: 'Icelandic'
+    value: 'is',
+    text: 'Icelandic'
   },
   {
     key: 'it',
-    code: 'it',
-    name: 'Italian'
+    value: 'it',
+    text: 'Italian'
   },
   {
     key: 'iu',
-    code: 'iu',
-    name: 'Inuktitut'
+    value: 'iu',
+    text: 'Inuktitut'
   },
   {
     key: 'ja',
-    code: 'ja',
-    name: 'Japanese'
+    value: 'ja',
+    text: 'Japanese'
   },
   {
     key: 'jv',
-    code: 'jv',
-    name: 'Javanese'
+    value: 'jv',
+    text: 'Javanese'
   },
   {
     key: 'ka',
-    code: 'ka',
-    name: 'Georgian'
+    value: 'ka',
+    text: 'Georgian'
   },
   {
     key: 'kg',
-    code: 'kg',
-    name: 'Kongo'
+    value: 'kg',
+    text: 'Kongo'
   },
   {
     key: 'ki',
-    code: 'ki',
-    name: 'Kikuyu, Gikuyu'
+    value: 'ki',
+    text: 'Kikuyu, Gikuyu'
   },
   {
     key: 'kj',
-    code: 'kj',
-    name: 'Kwanyama, Kuanyama'
+    value: 'kj',
+    text: 'Kwanyama, Kuanyama'
   },
   {
     key: 'kk',
-    code: 'kk',
-    name: 'Kazakh'
+    value: 'kk',
+    text: 'Kazakh'
   },
   {
     key: 'kl',
-    code: 'kl',
-    name: 'Kalaallisut, Greenlandic'
+    value: 'kl',
+    text: 'Kalaallisut, Greenlandic'
   },
   {
     key: 'km',
-    code: 'km',
-    name: 'Khmer'
+    value: 'km',
+    text: 'Khmer'
   },
   {
     key: 'kn',
-    code: 'kn',
-    name: 'Kannada'
+    value: 'kn',
+    text: 'Kannada'
   },
   {
     key: 'ko',
-    code: 'ko',
-    name: 'Korean'
+    value: 'ko',
+    text: 'Korean'
   },
   {
     key: 'kr',
-    code: 'kr',
-    name: 'Kanuri'
+    value: 'kr',
+    text: 'Kanuri'
   },
   {
     key: 'ks',
-    code: 'ks',
-    name: 'Kashmiri'
+    value: 'ks',
+    text: 'Kashmiri'
   },
   {
     key: 'ku',
-    code: 'ku',
-    name: 'Kurdish'
+    value: 'ku',
+    text: 'Kurdish'
   },
   {
     key: 'kv',
-    code: 'kv',
-    name: 'Komi'
+    value: 'kv',
+    text: 'Komi'
   },
   {
     key: 'kw',
-    code: 'kw',
-    name: 'Cornish'
+    value: 'kw',
+    text: 'Cornish'
   },
   {
     key: 'ky',
-    code: 'ky',
-    name: 'Kyrgyz'
+    value: 'ky',
+    text: 'Kyrgyz'
   },
   {
     key: 'la',
-    code: 'la',
-    name: 'Latin'
+    value: 'la',
+    text: 'Latin'
   },
   {
     key: 'lb',
-    code: 'lb',
-    name: 'Luxembourgish, Letzeburgesch'
+    value: 'lb',
+    text: 'Luxembourgish, Letzeburgesch'
   },
   {
     key: 'lg',
-    code: 'lg',
-    name: 'Ganda'
+    value: 'lg',
+    text: 'Ganda'
   },
   {
     key: 'li',
-    code: 'li',
-    name: 'Limburgish, Limburgan, Limburger'
+    value: 'li',
+    text: 'Limburgish, Limburgan, Limburger'
   },
   {
     key: 'ln',
-    code: 'ln',
-    name: 'Lingala'
+    value: 'ln',
+    text: 'Lingala'
   },
   {
     key: 'lo',
-    code: 'lo',
-    name: 'Lao'
+    value: 'lo',
+    text: 'Lao'
   },
   {
     key: 'lt',
-    code: 'lt',
-    name: 'Lithuanian'
+    value: 'lt',
+    text: 'Lithuanian'
   },
   {
     key: 'lu',
-    code: 'lu',
-    name: 'Luba-Katanga'
+    value: 'lu',
+    text: 'Luba-Katanga'
   },
   {
     key: 'lv',
-    code: 'lv',
-    name: 'Latvian'
+    value: 'lv',
+    text: 'Latvian'
   },
   {
     key: 'mg',
-    code: 'mg',
-    name: 'Malagasy'
+    value: 'mg',
+    text: 'Malagasy'
   },
   {
     key: 'mh',
-    code: 'mh',
-    name: 'Marshallese'
+    value: 'mh',
+    text: 'Marshallese'
   },
   {
     key: 'mi',
-    code: 'mi',
-    name: 'Māori'
+    value: 'mi',
+    text: 'Māori'
   },
   {
     key: 'mk',
-    code: 'mk',
-    name: 'Macedonian'
+    value: 'mk',
+    text: 'Macedonian'
   },
   {
     key: 'ml',
-    code: 'ml',
-    name: 'Malayalam'
+    value: 'ml',
+    text: 'Malayalam'
   },
   {
     key: 'mn',
-    code: 'mn',
-    name: 'Mongolian'
+    value: 'mn',
+    text: 'Mongolian'
   },
   {
     key: 'mr',
-    code: 'mr',
-    name: 'Marathi (Marāṭhī)'
+    value: 'mr',
+    text: 'Marathi (Marāṭhī)'
   },
   {
     key: 'ms',
-    code: 'ms',
-    name: 'Malay'
+    value: 'ms',
+    text: 'Malay'
   },
   {
     key: 'mt',
-    code: 'mt',
-    name: 'Maltese'
+    value: 'mt',
+    text: 'Maltese'
   },
   {
     key: 'my',
-    code: 'my',
-    name: 'Burmese'
+    value: 'my',
+    text: 'Burmese'
   },
   {
     key: 'na',
-    code: 'na',
-    name: 'Nauruan'
+    value: 'na',
+    text: 'Nauruan'
   },
   {
     key: 'nb',
-    code: 'nb',
-    name: 'Norwegian Bokmål'
+    value: 'nb',
+    text: 'Norwegian Bokmål'
   },
   {
     key: 'nd',
-    code: 'nd',
-    name: 'Northern Ndebele'
+    value: 'nd',
+    text: 'Northern Ndebele'
   },
   {
     key: 'ne',
-    code: 'ne',
-    name: 'Nepali'
+    value: 'ne',
+    text: 'Nepali'
   },
   {
     key: 'ng',
-    code: 'ng',
-    name: 'Ndonga'
+    value: 'ng',
+    text: 'Ndonga'
   },
   {
     key: 'nl',
-    code: 'nl',
-    name: 'Dutch'
+    value: 'nl',
+    text: 'Dutch'
   },
   {
     key: 'nn',
-    code: 'nn',
-    name: 'Norwegian Nynorsk'
+    value: 'nn',
+    text: 'Norwegian Nynorsk'
   },
   {
     key: 'no',
-    code: 'no',
-    name: 'Norwegian'
+    value: 'no',
+    text: 'Norwegian'
   },
   {
     key: 'nr',
-    code: 'nr',
-    name: 'Southern Ndebele'
+    value: 'nr',
+    text: 'Southern Ndebele'
   },
   {
     key: 'nv',
-    code: 'nv',
-    name: 'Navajo, Navaho'
+    value: 'nv',
+    text: 'Navajo, Navaho'
   },
   {
     key: 'ny',
-    code: 'ny',
-    name: 'Chichewa, Chewa, Nyanja'
+    value: 'ny',
+    text: 'Chichewa, Chewa, Nyanja'
   },
   {
     key: 'oc',
-    code: 'oc',
-    name: 'Occitan'
+    value: 'oc',
+    text: 'Occitan'
   },
   {
     key: 'oj',
-    code: 'oj',
-    name: 'Ojibwe, Ojibwa'
+    value: 'oj',
+    text: 'Ojibwe, Ojibwa'
   },
   {
     key: 'om',
-    code: 'om',
-    name: 'Oromo'
+    value: 'om',
+    text: 'Oromo'
   },
   {
     key: 'or',
-    code: 'or',
-    name: 'Oriya'
+    value: 'or',
+    text: 'Oriya'
   },
   {
     key: 'os',
-    code: 'os',
-    name: 'Ossetian, Ossetic'
+    value: 'os',
+    text: 'Ossetian, Ossetic'
   },
   {
     key: 'pa',
-    code: 'pa',
-    name: '(Eastern) Punjabi'
+    value: 'pa',
+    text: '(Eastern) Punjabi'
   },
   {
     key: 'pi',
-    code: 'pi',
-    name: 'Pāli'
+    value: 'pi',
+    text: 'Pāli'
   },
   {
     key: 'pl',
-    code: 'pl',
-    name: 'Polish'
+    value: 'pl',
+    text: 'Polish'
   },
   {
     key: 'ps',
-    code: 'ps',
-    name: 'Pashto, Pushto'
+    value: 'ps',
+    text: 'Pashto, Pushto'
   },
   {
     key: 'pt',
-    code: 'pt',
-    name: 'Portuguese'
+    value: 'pt',
+    text: 'Portuguese'
   },
   {
     key: 'qu',
-    code: 'qu',
-    name: 'Quechua'
+    value: 'qu',
+    text: 'Quechua'
   },
   {
     key: 'rm',
-    code: 'rm',
-    name: 'Romansh'
+    value: 'rm',
+    text: 'Romansh'
   },
   {
     key: 'rn',
-    code: 'rn',
-    name: 'Kirundi'
+    value: 'rn',
+    text: 'Kirundi'
   },
   {
     key: 'ro',
-    code: 'ro',
-    name: 'Romanian'
+    value: 'ro',
+    text: 'Romanian'
   },
   {
     key: 'ru',
-    code: 'ru',
-    name: 'Russian'
+    value: 'ru',
+    text: 'Russian'
   },
   {
     key: 'rw',
-    code: 'rw',
-    name: 'Kinyarwanda'
+    value: 'rw',
+    text: 'Kinyarwanda'
   },
   {
     key: 'sa',
-    code: 'sa',
-    name: 'Sanskrit (Saṁskṛta)'
+    value: 'sa',
+    text: 'Sanskrit (Saṁskṛta)'
   },
   {
     key: 'sc',
-    code: 'sc',
-    name: 'Sardinian'
+    value: 'sc',
+    text: 'Sardinian'
   },
   {
     key: 'sd',
-    code: 'sd',
-    name: 'Sindhi'
+    value: 'sd',
+    text: 'Sindhi'
   },
   {
     key: 'se',
-    code: 'se',
-    name: 'Northern Sami'
+    value: 'se',
+    text: 'Northern Sami'
   },
   {
     key: 'sg',
-    code: 'sg',
-    name: 'Sango'
+    value: 'sg',
+    text: 'Sango'
   },
   {
     key: 'si',
-    code: 'si',
-    name: 'Sinhalese, Sinhala'
+    value: 'si',
+    text: 'Sinhalese, Sinhala'
   },
   {
     key: 'sk',
-    code: 'sk',
-    name: 'Slovak'
+    value: 'sk',
+    text: 'Slovak'
   },
   {
     key: 'sl',
-    code: 'sl',
-    name: 'Slovene'
+    value: 'sl',
+    text: 'Slovene'
   },
   {
     key: 'sm',
-    code: 'sm',
-    name: 'Samoan'
+    value: 'sm',
+    text: 'Samoan'
   },
   {
     key: 'sn',
-    code: 'sn',
-    name: 'Shona'
+    value: 'sn',
+    text: 'Shona'
   },
   {
     key: 'so',
-    code: 'so',
-    name: 'Somali'
+    value: 'so',
+    text: 'Somali'
   },
   {
     key: 'sq',
-    code: 'sq',
-    name: 'Albanian'
+    value: 'sq',
+    text: 'Albanian'
   },
   {
     key: 'sr',
-    code: 'sr',
-    name: 'Serbian'
+    value: 'sr',
+    text: 'Serbian'
   },
   {
     key: 'ss',
-    code: 'ss',
-    name: 'Swati'
+    value: 'ss',
+    text: 'Swati'
   },
   {
     key: 'st',
-    code: 'st',
-    name: 'Southern Sotho'
+    value: 'st',
+    text: 'Southern Sotho'
   },
   {
     key: 'su',
-    code: 'su',
-    name: 'Sundanese'
+    value: 'su',
+    text: 'Sundanese'
   },
   {
     key: 'sv',
-    code: 'sv',
-    name: 'Swedish'
+    value: 'sv',
+    text: 'Swedish'
   },
   {
     key: 'sw',
-    code: 'sw',
-    name: 'Swahili'
+    value: 'sw',
+    text: 'Swahili'
   },
   {
     key: 'ta',
-    code: 'ta',
-    name: 'Tamil'
+    value: 'ta',
+    text: 'Tamil'
   },
   {
     key: 'te',
-    code: 'te',
-    name: 'Telugu'
+    value: 'te',
+    text: 'Telugu'
   },
   {
     key: 'tg',
-    code: 'tg',
-    name: 'Tajik'
+    value: 'tg',
+    text: 'Tajik'
   },
   {
     key: 'th',
-    code: 'th',
-    name: 'Thai'
+    value: 'th',
+    text: 'Thai'
   },
   {
     key: 'ti',
-    code: 'ti',
-    name: 'Tigrinya'
+    value: 'ti',
+    text: 'Tigrinya'
   },
   {
     key: 'tk',
-    code: 'tk',
-    name: 'Turkmen'
+    value: 'tk',
+    text: 'Turkmen'
   },
   {
     key: 'tl',
-    code: 'tl',
-    name: 'Tagalog'
+    value: 'tl',
+    text: 'Tagalog'
   },
   {
     key: 'tn',
-    code: 'tn',
-    name: 'Tswana'
+    value: 'tn',
+    text: 'Tswana'
   },
   {
     key: 'to',
-    code: 'to',
-    name: 'Tonga (Tonga Islands)'
+    value: 'to',
+    text: 'Tonga (Tonga Islands)'
   },
   {
     key: 'tr',
-    code: 'tr',
-    name: 'Turkish'
+    value: 'tr',
+    text: 'Turkish'
   },
   {
     key: 'ts',
-    code: 'ts',
-    name: 'Tsonga'
+    value: 'ts',
+    text: 'Tsonga'
   },
   {
     key: 'tt',
-    code: 'tt',
-    name: 'Tatar'
+    value: 'tt',
+    text: 'Tatar'
   },
   {
     key: 'tw',
-    code: 'tw',
-    name: 'Twi'
+    value: 'tw',
+    text: 'Twi'
   },
   {
     key: 'ty',
-    code: 'ty',
-    name: 'Tahitian'
+    value: 'ty',
+    text: 'Tahitian'
   },
   {
     key: 'ug',
-    code: 'ug',
-    name: 'Uyghur'
+    value: 'ug',
+    text: 'Uyghur'
   },
   {
     key: 'uk',
-    code: 'uk',
-    name: 'Ukrainian'
+    value: 'uk',
+    text: 'Ukrainian'
   },
   {
     key: 'ur',
-    code: 'ur',
-    name: 'Urdu'
+    value: 'ur',
+    text: 'Urdu'
   },
   {
     key: 'uz',
-    code: 'uz',
-    name: 'Uzbek'
+    value: 'uz',
+    text: 'Uzbek'
   },
   {
     key: 've',
-    code: 've',
-    name: 'Venda'
+    value: 've',
+    text: 'Venda'
   },
   {
     key: 'vi',
-    code: 'vi',
-    name: 'Vietnamese'
+    value: 'vi',
+    text: 'Viettextse'
   },
   {
     key: 'vo',
-    code: 'vo',
-    name: 'Volapük'
+    value: 'vo',
+    text: 'Volapük'
   },
   {
     key: 'wa',
-    code: 'wa',
-    name: 'Walloon'
+    value: 'wa',
+    text: 'Walloon'
   },
   {
     key: 'wo',
-    code: 'wo',
-    name: 'Wolof'
+    value: 'wo',
+    text: 'Wolof'
   },
   {
     key: 'xh',
-    code: 'xh',
-    name: 'Xhosa'
+    value: 'xh',
+    text: 'Xhosa'
   },
   {
     key: 'yi',
-    code: 'yi',
-    name: 'Yiddish'
+    value: 'yi',
+    text: 'Yiddish'
   },
   {
     key: 'yo',
-    code: 'yo',
-    name: 'Yoruba'
+    value: 'yo',
+    text: 'Yoruba'
   },
   {
     key: 'za',
-    code: 'za',
-    name: 'Zhuang, Chuang'
+    value: 'za',
+    text: 'Zhuang, Chuang'
   },
   {
     key: 'zh',
-    code: 'zh',
-    name: 'Chinese'
+    value: 'zh',
+    text: 'Chinese'
   },
   {
     key: 'zu',
-    code: 'zu',
-    name: 'Zulu'
+    value: 'zu',
+    text: 'Zulu'
   }
 ];

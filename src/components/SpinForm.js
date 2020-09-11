@@ -48,7 +48,7 @@ class SpinForm extends React.Component {
     super(props);
     const yearArray = generateYearArray();
     const ratingsArray = generateRatingArray();
-    const languageObject = this.createLanguageList();
+    const languageArray = this.createLanguageList();
 
     this.state = {
       // These arrays are used to populate dropdown menu
@@ -78,7 +78,7 @@ class SpinForm extends React.Component {
 
       displayLanguage: '',
 
-      language: ''
+      languageArray
     };
   }
 
@@ -93,14 +93,9 @@ class SpinForm extends React.Component {
 
   createLanguageList = () => {
     const list = languageList.map(object => {
-      console.log('n', object.name);
-      console.log('c', object.code);
-
       return object;
     });
-
-    // console.log('JSON.parse(languageList): ', JSON.parse(languageList));
-    // return JSON.parse(languageList);
+    return list;
   };
 
   // Handle the spin
@@ -141,7 +136,9 @@ class SpinForm extends React.Component {
     }
   };
 
-  handleSemanticDropDownChange = (event, data) => {};
+  handleSemanticDropDownChange = (event, data) => {
+    console.log(data.value);
+  };
 
   renderSpinForm() {
     // Note that our genre Dropdown is populated with a custom GenreDropDownOptionList component.
@@ -152,12 +149,12 @@ class SpinForm extends React.Component {
           <div className="content">Find a movie to watch tonight!</div>
         </h2>
         <SemanticDropdown
-          name="languageDropdown"
+          name="languageInput"
           onChange={this.handleSemanticDropDownChange}
           placeholder="Select Language"
           search
           selection
-          options={languageOptions}
+          options={this.state.languageArray}
           // Change this for controlled component
           text={this.state.displayLanguage}
         />
