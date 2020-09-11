@@ -12,6 +12,8 @@ import {
   resetWatchlistUpdateStatus
 } from '../actions';
 
+import { languageList } from '../languageList/languageList.js';
+
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
 import Dropdown from './Dropdown';
@@ -46,6 +48,7 @@ class SpinForm extends React.Component {
     super(props);
     const yearArray = generateYearArray();
     const ratingsArray = generateRatingArray();
+    const languageObject = this.createLanguageList();
 
     this.state = {
       // These arrays are used to populate dropdown menu
@@ -88,6 +91,18 @@ class SpinForm extends React.Component {
     this.props.getGenreCodes();
   }
 
+  createLanguageList = () => {
+    const list = languageList.map(object => {
+      console.log('n', object.name);
+      console.log('c', object.code);
+
+      return object;
+    });
+
+    // console.log('JSON.parse(languageList): ', JSON.parse(languageList));
+    // return JSON.parse(languageList);
+  };
+
   // Handle the spin
   // Some of these will use actions
   handleSpin = event => {
@@ -126,10 +141,7 @@ class SpinForm extends React.Component {
     }
   };
 
-  handleSemanticDropDownChange = (event, data) => {
-    console.log('data.name ', data.name);
-    console.log('data.value: ', data.value);
-  };
+  handleSemanticDropDownChange = (event, data) => {};
 
   renderSpinForm() {
     // Note that our genre Dropdown is populated with a custom GenreDropDownOptionList component.
