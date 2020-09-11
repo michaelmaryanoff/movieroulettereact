@@ -17,7 +17,7 @@ export const generateRatingArray = () => {
   let ratingsArray = [];
 
   for (let i = 1; i <= 10; i++) {
-    ratingsArray.push({ id: i, value: `${i}0%` });
+    ratingsArray.push({ id: i, value: `${i} / 10` });
   }
   return ratingsArray;
 };
