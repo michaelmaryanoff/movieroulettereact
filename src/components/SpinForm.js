@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { generateYearArray, generateRatingArray } from '../utils';
 
+import { Dropdown as SemanticDropdown } from 'semantic-ui-react';
+
 import {
   getGenreCodes,
   submitSpin,
@@ -15,6 +17,30 @@ import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './in
 import Dropdown from './Dropdown';
 import DropdownOptions from './DropdownOptions';
 import GenreDropDownOptionList from './GenreDropDownOptionList';
+
+const languageOptions = [
+  { key: 'Arabic', text: 'drabic', value: 'Arabic' },
+  { key: 'Chinese', text: 'dhinese', value: 'Chinese' },
+  { key: 'Danish', text: 'danish', value: 'Danish' },
+  { key: 'Dutch', text: 'Dutch', value: 'Dutch' },
+  { key: 'English', text: 'English', value: 'English' },
+  { key: 'French', text: 'French', value: 'French' },
+  { key: 'German', text: 'German', value: 'German' },
+  { key: 'Greek', text: 'Greek', value: 'Greek' },
+  { key: 'Hungarian', text: 'Hungarian', value: 'Hungarian' },
+  { key: 'Italian', text: 'Italian', value: 'Italian' },
+  { key: 'Japanese', text: 'Japanese', value: 'Japanese' },
+  { key: 'Korean', text: 'Korean', value: 'Korean' },
+  { key: 'Lithuanian', text: 'Lithuanian', value: 'Lithuanian' },
+  { key: 'Persian', text: 'Persian', value: 'Persian' },
+  { key: 'Polish', text: 'Polish', value: 'Polish' },
+  { key: 'Portuguese', text: 'Portuguese', value: 'Portuguese' },
+  { key: 'Russian', text: 'Russian', value: 'Russian' },
+  { key: 'Spanish', text: 'Spanish', value: 'Spanish' },
+  { key: 'Swedish', text: 'Swedish', value: 'Swedish' },
+  { key: 'Turkish', text: 'Turkish', value: 'Turkish' },
+  { key: 'Vietnamese', text: 'Vietnamese', value: 'Vietnamese' }
+];
 class SpinForm extends React.Component {
   constructor(props) {
     super(props);
@@ -47,7 +73,9 @@ class SpinForm extends React.Component {
       // The code of the currently selected genre (used for our network request)
       genreCode: '',
 
-      testValue: 'testValue'
+      displayLanguage: '',
+
+      language: ''
     };
   }
 
@@ -98,6 +126,11 @@ class SpinForm extends React.Component {
     }
   };
 
+  handleSemanticDropDownChange = (event, data) => {
+    console.log('data.name ', data.name);
+    console.log('data.value: ', data.value);
+  };
+
   renderSpinForm() {
     // Note that our genre Dropdown is populated with a custom GenreDropDownOptionList component.
     // It depends on an async call, so the process of populating it is very different from the other components.
@@ -106,6 +139,17 @@ class SpinForm extends React.Component {
         <h2 className="ui teal image header">
           <div className="content">Find a movie to watch tonight!</div>
         </h2>
+        <SemanticDropdown
+          name="languageDropdown"
+          onChange={this.handleSemanticDropDownChange}
+          placeholder="Select Language"
+          search
+          selection
+          options={languageOptions}
+          // Change this for controlled component
+          text={this.state.displayLanguage}
+        />
+
         <div className="fields">
           <Dropdown
             inputtype={yearFromInput}
