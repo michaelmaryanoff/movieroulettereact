@@ -31,31 +31,20 @@ class SpinResultCard extends Component {
     }
 
     return (
-      <div className="ui card centered" key={id}>
-        <div className="content">
-          <h3>
-            <em>Tonight you're watching...</em>
-          </h3>
-          <h3 className="header">{original_title}</h3>
-          <div className="meta">Released: {release_date}</div>
-          <p />
-          <div className="ui centered small image">
-            <a href={movieURL}>
-              <img src={imageURL} alt={id} />
-            </a>
-          </div>
-
-          <div className="description">
-            <p />
-            <p />
-            {modifiedOverview}
-          </div>
-          <div className="extra content">Average Score: {vote_average}</div>
-          <p />
-          <div>
-            <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
-          </div>
+      <div className="ui fluid horizontal card" key={id}>
+        <div className="ui image">
+          <a href={movieURL}>
+            <img src={imageURL} alt={id} />
+          </a>
         </div>
+        <div className="left aligned content">
+          <div className="header">{original_title}</div>
+          <div className="meta">Released: {release_date}</div>
+          <div className="description">{modifiedOverview}</div>
+          <div className="extra content">Average Score: {vote_average}</div>
+        </div>
+
+        <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
       </div>
     );
   }
@@ -66,8 +55,7 @@ class SpinResultCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedMovie: state.spin.selectedMovie,
-    
+    selectedMovie: state.spin.selectedMovie
   };
 };
 

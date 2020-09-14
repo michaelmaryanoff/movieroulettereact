@@ -15,21 +15,19 @@ class AuthedWatchlistAddButton extends React.Component {
     // We are making sure that the button is not active while we are adding to the user's watchlist
     let { isWatchListUpdated } = this.props;
     let buttonClassName = isWatchListUpdated
-      ? 'ui fluid large inactive submit button'
-      : 'ui fluid large teal submit button';
+      ? 'ui fluid large inactive bottom attached button'
+      : 'ui fluid large teal bottom attached submit button';
     let buttonLabel = isWatchListUpdated ? 'Added to Watchlist!' : 'Add to Watchlist';
     let isButtonDisabled = isWatchListUpdated ? true : false;
 
     return (
-      <div>
-        <button
-          disabled={isButtonDisabled}
-          className={buttonClassName}
-          onClick={event => this.handleAddToWatchlist(event)}
-        >
-          {buttonLabel}
-        </button>
-      </div>
+      <button
+        disabled={isButtonDisabled}
+        className={buttonClassName}
+        onClick={event => this.handleAddToWatchlist(event)}
+      >
+        {buttonLabel}
+      </button>
     );
   }
 
