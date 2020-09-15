@@ -19,11 +19,7 @@ export const languageList = [
     value: 'ae',
     text: 'Avestan'
   },
-  {
-    key: 'af',
-    value: 'af',
-    text: 'Afrikaans'
-  },
+
   {
     key: 'ak',
     value: 'ak',
@@ -69,11 +65,7 @@ export const languageList = [
     value: 'ba',
     text: 'Bashkir'
   },
-  {
-    key: 'be',
-    value: 'be',
-    text: 'Belarusian'
-  },
+
   {
     key: 'bg',
     value: 'bg',
@@ -191,11 +183,6 @@ export const languageList = [
   },
 
   {
-    key: 'eo',
-    value: 'eo',
-    text: 'Esperanto'
-  },
-  {
     key: 'es',
     value: 'es',
     text: 'Spanish'
@@ -300,11 +287,7 @@ export const languageList = [
     value: 'hr',
     text: 'Croatian'
   },
-  {
-    key: 'ht',
-    value: 'ht',
-    text: 'Haitian, Haitian Creole'
-  },
+
   {
     key: 'hu',
     value: 'hu',
@@ -364,6 +347,11 @@ export const languageList = [
     key: 'it',
     value: 'it',
     text: 'Italian'
+  },
+  {
+    key: 'ht',
+    value: 'ht',
+    text: 'Haitian, Haitian Creole'
   },
   {
     key: 'iu',
@@ -741,6 +729,11 @@ export const languageList = [
     text: 'Somali'
   },
   {
+    key: 'be',
+    value: 'be',
+    text: 'Belarusian'
+  },
+  {
     key: 'sq',
     value: 'sq',
     text: 'Albanian'
@@ -919,5 +912,15 @@ export const languageList = [
     key: 'zu',
     value: 'zu',
     text: 'Zulu'
+  },
+  {
+    key: 'eo',
+    value: 'eo',
+    text: 'Esperanto'
+  },
+  {
+    key: 'af',
+    value: 'af',
+    text: 'Afrikaans'
   }
 ];
