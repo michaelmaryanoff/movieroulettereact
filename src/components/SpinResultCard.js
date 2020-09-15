@@ -35,7 +35,6 @@ class SpinResultCard extends Component {
         <a className="ui image" href={movieURL}>
           <img src={imageURL} alt={id} />
         </a>
-
         <div className="left aligned content">
           <div className="header">{original_title}</div>
           <div className="meta">Released: {release_date}</div>

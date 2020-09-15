@@ -122,69 +122,72 @@ class SpinForm extends React.Component {
     // Note that our genre Dropdown is populated with a custom GenreDropDownOptionList component.
     // It depends on an async call, so the process of populating it is very different from the other components.
     return (
-      <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
-        <h2 className="ui teal image header">
-          <div className="content">Find a movie to watch tonight!</div>
-        </h2>
-        <SemanticDropdown
-          name="languageInput"
-          onChange={this.handleSemanticDropDownChange}
-          placeholder="Select Language"
-          search
-          selection
-          options={this.state.languageArray}
-        />
-
-        <div className="fields">
-          <Dropdown
-            inputtype={yearFromInput}
-            labeltext="From"
-            value={this.state.yearFrom}
-            onChange={(event, id) => {
-              this.handleUserInput(event, yearFromInput, id);
-            }}
-          >
-            <DropdownOptions optiondata={this.state.yearArray} />
-          </Dropdown>
-          <Dropdown
-            inputtype={yearToInput}
-            labeltext="To"
-            value={this.state.yearTo}
-            onChange={(event, id) => {
-              this.handleUserInput(event, yearToInput, id);
-            }}
-          >
-            <DropdownOptions optiondata={this.state.yearArray} />
-          </Dropdown>
-          <Dropdown
-            inputtype={minimumRatingInput}
-            labeltext="Minimum Rating"
-            value={this.state.minimumRatingDisplay}
-            onChange={(event, id) => {
-              this.handleUserInput(event, minimumRatingInput, id);
-            }}
-          >
-            <DropdownOptions optiondata={this.state.ratingsArray} />
-          </Dropdown>
-
-          <div className="ui basic segment"></div>
-          <p />
-          <Dropdown
-            inputtype={genreInput}
-            labeltext="Genre"
-            value={this.state.genreName}
-            onChange={(event, id) => {
-              this.handleUserInput(event, genreInput, id);
-            }}
-          >
-            <GenreDropDownOptionList />
-          </Dropdown>
-          <p />
+      <div className="ui four column centered doubling stackable center aligned grid">
+        <div className="ui centered center aligned fluid segment">
+          <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
+            <h2 className="ui teal image header">
+              <div className="content">Find a movie to watch!</div>
+            </h2>
+            <div className="field">
+              <label className="label">Language</label>
+              <SemanticDropdown
+                name="languageInput"
+                onChange={this.handleSemanticDropDownChange}
+                placeholder="Select Language"
+                search
+                selection
+                labeled={true}
+                options={this.state.languageArray}
+              />
+            </div>
+            <Dropdown
+              inputtype={genreInput}
+              labeltext="Genre"
+              value={this.state.genreName}
+              onChange={(event, id) => {
+                this.handleUserInput(event, genreInput, id);
+              }}
+            >
+              <GenreDropDownOptionList />
+            </Dropdown>
+            <div className="row">
+              <div className="two fields">
+                <Dropdown
+                  inputtype={yearFromInput}
+                  labeltext="From"
+                  value={this.state.yearFrom}
+                  onChange={(event, id) => {
+                    this.handleUserInput(event, yearFromInput, id);
+                  }}
+                >
+                  <DropdownOptions optiondata={this.state.yearArray} />
+                </Dropdown>
+                <Dropdown
+                  inputtype={yearToInput}
+                  labeltext="To"
+                  value={this.state.yearTo}
+                  onChange={(event, id) => {
+                    this.handleUserInput(event, yearToInput, id);
+                  }}
+                >
+                  <DropdownOptions optiondata={this.state.yearArray} />
+                </Dropdown>
+              </div>
+              <Dropdown
+                inputtype={minimumRatingInput}
+                labeltext="Minimum Rating"
+                value={this.state.minimumRatingDisplay}
+                onChange={(event, id) => {
+                  this.handleUserInput(event, minimumRatingInput, id);
+                }}
+              >
+                <DropdownOptions optiondata={this.state.ratingsArray} />
+              </Dropdown>
+              <button className="ui fluid large teal submit button">Spin!</button>
+            </div>
+          </form>
         </div>
-
-        <div className="ui basic segment"></div>
-        <button className="ui fluid large teal submit button">Spin!</button>
-      </form>
+      </div>
     );
   }
 
