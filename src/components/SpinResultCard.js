@@ -31,28 +31,24 @@ class SpinResultCard extends Component {
     }
 
     return (
-      <div className="ui two column stackable grid">
-        <div className="ui row">
+      <div className="ui stackable grid">
+        <div className="ui two column row">
           <div className="column">
-            <div className="ui fluid centered center aligned basic segment">
-              <a className="ui small image" href={movieURL}>
-                <img src={imageURL} alt={id} />
-              </a>
-              {/* <div className="content">
-                <div className="header">{original_title}</div>
-                <div className="meta">Released: {release_date}</div>
-              </div> */}
-            </div>
+            <a className="ui medium image" href={movieURL}>
+              <img src={imageURL} alt={id} />
+            </a>
           </div>
           <div className="column">
-            <div className="ui fluid centered basic card" key={id}>
+            <div className="ui centered card" key={id}>
               <div className="left aligned content">
+                <div className="header">{original_title}</div>
+                <div className="meta">Released: {release_date}</div>
                 <div className="description">{overview}</div>
                 <div className="extra content">Average Score: {vote_average}</div>
               </div>
             </div>
+            <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
           </div>
-          <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
         </div>
       </div>
     );

@@ -123,7 +123,7 @@ class SpinForm extends React.Component {
     // It depends on an async call, so the process of populating it is very different from the other components.
     return (
       <div className="ui four column centered doubling stackable center aligned grid">
-        <div className="ui centered center aligned fluid segment">
+        <div className="ui centered center aligned basic fluid segment">
           <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
             <h2 className="ui teal image header">
               <div className="content">Find a movie to watch!</div>
@@ -151,7 +151,7 @@ class SpinForm extends React.Component {
               <GenreDropDownOptionList />
             </Dropdown>
             <div className="row">
-              <div className="two fields">
+              <div className="three fields">
                 <Dropdown
                   inputtype={yearFromInput}
                   labeltext="From"
@@ -172,17 +172,18 @@ class SpinForm extends React.Component {
                 >
                   <DropdownOptions optiondata={this.state.yearArray} />
                 </Dropdown>
+                <Dropdown
+                  inputtype={minimumRatingInput}
+                  labeltext="Minimum Rating"
+                  value={this.state.minimumRatingDisplay}
+                  onChange={(event, id) => {
+                    this.handleUserInput(event, minimumRatingInput, id);
+                  }}
+                >
+                  <DropdownOptions optiondata={this.state.ratingsArray} />
+                </Dropdown>
               </div>
-              <Dropdown
-                inputtype={minimumRatingInput}
-                labeltext="Minimum Rating"
-                value={this.state.minimumRatingDisplay}
-                onChange={(event, id) => {
-                  this.handleUserInput(event, minimumRatingInput, id);
-                }}
-              >
-                <DropdownOptions optiondata={this.state.ratingsArray} />
-              </Dropdown>
+
               <button className="ui fluid large teal submit button">Spin!</button>
             </div>
           </form>
