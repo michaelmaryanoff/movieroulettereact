@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { generateYearArray, generateRatingArray } from '../utils';
 
-import { Dropdown as SemanticDropdown } from 'semantic-ui-react';
+import { Dropdown as SemanticDropdown, Select } from 'semantic-ui-react';
 
 import {
   getGenreCodes,
@@ -72,6 +72,15 @@ class SpinForm extends React.Component {
     const list = languageList.map(object => {
       return object;
     });
+    console.log('list: ', list);
+
+    return list;
+  };
+
+  createTestYears = () => {
+    const list = this.state.yearArray.map(year => {
+      return { key: year.id, value: year.id, text: year.id };
+    });
     return list;
   };
 
@@ -140,7 +149,7 @@ class SpinForm extends React.Component {
                 options={this.state.languageArray}
               />
             </div>
-            <Dropdown
+            {/* <Dropdown
               inputtype={genreInput}
               labeltext="Genre"
               value={this.state.genreName}
@@ -149,7 +158,18 @@ class SpinForm extends React.Component {
               }}
             >
               <GenreDropDownOptionList />
-            </Dropdown>
+            </Dropdown> */}
+
+            <div className="field">
+              <label className="label">{'test'}</label>
+              <Select
+                name={this.props.inputtype}
+                onChange={this.handleUserInput}
+                options={this.createTestYears()}
+                selection
+                labeled={true}
+              />
+            </div>
             <div className="row">
               <div className="three fields">
                 <Dropdown
@@ -159,6 +179,7 @@ class SpinForm extends React.Component {
                   onChange={(event, id) => {
                     this.handleUserInput(event, yearFromInput, id);
                   }}
+                  optiondata={this.state.yearArray}
                 >
                   <DropdownOptions optiondata={this.state.yearArray} />
                 </Dropdown>
@@ -169,8 +190,9 @@ class SpinForm extends React.Component {
                   onChange={(event, id) => {
                     this.handleUserInput(event, yearToInput, id);
                   }}
+                  optiondata={this.state.yearArray}
                 >
-                  <DropdownOptions optiondata={this.state.yearArray} />
+                  <DropdownOptions ooptiondata={this.state.yearArray} />
                 </Dropdown>
                 <Dropdown
                   inputtype={minimumRatingInput}
@@ -179,6 +201,7 @@ class SpinForm extends React.Component {
                   onChange={(event, id) => {
                     this.handleUserInput(event, minimumRatingInput, id);
                   }}
+                  optiondata={this.state.ratingsArray}
                 >
                   <DropdownOptions optiondata={this.state.ratingsArray} />
                 </Dropdown>

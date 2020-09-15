@@ -23,13 +23,13 @@ class SpinPage extends React.Component {
       <div>
         <div className="ui container">
           <WelcomeHeader />
-          <div cla ssName="ui basic doubling segment">
+          <div className="ui basic doubling segment">
             <div className="ui center aligned centered segment">
               <div className="ui two column stackable center aligned grid">
-                <div className="eight wide column">
+                <div className="six wide column">
                   <SpinForm />
                 </div>
-                <div className="eight wide column">
+                <div className="ten wide column">
                   <LoadingCard />
                   <FirstLoadSpinCard />
                   {this.props.isSpinning ? null : <SpinCard />}

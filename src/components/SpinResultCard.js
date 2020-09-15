@@ -21,7 +21,7 @@ class SpinResultCard extends Component {
       vote_average
     } = this.props.selectedMovie;
 
-    let modifiedOverview = `${overview.slice(0, 250)}...`;
+    let modifiedOverview = `${overview.slice(0, 450)}...`;
 
     let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
     const movieURL = `https://www.themoviedb.org/movie/${id}`;
@@ -33,17 +33,17 @@ class SpinResultCard extends Component {
     return (
       <div className="ui stackable grid">
         <div className="ui two column row">
-          <div className="column">
-            <a className="ui medium image" href={movieURL}>
+          <div className="six wide column">
+            <a className="ui fluid image" href={movieURL}>
               <img src={imageURL} alt={id} />
             </a>
           </div>
-          <div className="column">
-            <div className="ui centered card" key={id}>
+          <div className="ten wide column">
+            <div className="ui centered fluid card" style={{ fontSize: 16 }} key={id}>
               <div className="left aligned content">
                 <div className="header">{original_title}</div>
                 <div className="meta">Released: {release_date}</div>
-                <div className="description">{overview}</div>
+                <div className="description">{modifiedOverview}</div>
                 <div className="extra content">Average Score: {vote_average}</div>
               </div>
             </div>

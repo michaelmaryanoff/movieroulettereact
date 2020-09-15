@@ -129,7 +129,7 @@ export const getGenreCodes = () => async dispatch => {
   });
 
   const genreArrayForDropdown = data.genres;
-  const selectGenresObject = { id: 'selectGenres', name: 'Select Genres' };
+  const selectGenresObject = { id: 'selectGenres', name: 'Select Genre' };
 
   if (!genreArrayForDropdown.includes(selectGenresObject)) {
     genreArrayForDropdown.unshift(selectGenresObject);
