@@ -382,7 +382,7 @@
     max-height: 18.26571429em;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 767px) {
   .ui.scrolling.search > .results {
     max-height: 24.35428571em;
   }
@@ -420,7 +420,7 @@
     max-height: 54.79714286em;
   }
 }
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 767px) {
   .ui.search.short > .results {
     max-height: 24.35428571em;
   }

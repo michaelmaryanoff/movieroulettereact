@@ -32,11 +32,10 @@ class SpinResultCard extends Component {
 
     return (
       <div className="ui fluid horizontal card" key={id}>
-        <div className="ui image">
-          <a href={movieURL}>
-            <img src={imageURL} alt={id} />
-          </a>
-        </div>
+        <a className="ui image" href={movieURL}>
+          <img src={imageURL} alt={id} />
+        </a>
+
         <div className="left aligned content">
           <div className="header">{original_title}</div>
           <div className="meta">Released: {release_date}</div>
