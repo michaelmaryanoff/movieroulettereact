@@ -163,10 +163,10 @@ export const clearAuthError = () => dispatch => {
 export const submitSpin = selection => async dispatch => {
   const { minimumRating, yearFrom, yearTo, languageCode } = selection;
 
-  let genreCode = selection.genreCode;
+  let genreInput = selection.genreInput;
 
-  if (genreCode === 'selectGenres') {
-    genreCode = '';
+  if (genreInput === 'selectGenres') {
+    genreInput = '';
   }
 
   let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
@@ -193,7 +193,7 @@ export const submitSpin = selection => async dispatch => {
       sort_by: 'popularity.desc',
       'vote_average.gte': minimumRating,
       page: 1,
-      with_genres: genreCode,
+      with_genres: genreInput,
       'primary_release_date.gte': dateFrom,
       'primary_release_date.lte': dateTo,
       with_original_language: languageCode
@@ -220,7 +220,7 @@ export const submitSpin = selection => async dispatch => {
       sort_by: 'popularity.desc',
       'vote_average.gte': minimumRating,
       page: randomPage,
-      with_genres: genreCode,
+      with_genres: genreInput,
       'primary_release_date.gte': dateFrom,
       'primary_release_date.lte': dateTo,
       with_original_language: languageCode
