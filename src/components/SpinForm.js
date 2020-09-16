@@ -16,9 +16,6 @@ import { languageList } from '../languageList/languageList.js';
 
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
-// import Dropdown from './Dropdown';
-// import DropdownOptions from './DropdownOptions';
-// import GenreDropDownOptionList from './GenreDropDownOptionList';
 import FormHeader from './FormHeader';
 import FieldLabel from './FieldLabel';
 
@@ -139,7 +136,7 @@ class SpinForm extends React.Component {
                   <Select
                     name={yearFromInput}
                     onChange={this.handleSemanticDropDownChange}
-                    placeholder={this.state.yearFromInput}
+                    placeholder={`${this.state.yearFromInput}`}
                     search
                     selection
                     labeled={true}
@@ -151,7 +148,7 @@ class SpinForm extends React.Component {
                   <Select
                     name={yearToInput}
                     onChange={this.handleSemanticDropDownChange}
-                    placeholder={this.state.yearToInput}
+                    placeholder={`${this.state.yearToInput}`}
                     search
                     selection
                     labeled={true}
@@ -188,7 +185,6 @@ class SpinForm extends React.Component {
                 </div>
               </div>
             </div>
-
             <button className="ui fluid large teal submit button">Spin!</button>
           </form>
         </div>
