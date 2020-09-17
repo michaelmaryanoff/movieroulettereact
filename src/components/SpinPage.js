@@ -6,9 +6,9 @@ import { resetWatchlistUpdateStatus } from '../actions';
 import SpinForm from './SpinForm';
 import LoadingCard from './LoadingCard';
 import WelcomeHeader from './WelcomeHeader';
-import SpinCard from './SpinCard';
 import Footer from './Footer';
 import FirstLoadSpinCard from './FirstLoadSpinCard';
+import MasterSpinCard from './MasterSpinCard';
 
 class SpinPage extends React.Component {
   // Node that both <LoadingCard /> and <FirstLoadSpinCard /> contain logic that will render
@@ -32,7 +32,7 @@ class SpinPage extends React.Component {
                 <div className="ten wide column">
                   <LoadingCard />
                   <FirstLoadSpinCard />
-                  {this.props.isSpinning ? null : <SpinCard />}
+                  {this.props.isSpinning ? null : <MasterSpinCard />}
                 </div>
               </div>
             </div>
