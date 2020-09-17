@@ -15,43 +15,34 @@ class MasterSpinCard extends Component {
       releaseDate: '',
       overview: '',
       voteAverage: '',
-      movieURL: ''
+      movieURL: '',
+      isSpinning: false
     };
   }
 
-  componentDidMount() {
-    if (this.props.selectedMovie) {
-      if (this.props.selectedMovie === 'NO_RESULTS') {
-        this.setState({
-          posterPath: reelLogoPlaceHolder,
-          originalTitle: 'No results found!',
-          overview:
-            'Unfortunatley, we could not find any movies that fit the selected criteria. Please spin again with a broader set of criteria.'
-        });
-      } else {
-        const {
-          poster_path,
-          id,
-          original_title,
-          release_date,
-          overview,
-          vote_average
-        } = this.props.selectedMovie;
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      const {
+        posterPath,
+        id,
+        originalTitle,
+        releaseDate,
+        overview,
+        voteAverage,
+        movieURL,
+        isSpinning
+      } = this.props.selectedMovie;
 
-        const modifiedOverview = `${overview.slice(0, 450)}...`;
-        const posterPath = `https://image.tmdb.org/t/p/original/${poster_path}`;
-        const movieURL = `https://www.themoviedb.org/movie/${id}`;
-
-        this.setState({
-          posterPath: posterPath,
-          id: id,
-          originalTitle: original_title,
-          releaseDate: release_date,
-          overview: modifiedOverview,
-          voteAverage: vote_average,
-          movieURL: movieURL
-        });
-      }
+      this.setState({
+        posterPath,
+        id,
+        originalTitle,
+        releaseDate,
+        overview,
+        voteAverage,
+        movieURL,
+        isSpinning
+      });
     }
   }
 
@@ -61,7 +52,6 @@ class MasterSpinCard extends Component {
     this.props.addToWatchlist(this.props.selectedMovie.id);
   };
 
-  renderCard() {}
   render() {
     const {
       posterPath,
@@ -72,6 +62,10 @@ class MasterSpinCard extends Component {
       voteAverage,
       movieURL
     } = this.state;
+
+    let releaseString = releaseDate ? `Released: ${releaseDate}` : '';
+    let scoreString = voteAverage ? `Average score: ${voteAverage}` : '';
+
     return (
       <div className="ui stackable grid">
         <div className="ui two column row">
@@ -84,9 +78,9 @@ class MasterSpinCard extends Component {
             <div className="ui centered fluid card" style={{ fontSize: 16 }} key={id}>
               <div className="left aligned content">
                 <div className="header">{originalTitle}</div>
-                <div className="meta">Released: {releaseDate}</div>
+                <div className="meta">{releaseString}</div>
                 <div className="description">{overview}</div>
-                <div className="extra content">Average Score: {voteAverage}</div>
+                <div className="extra content">{scoreString}</div>
               </div>
             </div>
             <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
@@ -98,9 +92,7 @@ class MasterSpinCard extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    selectedMovie: state.spin.selectedMovie
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, { addToWatchlist })(MasterSpinCard);
