@@ -115,7 +115,7 @@
   border-top: none;
   line-height: 1em;
   font-size: 1rem;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
   padding: 0.78571429rem 1.14285714rem !important;
   text-transform: none;
   font-weight: normal;
@@ -380,7 +380,7 @@ select.ui.dropdown {
   background: #FFFFFF;
   display: inline-block;
   padding: 0.78571429em 3.2em 0.78571429em 1em;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
   border: 1px solid rgba(34, 36, 38, 0.15);
   border-radius: 0.28571429rem;
@@ -698,7 +698,7 @@ select.ui.dropdown {
   opacity: 0.45;
 }
 .ui.active.search.dropdown input.search:focus + .text {
-  color: #ffffff !important;
+  color: rgba(115, 115, 115, 0.87) !important;
 }
 .ui.search.dropdown.button > span.sizer {
   display: none;
@@ -913,11 +913,11 @@ select.ui.dropdown {
 
 .ui.dropdown:not(.button) > .default.text,
 .ui.default.dropdown:not(.button) > .text {
-  color: #ffffff;
+  color: rgba(191, 191, 191, 0.87);
 }
 .ui.dropdown:not(.button) > input:focus ~ .default.text,
 .ui.default.dropdown:not(.button) > input:focus ~ .text {
-  color: #ffffff;
+  color: rgba(115, 115, 115, 0.87);
 }
 
 /*--------------------

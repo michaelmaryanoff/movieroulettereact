@@ -101,7 +101,7 @@
   display: block;
   flex: 1 1 auto;
   background: none;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
   margin: 0;
   padding: 0;
   box-shadow: none;
@@ -173,7 +173,7 @@
   max-width: auto;
   font-size: 1em;
   line-height: 1.4285em;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /*--------------
@@ -235,7 +235,7 @@
   color: rgba(0, 0, 0, 0.4);
 }
 .ui.items > .item .meta > a:not(.ui):hover {
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /*--------------

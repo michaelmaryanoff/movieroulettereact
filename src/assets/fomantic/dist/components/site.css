@@ -30,7 +30,7 @@ body {
   font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 14px;
   line-height: 1.4285em;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 
@@ -124,23 +124,23 @@ a:hover {
 /* Site */
 ::-webkit-selection {
   background-color: #CCE2FF;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 ::selection {
   background-color: #CCE2FF;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* Form */
 textarea::-webkit-selection,
 input::-webkit-selection {
   background-color: rgba(100, 100, 100, 0.4);
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 textarea::selection,
 input::selection {
   background-color: rgba(100, 100, 100, 0.4);
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* Force Simple Scrollbars */

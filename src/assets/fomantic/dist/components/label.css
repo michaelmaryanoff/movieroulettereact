@@ -578,7 +578,7 @@ a.ui.active.label:hover:before {
 .ui.basic.label {
   background: none #FFFFFF;
   border: 1px solid rgba(34, 36, 38, 0.15);
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
   padding-top: calc(0.5833em - 1px);
   padding-bottom: calc(0.5833em - 1px);

@@ -55,7 +55,7 @@
   margin: 0 0;
   padding: 1.14285714em 2em;
   background: #FFFFFF;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
   box-shadow: none;
   border-radius: 0;
   border: none;
@@ -119,7 +119,7 @@
 .ui.steps .step .description {
   font-weight: normal;
   font-size: 0.92857143em;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 .ui.steps .step > .description {
   width: 100%;
@@ -346,7 +346,7 @@
 .ui.steps a.active.step:hover {
   cursor: pointer;
   background: #DCDDDE;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* Completed */

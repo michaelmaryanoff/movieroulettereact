@@ -139,7 +139,7 @@ ol.ui.list ol li,
 .ui.list .list > .item > .content,
 .ui.list > .item > .content {
   line-height: 1.14285714em;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 .ui.list .list > .item > .image + .content,
 .ui.list .list > .item > i.icon + .content,
@@ -172,7 +172,7 @@ ol.ui.list ol li,
   margin: 0;
   font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* Description */
@@ -353,7 +353,7 @@ ol.ui.list ol li,
 .ui.list > a.item:hover > .icons,
 .ui.list .list > a.item:hover > i.icon,
 .ui.list > a.item:hover > i.icon {
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 
@@ -584,7 +584,7 @@ ul.ui.list li:before,
 ul.ui.list li:before,
 .ui.bulleted.list .list > a.item:before,
 .ui.bulleted.list > a.item:before {
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 ul.ui.list ul,
 .ui.bulleted.list .list:not(.icon) {
@@ -606,7 +606,7 @@ ul.ui.horizontal.bulleted.list li:first-child,
 }
 ul.ui.horizontal.bulleted.list li::before,
 .ui.horizontal.bulleted.list > .item::before {
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 ul.ui.horizontal.bulleted.list li:first-child::before,
 .ui.horizontal.bulleted.list > .item:first-child::before {
@@ -646,7 +646,7 @@ ol.ui.list li:before,
   counter-increment: ordered;
   content: counters(ordered, ".") " ";
   text-align: right;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
   vertical-align: middle;
   opacity: 0.8;
 }

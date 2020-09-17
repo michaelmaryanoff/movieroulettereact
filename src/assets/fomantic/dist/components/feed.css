@@ -118,7 +118,7 @@
   margin: 0;
   font-size: 1em;
   font-weight: bold;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* Summary Image */
@@ -173,7 +173,7 @@
   margin: 0.5em 0 0;
   background: none;
   padding: 0;
-  color: #ffffff;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 /* Images */
