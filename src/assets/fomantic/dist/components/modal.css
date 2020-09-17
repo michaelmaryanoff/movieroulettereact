@@ -78,7 +78,7 @@
 
 .ui.modal > .header {
   display: block;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background: #FFFFFF;
   margin: 0;
   padding: 1.25rem 1.5rem;
@@ -185,7 +185,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.modal:not(.fullscreen) {
     width: 850px;
     margin: 0 0 0 0;
@@ -205,7 +205,7 @@
 }
 
 /* Tablet and Mobile */
-@media only screen and (max-width: 766.98px) {
+@media only screen and (max-width: 991.98px) {
   .ui.modal > .header {
     padding-right: 2.25rem;
   }
@@ -474,7 +474,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.mini.modal {
     width: 340px;
     margin: 0 0 0 0;
@@ -507,7 +507,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.tiny.modal {
     width: 510px;
     margin: 0 0 0 0;
@@ -540,7 +540,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.small.modal {
     width: 680px;
     margin: 0 0 0 0;
@@ -573,7 +573,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.large.modal {
     width: 1020px;
     margin: 0 0 0 0;
@@ -606,7 +606,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.big.modal {
     width: 1190px;
     margin: 0 0 0 0;
@@ -639,7 +639,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.huge.modal {
     width: 1360px;
     margin: 0 0 0 0;
@@ -672,7 +672,7 @@
     margin: 0 0 0 0;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.massive.modal {
     width: 1530px;
     margin: 0 0 0 0;
@@ -712,7 +712,7 @@
 .ui.inverted.dimmer > .modal > .close {
   color: rgba(0, 0, 0, 0.85);
 }
-@media only screen and (max-width: 766.98px) {
+@media only screen and (max-width: 991.98px) {
   .ui.dimmer .inverted.modal > .close {
     color: #FFFFFF;
   }

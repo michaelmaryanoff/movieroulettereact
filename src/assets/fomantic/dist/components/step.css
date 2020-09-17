@@ -107,7 +107,7 @@
 
 /* Title */
 .ui.steps .step .title {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1.14285714em;
   font-weight: bold;
 }
@@ -382,7 +382,7 @@
 
 
 /* Tablet Or Below */
-@media only screen and (max-width: 766.98px) {
+@media only screen and (max-width: 991.98px) {
   .ui[class*="tablet stackable"].steps {
     display: inline-flex;
     overflow: visible;

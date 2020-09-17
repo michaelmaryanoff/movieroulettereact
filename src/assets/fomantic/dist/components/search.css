@@ -115,7 +115,7 @@
 }
 .ui.search > .results .result .title {
   margin: -0.14285714em 0 0;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 1em;
   color: rgba(0, 0, 0, 0.85);
@@ -138,7 +138,7 @@
   padding: 1em 1em;
 }
 .ui.search > .results > .message .header {
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.87);
@@ -332,7 +332,7 @@
   width: 100px;
   white-space: nowrap;
   background: transparent;
-  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   font-size: 1em;
   padding: 0.4em 1em;
   font-weight: bold;
@@ -382,7 +382,7 @@
     max-height: 18.26571429em;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.scrolling.search > .results {
     max-height: 24.35428571em;
   }
@@ -420,7 +420,7 @@
     max-height: 54.79714286em;
   }
 }
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 992px) {
   .ui.search.short > .results {
     max-height: 24.35428571em;
   }
