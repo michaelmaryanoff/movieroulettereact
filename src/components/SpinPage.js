@@ -41,7 +41,7 @@ class SpinPage extends React.Component {
   }
 
   updateSpinProps() {
-    const { isSpinning, selectedMovie } = this.props;
+    const { selectedMovie } = this.props;
 
     let cardProps = {
       posterPath: reelLogoPlaceHolder,
@@ -53,11 +53,6 @@ class SpinPage extends React.Component {
       movieURL: '',
       isSpinning: false,
       testProp: 'testprop'
-    };
-
-    const spinningProps = {
-      originalTitle: 'Spinning!',
-      overview: 'Finding you a movie to watch!'
     };
 
     const firstLoadProps = {
@@ -72,42 +67,37 @@ class SpinPage extends React.Component {
         'Unfortunatley, we could not find any movies that fit the selected criteria. Please spin again with a broader set of criteria.'
     };
 
-    if (isSpinning) {
-      cardProps.originalTitle = spinningProps.originalTitle;
-      cardProps.overview = spinningProps.overview;
+    if (!selectedMovie) {
+      cardProps.originalTitle = firstLoadProps.originalTitle;
+      cardProps.overview = firstLoadProps.overview;
+    }
+
+    if (selectedMovie === 'NO_RESULTS') {
+      cardProps.originalTitle = noResultsProps.originalTitle;
+      cardProps.overview = noResultsProps.overview;
     } else {
-      if (!selectedMovie) {
-        cardProps.originalTitle = firstLoadProps.originalTitle;
-        cardProps.overview = firstLoadProps.overview;
-      }
+      const {
+        poster_path,
+        id,
+        original_title,
+        release_date,
+        overview,
+        vote_average
+      } = this.props.selectedMovie;
 
-      if (selectedMovie) {
-        if (selectedMovie === 'NO_RESULTS') {
-          cardProps.originalTitle = noResultsProps.originalTitle;
-          cardProps.overview = noResultsProps.overview;
-        } else {
-          const {
-            poster_path,
-            id,
-            original_title,
-            release_date,
-            overview,
-            vote_average
-          } = this.props.selectedMovie;
+      const modifiedOverview = `${overview.slice(0, 450)}...`;
+      const posterPath = poster_path
+        ? `https://image.tmdb.org/t/p/original/${poster_path}`
+        : reelLogoPlaceHolder;
+      const movieURL = `https://www.themoviedb.org/movie/${id}`;
 
-          const modifiedOverview = `${overview.slice(0, 450)}...`;
-          const posterPath = `https://image.tmdb.org/t/p/original/${poster_path}`;
-          const movieURL = `https://www.themoviedb.org/movie/${id}`;
-
-          cardProps.posterPath = posterPath;
-          cardProps.id = id;
-          cardProps.originalTitle = original_title;
-          cardProps.releaseDate = release_date;
-          cardProps.overview = modifiedOverview;
-          cardProps.voteAverage = vote_average;
-          cardProps.movieURL = movieURL;
-        }
-      }
+      cardProps.posterPath = posterPath;
+      cardProps.id = id;
+      cardProps.originalTitle = original_title;
+      cardProps.releaseDate = release_date;
+      cardProps.overview = modifiedOverview;
+      cardProps.voteAverage = vote_average;
+      cardProps.movieURL = movieURL;
     }
 
     return cardProps;
