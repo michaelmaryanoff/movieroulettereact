@@ -108,8 +108,8 @@ class SpinPage extends React.Component {
       <div>
         <div className="ui container">
           <PageHeader label="Welcome to Movie Roulette" />
-          <div className="ui basic doubling segment">
-            <div className="ui center aligned centered segment">
+          <div className="ui basic doubling inverted blue segment">
+            <div className="ui center aligned centered inverted segment">
               <div className="ui two column stackable center aligned grid">
                 <div className="six wide column">
                   <SpinForm />

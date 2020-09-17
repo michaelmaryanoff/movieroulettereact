@@ -118,7 +118,7 @@
   margin: 0;
   font-size: 1em;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.87);
+  color: #ffffff;
 }
 
 /* Summary Image */
@@ -173,7 +173,7 @@
   margin: 0.5em 0 0;
   background: none;
   padding: 0;
-  color: rgba(0, 0, 0, 0.87);
+  color: #ffffff;
 }
 
 /* Images */
@@ -288,7 +288,7 @@
   -------------------*/
 
 .ui.inverted.feed > .event {
-  background: #1B1C1D;
+  background: #021022;
 }
 .ui.inverted.feed > .event > .content .date,
 .ui.inverted.feed > .event > .content .meta .like {

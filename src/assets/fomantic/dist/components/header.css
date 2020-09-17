@@ -20,10 +20,10 @@
   margin: calc(2rem - 0.1428571428571429em) 0 1rem;
   padding: 0 0;
   font-family: 'Raleway', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 1.28571429em;
   text-transform: none;
-  color: rgba(0, 0, 0, 0.87);
+  color: #ffffff;
 }
 .ui.header:first-child {
   margin-top: -0.14285714em;
@@ -328,7 +328,7 @@ h6.ui.header .sub.header {
   color: rgba(255, 255, 255, 0.8);
 }
 .ui.inverted.attached.header {
-  background: #1B1C1D;
+  background: #021022;
   box-shadow: none;
   border-color: transparent;
 }
@@ -343,13 +343,13 @@ h6.ui.header .sub.header {
 --------------------*/
 
 .ui.primary.header {
-  color: #2185D0;
+  color: #1d2e4f;
 }
 a.ui.primary.header:hover {
-  color: #1678c2;
+  color: #14233e;
 }
 .ui.primary.dividing.header {
-  border-bottom: 2px solid #2185D0;
+  border-bottom: 2px solid #1d2e4f;
 }
 .ui.inverted.primary.header.header.header {
   color: #54C8FF;
@@ -361,13 +361,13 @@ a.ui.inverted.primary.header.header.header:hover {
   border-bottom: 2px solid #54C8FF;
 }
 .ui.secondary.header {
-  color: #1B1C1D;
+  color: #021022;
 }
 a.ui.secondary.header:hover {
-  color: #27292a;
+  color: #011b3d;
 }
 .ui.secondary.dividing.header {
-  border-bottom: 2px solid #1B1C1D;
+  border-bottom: 2px solid #021022;
 }
 .ui.inverted.secondary.header.header.header {
   color: #545454;
@@ -379,13 +379,13 @@ a.ui.inverted.secondary.header.header.header:hover {
   border-bottom: 2px solid #545454;
 }
 .ui.red.header {
-  color: #DB2828;
+  color: #ff4d5a;
 }
 a.ui.red.header:hover {
-  color: #d01919;
+  color: #ff3342;
 }
 .ui.red.dividing.header {
-  border-bottom: 2px solid #DB2828;
+  border-bottom: 2px solid #ff4d5a;
 }
 .ui.inverted.red.header.header.header {
   color: #FF695E;
@@ -487,13 +487,13 @@ a.ui.inverted.teal.header.header.header:hover {
   border-bottom: 2px solid #6DFFFF;
 }
 .ui.blue.header {
-  color: #2185D0;
+  color: #1d2e4f;
 }
 a.ui.blue.header:hover {
-  color: #1678c2;
+  color: #14233e;
 }
 .ui.blue.dividing.header {
-  border-bottom: 2px solid #2185D0;
+  border-bottom: 2px solid #1d2e4f;
 }
 .ui.inverted.blue.header.header.header {
   color: #54C8FF;
@@ -595,13 +595,13 @@ a.ui.inverted.grey.header.header.header:hover {
   border-bottom: 2px solid #DCDDDE;
 }
 .ui.black.header {
-  color: #1B1C1D;
+  color: #021022;
 }
 a.ui.black.header:hover {
-  color: #27292a;
+  color: #031b3a;
 }
 .ui.black.dividing.header {
-  border-bottom: 2px solid #1B1C1D;
+  border-bottom: 2px solid #021022;
 }
 .ui.inverted.black.header.header.header {
   color: #545454;

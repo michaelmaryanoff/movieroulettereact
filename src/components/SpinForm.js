@@ -113,10 +113,10 @@ class SpinForm extends React.Component {
   render() {
     return (
       <div className="ui four column centered doubling stackable center aligned grid">
-        <div className="ui centered center aligned basic fluid segment">
-          <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
+        <div className="ui centered center aligned basic fluid inverted segment">
+          <form className="ui large inverted form error" onSubmit={event => this.handleSpin(event)}>
             <FormHeader label="Find a movie to watch!" />
-            <div className="field">
+            <div className="inverted field">
               <FieldLabel label="Language" />
               <SemanticDropdown
                 name="languageInput"
