@@ -12,6 +12,10 @@ class WatchlistCard extends React.Component {
       poster_path
     } = this.props.movie;
 
+    const rawDate = new Date(Date.parse(release_date));
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    const convertedDate = rawDate.toLocaleDateString('en-US', options);
+
     let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
 
     let imagePath = poster_path ? imageURL : reelLogoPlaceHolder;
@@ -28,7 +32,7 @@ class WatchlistCard extends React.Component {
         </div>
         <div className="content">
           <div className="header">{original_title}</div>
-          <div className="meta">Released: {release_date}</div>
+          <div className="meta">Released: {convertedDate}</div>
           <div className="description">{modifiedOverview}</div>
           <div className="extra content">Average Score:{vote_average}</div>
         </div>

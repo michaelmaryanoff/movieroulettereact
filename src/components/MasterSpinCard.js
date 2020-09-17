@@ -63,7 +63,11 @@ class MasterSpinCard extends Component {
       movieURL
     } = this.state;
 
-    let releaseString = releaseDate ? `Released: ${releaseDate}` : '';
+    const rawDate = new Date(Date.parse(releaseDate));
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+    const convertedDate = rawDate.toLocaleDateString('en-US', options);
+
+    let releaseString = releaseDate ? `Released: ${convertedDate}` : '';
     let scoreString = voteAverage ? `Average score: ${voteAverage}` : '';
 
     return (
@@ -74,16 +78,19 @@ class MasterSpinCard extends Component {
               <img src={posterPath} alt={id} />
             </a>
           </div>
+
           <div className="ten wide column">
-            <div className="ui centered fluid card" style={{ fontSize: 16 }} key={id}>
-              <div className="left aligned content">
-                <div className="header">{originalTitle}</div>
-                <div className="meta">{releaseString}</div>
-                <div className="description">{overview}</div>
-                <div className="extra content">{scoreString}</div>
+            <div className="ui segment">
+              <div className="ui centered fluid card" style={{ fontSize: 16 }} key={id}>
+                <div className="left aligned content">
+                  <div className="header">{originalTitle}</div>
+                  <div className="meta">{releaseString}</div>
+                  <div className="description">{overview}</div>
+                  <div className="extra content">{scoreString}</div>
+                </div>
               </div>
+              <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
             </div>
-            <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
           </div>
         </div>
       </div>
