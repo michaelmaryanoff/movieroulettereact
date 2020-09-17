@@ -5,7 +5,7 @@ import { resetWatchlistUpdateStatus } from '../actions';
 
 import SpinForm from './SpinForm';
 import LoadingCard from './LoadingCard';
-import WelcomeHeader from './WelcomeHeader';
+import PageHeader from './PageHeader';
 import Footer from './Footer';
 import MasterSpinCard from './MasterSpinCard';
 
@@ -107,7 +107,7 @@ class SpinPage extends React.Component {
     return (
       <div>
         <div className="ui container">
-          <WelcomeHeader />
+          <PageHeader label="Welcome to Movie Roulette" />
           <div className="ui basic doubling segment">
             <div className="ui center aligned centered segment">
               <div className="ui two column stackable center aligned grid">

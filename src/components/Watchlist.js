@@ -7,6 +7,7 @@ import { getWatchList, updatingWatchListCompleted } from '../actions';
 import WatchlistCards from './WatchlistCards';
 import WatchlistLoginError from './WatchlistLoginError';
 import Footer from './Footer';
+import PageHeader from './PageHeader';
 
 class Watchlist extends React.Component {
   // This will display the watchlist of our logged in user.
@@ -21,6 +22,7 @@ class Watchlist extends React.Component {
     return (
       <div className="ui container">
         <div className="ui basic segment">
+          <PageHeader label="Watchlist" />
           {this.props.isLoggedIn ? <WatchlistCards /> : <WatchlistLoginError />}
         </div>
         <Footer />
