@@ -16,7 +16,7 @@ const LoadingCard = props => {
             </div>
           </div>
           <div className="ten wide column">
-            <div className="ui centered fluid card" style={{ fontSize: 16 }}>
+            <div className="ui centered fluid inverted card" style={{ fontSize: 16 }}>
               <div className="left aligned content">
                 <div className="header">Spinning!</div>
                 <div className="description">Finding you a movie to watch!</div>

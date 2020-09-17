@@ -80,8 +80,8 @@ class MasterSpinCard extends Component {
           </div>
 
           <div className="ten wide column">
-            <div className="ui segment">
-              <div className="ui centered fluid card" style={{ fontSize: 16 }} key={id}>
+            <div className="ui inverted segment">
+              <div className="ui centered fluid inverted card" style={{ fontSize: 16 }} key={id}>
                 <div className="left aligned content">
                   <div className="header">{originalTitle}</div>
                   <div className="meta">{releaseString}</div>

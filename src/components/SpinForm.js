@@ -185,7 +185,7 @@ class SpinForm extends React.Component {
                 </div>
               </div>
             </div>
-            <button className="ui fluid large teal submit button">Spin!</button>
+            <button className="ui fluid large red submit button">Spin!</button>
           </form>
         </div>
       </div>

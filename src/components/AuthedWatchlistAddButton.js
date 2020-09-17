@@ -16,7 +16,7 @@ class AuthedWatchlistAddButton extends React.Component {
     let { isWatchListUpdated } = this.props;
     let buttonClassName = isWatchListUpdated
       ? 'ui fluid large inactive bottom attached button'
-      : 'ui fluid large teal bottom attached submit button';
+      : 'ui fluid large red bottom attached submit button';
     let buttonLabel = isWatchListUpdated ? 'Added to Watchlist!' : 'Add to Watchlist';
     let isButtonDisabled = isWatchListUpdated ? true : false;
 

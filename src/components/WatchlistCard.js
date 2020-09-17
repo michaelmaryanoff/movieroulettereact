@@ -24,7 +24,7 @@ class WatchlistCard extends React.Component {
     const movieURL = `https://www.themoviedb.org/movie/${id}`;
 
     return (
-      <div className="ui centered card" key={`${id}`}>
+      <div className="ui centered inverted card" key={`${id}`}>
         <div className="ui image">
           <a href={movieURL}>
             <img src={imagePath} alt={id} />
