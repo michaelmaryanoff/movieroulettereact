@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import { resetWatchlistUpdateStatus } from '../actions';
@@ -105,7 +105,7 @@ class SpinPage extends React.Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <div className="ui container">
           <PageHeader label="Welcome to Movie Roulette" />
           <div className="ui basic doubling inverted blue segment">
@@ -125,7 +125,7 @@ class SpinPage extends React.Component {
           </div>
         </div>
         <Footer />
-      </div>
+      </Fragment>
     );
   }
 }

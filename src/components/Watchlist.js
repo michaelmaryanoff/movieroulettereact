@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -22,13 +22,15 @@ class Watchlist extends React.Component {
   }
   render() {
     return (
-      <div className="ui container">
-        <div className="ui basic segment">
-          <PageHeader label="Watchlist" />
-          {this.props.isLoggedIn ? <WatchlistCards /> : <WatchlistLoginError />}
+      <Fragment>
+        <div className="ui container">
+          <div className="ui basic segment">
+            <PageHeader label="Watchlist" />
+            {this.props.isLoggedIn ? <WatchlistCards /> : <WatchlistLoginError />}
+          </div>
         </div>
         <Footer />
-      </div>
+      </Fragment>
     );
   }
 }
