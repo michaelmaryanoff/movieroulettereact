@@ -155,13 +155,7 @@ export const clearAuthError = () => dispatch => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  const { minimumRating, yearFrom, yearTo, languageInput } = selection;
-
-  let genreInput = selection.genreInput;
-
-  if (genreInput === 'selectGenres') {
-    genreInput = '';
-  }
+  const { minimumRating, yearFrom, yearTo, languageInput, genreInput } = selection;
 
   let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
   let highYear = yearFrom >= yearTo ? yearFrom : yearTo;
@@ -178,6 +172,31 @@ export const submitSpin = selection => async dispatch => {
 
   // eslint-disable-next-line
   const incorrectDateTo = '1955';
+
+  let dummyResponse = {
+    params: {
+      api_key: apiKey,
+      include_adult: false,
+      language: 'en-US',
+      sort_by: 'popularity.desc',
+      'vote_average.gte': minimumRating,
+      page: 1,
+      with_genres: genreInput,
+      'primary_release_date.gte': dateFrom,
+      'primary_release_date.lte': dateTo,
+      with_original_language: languageInput
+    }
+  };
+
+  console.table(dummyResponse);
+
+  dummyResponse = {
+    ...dummyResponse,
+    params: { ...dummyResponse.params, extraParam: 'extraParam' }
+  };
+
+  // console.log('addedResponse: ', addedResponse);
+  console.table(dummyResponse);
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
     params: {
