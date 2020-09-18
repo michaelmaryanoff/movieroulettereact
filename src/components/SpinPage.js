@@ -10,6 +10,9 @@ import Footer from './Footer';
 import MasterSpinCard from './MasterSpinCard';
 
 import reelLogoPlaceHolder from '../images/ReelLogoPlaceholder.jpg';
+import PageDescription from './PageDescription';
+
+import { Link } from 'react-router-dom';
 
 class SpinPage extends React.Component {
   constructor(props) {
@@ -27,6 +30,17 @@ class SpinPage extends React.Component {
       }
     };
   }
+
+  pageDescriptionText = () => {
+    return (
+      <div>
+        Looking for something interesting to watch? Just enter your criteria (or don’t, it’s
+        completely optional) and hit “spin” to find a random movie! You can also optionally
+        <Link to="/login"> log in</Link> to your <a href="https://www.themoviedb.org/">TMDb</a>{' '}
+        account and save a movie to your watchlist.
+      </div>
+    );
+  };
 
   componentDidMount() {
     this.props.resetWatchlistUpdateStatus();
@@ -108,6 +122,7 @@ class SpinPage extends React.Component {
       <Fragment>
         <div className="ui container">
           <PageHeader label="Welcome to Movie Roulette" />
+          <PageDescription content={this.pageDescriptionText()} />
           <div className="ui basic doubling inverted blue segment">
             <div className="ui center aligned centered inverted segment">
               <div className="ui two column stackable center aligned grid">
