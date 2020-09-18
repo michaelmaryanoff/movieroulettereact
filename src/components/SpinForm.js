@@ -26,14 +26,14 @@ class SpinForm extends React.Component {
     const ratingsArray = generateRatingArray();
     const languageArray = this.createLanguageList();
     const reversedYearArray = generateReversedYearArray();
-    const genreArray = this.populateGenreArray();
+    // let genreArray = this.populateGenreArray();
 
     this.state = {
       // These arrays are used to populate dropdown menu
       yearArray,
       reversedYearArray,
       ratingsArray,
-      genreArray,
+      genreArray: [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }],
 
       // A default "yearFrom" set to 1955, since people are probably not going
       // to looking for a movie much earlier than that.
@@ -63,6 +63,12 @@ class SpinForm extends React.Component {
     this.props.getGenreCodes();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.populateGenreArray();
+    }
+  }
+
   createLanguageList = () => {
     const list = languageList.map(object => {
       return object;
@@ -71,12 +77,17 @@ class SpinForm extends React.Component {
   };
 
   populateGenreArray = () => {
-    let genreArrayToMap = this.props.genreCodes
-      ? this.props.genreCodes
-      : [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }];
-    return genreArrayToMap.map(({ id, name }) => {
-      return { key: id, value: id, text: name };
-    });
+    if (this.props.genreCodes) {
+      this.setState({
+        genreArray: this.props.genreCodes.map(({ id, name }) => {
+          return { key: id, value: id, text: name };
+        })
+      });
+    } else {
+      this.setState({
+        genreArray: [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }]
+      });
+    }
   };
 
   // Handle the spin
