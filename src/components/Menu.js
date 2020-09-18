@@ -5,10 +5,13 @@ import { withRouter } from 'react-router';
 import { signOut } from '../actions';
 import MenuContainer from './MenuContainer';
 
+import LoadingBar from 'react-redux-loading-bar';
+
 class Menu extends React.Component {
   render() {
     return (
       <div className="ui secondary pointing inverted menu">
+        <LoadingBar />
         <div className="ui container">
           <MenuContainer isLoggedIn={this.props.isLoggedIn} />
         </div>

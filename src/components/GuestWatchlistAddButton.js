@@ -1,9 +1,13 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 const GuestWatchlistAddButton = () => {
   return (
-    <button disabled={true} className="ui fluid button">
-      Log in to add to Watchlist
+    <button className="ui fluid red basic button">
+      <Link style={{ color: 'white' }} to="login">
+        Log in to add to Watchlist
+      </Link>
     </button>
   );
 };
