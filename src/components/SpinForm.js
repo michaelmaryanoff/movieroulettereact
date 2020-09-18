@@ -176,7 +176,7 @@ class SpinForm extends React.Component {
                   <Select
                     name={genreInput}
                     onChange={this.handleSemanticDropDownChange}
-                    placeholder="Adventure"
+                    placeholder="Select Genre"
                     search
                     selection
                     labeled={true}

@@ -128,16 +128,10 @@ export const getGenreCodes = () => async dispatch => {
     params: { api_key: apiKey }
   });
 
-  const genreArrayForDropdown = data.genres;
-  const selectGenresObject = { id: 'selectGenres', name: 'Select Genre' };
-
-  if (!genreArrayForDropdown.includes(selectGenresObject)) {
-    genreArrayForDropdown.unshift(selectGenresObject);
-  }
   dispatch(fetchGenresCompleted());
 
   dispatch({ type: GET_GENRE_CODES, payload: data.genres });
-  dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: genreArrayForDropdown });
+  dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: data.genres });
 };
 
 export const signOut = params => async (dispatch, getState) => {

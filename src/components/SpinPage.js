@@ -84,6 +84,7 @@ class SpinPage extends React.Component {
     if (!selectedMovie) {
       cardProps.originalTitle = firstLoadProps.originalTitle;
       cardProps.overview = firstLoadProps.overview;
+      return cardProps;
     }
 
     if (selectedMovie === 'NO_RESULTS') {
