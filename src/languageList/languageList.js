@@ -5,6 +5,71 @@ export const languageList = [
     text: 'English'
   },
   {
+    key: 'es',
+    value: 'es',
+    text: 'Spanish'
+  },
+  {
+    key: 'pt',
+    value: 'pt',
+    text: 'Portuguese'
+  },
+  {
+    key: 'zh',
+    value: 'zh',
+    text: 'Chinese'
+  },
+  {
+    key: 'fr',
+    value: 'fr',
+    text: 'French'
+  },
+  {
+    key: 'it',
+    value: 'it',
+    text: 'Italian'
+  },
+  {
+    key: 'de',
+    value: 'de',
+    text: 'German'
+  },
+  {
+    key: 'nl',
+    value: 'nl',
+    text: 'Dutch'
+  },
+  {
+    key: 'sv',
+    value: 'sv',
+    text: 'Swedish'
+  },
+  {
+    key: 'ru',
+    value: 'ru',
+    text: 'Russian'
+  },
+  {
+    key: 'hi',
+    value: 'hi',
+    text: 'Hindi'
+  },
+  {
+    key: 'ja',
+    value: 'ja',
+    text: 'Japanese'
+  },
+  {
+    key: 'ko',
+    value: 'ko',
+    text: 'Korean'
+  },
+  {
+    key: '-',
+    value: 'en',
+    text: '------'
+  },
+  {
     key: 'aa',
     value: 'aa',
     text: 'Afar'
@@ -19,7 +84,11 @@ export const languageList = [
     value: 'ae',
     text: 'Avestan'
   },
-
+  {
+    key: 'af',
+    value: 'af',
+    text: 'Afrikaans'
+  },
   {
     key: 'ak',
     value: 'ak',
@@ -65,7 +134,11 @@ export const languageList = [
     value: 'ba',
     text: 'Bashkir'
   },
-
+  {
+    key: 'be',
+    value: 'be',
+    text: 'Belarusian'
+  },
   {
     key: 'bg',
     value: 'bg',
@@ -94,7 +167,7 @@ export const languageList = [
   {
     key: 'bo',
     value: 'bo',
-    text: 'Tibetan Standard, Tibetan, Central'
+    text: 'Tibetan'
   },
   {
     key: 'br',
@@ -137,11 +210,6 @@ export const languageList = [
     text: 'Czech'
   },
   {
-    key: 'cu',
-    value: 'cu',
-    text: 'Old Church Slavonic, Church Slavonic, Old Bulgarian'
-  },
-  {
     key: 'cv',
     value: 'cv',
     text: 'Chuvash'
@@ -156,15 +224,11 @@ export const languageList = [
     value: 'da',
     text: 'Danish'
   },
-  {
-    key: 'de',
-    value: 'de',
-    text: 'German'
-  },
+
   {
     key: 'dv',
     value: 'dv',
-    text: 'Divehi, Dhivehi, Maldivian'
+    text: 'Divehi, Maldivian'
   },
   {
     key: 'dz',
@@ -183,10 +247,11 @@ export const languageList = [
   },
 
   {
-    key: 'es',
-    value: 'es',
-    text: 'Spanish'
+    key: 'eo',
+    value: 'eo',
+    text: 'Esperanto'
   },
+
   {
     key: 'et',
     value: 'et',
@@ -205,7 +270,7 @@ export const languageList = [
   {
     key: 'ff',
     value: 'ff',
-    text: 'Fula, Fulah, Pulaar, Pular'
+    text: 'Fula'
   },
   {
     key: 'fi',
@@ -222,11 +287,7 @@ export const languageList = [
     value: 'fo',
     text: 'Faroese'
   },
-  {
-    key: 'fr',
-    value: 'fr',
-    text: 'French'
-  },
+
   {
     key: 'fy',
     value: 'fy',
@@ -240,7 +301,7 @@ export const languageList = [
   {
     key: 'gd',
     value: 'gd',
-    text: 'Scottish Gaelic, Gaelic'
+    text: 'Gaelic'
   },
   {
     key: 'gl',
@@ -272,11 +333,7 @@ export const languageList = [
     value: 'he',
     text: 'Hebrew (modern)'
   },
-  {
-    key: 'hi',
-    value: 'hi',
-    text: 'Hindi'
-  },
+
   {
     key: 'ho',
     value: 'ho',
@@ -287,7 +344,11 @@ export const languageList = [
     value: 'hr',
     text: 'Croatian'
   },
-
+  {
+    key: 'ht',
+    value: 'ht',
+    text: 'Haitian Creole'
+  },
   {
     key: 'hu',
     value: 'hu',
@@ -343,26 +404,13 @@ export const languageList = [
     value: 'is',
     text: 'Icelandic'
   },
-  {
-    key: 'it',
-    value: 'it',
-    text: 'Italian'
-  },
-  {
-    key: 'ht',
-    value: 'ht',
-    text: 'Haitian, Haitian Creole'
-  },
+
   {
     key: 'iu',
     value: 'iu',
     text: 'Inuktitut'
   },
-  {
-    key: 'ja',
-    value: 'ja',
-    text: 'Japanese'
-  },
+
   {
     key: 'jv',
     value: 'jv',
@@ -408,11 +456,7 @@ export const languageList = [
     value: 'kn',
     text: 'Kannada'
   },
-  {
-    key: 'ko',
-    value: 'ko',
-    text: 'Korean'
-  },
+
   {
     key: 'kr',
     value: 'kr',
@@ -457,11 +501,6 @@ export const languageList = [
     key: 'lg',
     value: 'lg',
     text: 'Ganda'
-  },
-  {
-    key: 'li',
-    value: 'li',
-    text: 'Limburgish, Limburgan, Limburger'
   },
   {
     key: 'ln',
@@ -563,11 +602,7 @@ export const languageList = [
     value: 'ng',
     text: 'Ndonga'
   },
-  {
-    key: 'nl',
-    value: 'nl',
-    text: 'Dutch'
-  },
+
   {
     key: 'nn',
     value: 'nn',
@@ -638,11 +673,7 @@ export const languageList = [
     value: 'ps',
     text: 'Pashto, Pushto'
   },
-  {
-    key: 'pt',
-    value: 'pt',
-    text: 'Portuguese'
-  },
+
   {
     key: 'qu',
     value: 'qu',
@@ -663,11 +694,7 @@ export const languageList = [
     value: 'ro',
     text: 'Romanian'
   },
-  {
-    key: 'ru',
-    value: 'ru',
-    text: 'Russian'
-  },
+
   {
     key: 'rw',
     value: 'rw',
@@ -729,11 +756,6 @@ export const languageList = [
     text: 'Somali'
   },
   {
-    key: 'be',
-    value: 'be',
-    text: 'Belarusian'
-  },
-  {
     key: 'sq',
     value: 'sq',
     text: 'Albanian'
@@ -758,11 +780,7 @@ export const languageList = [
     value: 'su',
     text: 'Sundanese'
   },
-  {
-    key: 'sv',
-    value: 'sv',
-    text: 'Swedish'
-  },
+
   {
     key: 'sw',
     value: 'sw',
@@ -903,24 +921,10 @@ export const languageList = [
     value: 'za',
     text: 'Zhuang, Chuang'
   },
-  {
-    key: 'zh',
-    value: 'zh',
-    text: 'Chinese'
-  },
+
   {
     key: 'zu',
     value: 'zu',
     text: 'Zulu'
-  },
-  {
-    key: 'eo',
-    value: 'eo',
-    text: 'Esperanto'
-  },
-  {
-    key: 'af',
-    value: 'af',
-    text: 'Afrikaans'
   }
 ];

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const WatchlistLoginError = () => {
   return (
-    <div className="ui center aligned basic segment">
+    <div className="ui center aligned basic inverted segment">
       <h3>
         You must be logged in to access this page.
         <p />

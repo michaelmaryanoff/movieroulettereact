@@ -70,42 +70,44 @@ class LoginForm extends React.Component {
 
   renderLoginForm() {
     return (
-      <div className="ui basic segment">
+      <div className="ui basic inverted segment">
         <LoginHeader />
         <form className="ui large form error" onSubmit={this.handleSubmit}>
-          <div className="ui stacked segment">
-            <TextInputField
-              name="username"
-              type="text"
-              placeholder="Username"
-              icon="user"
-              handleUserInput={this.handleUserInput}
-              value={this.state.username}
-            >
-              <TextInputFieldError
-                message="Please enter a username"
-                field={this.state.username}
-                hasSubmitted={this.state.hasSubmitted}
-              />
-            </TextInputField>
+          <div className="ui inverted blue segment">
+            <div className="ui stacked inverted segment">
+              <TextInputField
+                name="username"
+                type="text"
+                placeholder="Username"
+                icon="user"
+                handleUserInput={this.handleUserInput}
+                value={this.state.username}
+              >
+                <TextInputFieldError
+                  message="Please enter a username"
+                  field={this.state.username}
+                  hasSubmitted={this.state.hasSubmitted}
+                />
+              </TextInputField>
 
-            <TextInputField
-              name="password"
-              placeholder="Password"
-              type="password"
-              handleUserInput={this.handleUserInput}
-              value={this.state.password}
-              icon="lock"
-            >
-              <TextInputFieldError
-                message="Please enter a password"
-                field={this.state.password}
-                hasSubmitted={this.state.hasSubmitted}
-              />
-            </TextInputField>
-            <button className="ui fluid large teal submit button">Login</button>
-            <LoginError authError={this.props.authError} />
-            <LoginFooter />
+              <TextInputField
+                name="password"
+                placeholder="Password"
+                type="password"
+                handleUserInput={this.handleUserInput}
+                value={this.state.password}
+                icon="lock"
+              >
+                <TextInputFieldError
+                  message="Please enter a password"
+                  field={this.state.password}
+                  hasSubmitted={this.state.hasSubmitted}
+                />
+              </TextInputField>
+              <button className="ui fluid large red submit button">Login</button>
+              <LoginError authError={this.props.authError} />
+              <LoginFooter />
+            </div>
           </div>
         </form>
       </div>

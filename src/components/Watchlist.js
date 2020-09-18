@@ -14,7 +14,9 @@ class Watchlist extends React.Component {
   // If our user is not logged in, it will display an error message
   // (hence the conditional render below)
   componentDidMount() {
-    this.props.getWatchList();
+    if (this.props.isLoggedIn) {
+      this.props.getWatchList();
+    }
 
     this.props.updatingWatchListCompleted();
   }

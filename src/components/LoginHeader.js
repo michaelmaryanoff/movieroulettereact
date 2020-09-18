@@ -3,7 +3,7 @@ import reelLogo from '../../src/images/reel-logo.png';
 
 const LoginHeader = () => {
   return (
-    <h2 className="ui teal image header">
+    <h2 className="ui inverted image header">
       <img src={reelLogo} className="image" alt="logo" />
       <div className="content">Log in to your TMDB Account</div>
     </h2>
