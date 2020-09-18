@@ -11,7 +11,7 @@ const LoadingCard = props => {
             <div className="dimmer">
               <div className="ui medium image">
                 <div className="ui massive active red loader"></div>
-                <img src={reelLogoPlaceHolder} alt="Placeholder" />
+                <img src={reelLogoPlaceHolder} alt="Loading" />
               </div>
             </div>
           </div>
