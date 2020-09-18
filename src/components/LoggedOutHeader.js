@@ -1,26 +1,19 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 
-const LoggedOutHeader = () => {
+import { withRouter } from 'react-router';
+
+import MenuItem from './MenuItem';
+
+const LoggedOutHeader = props => {
   return (
     <Fragment>
-      <div>
-        <Link to="/login" className="header item">
-          LOG IN TO SEE WATCHLIST
-        </Link>
-      </div>
-      <div>
-        <Link to="/spin" className="header item">
-          SPIN
-        </Link>
-      </div>
+      <MenuItem route="/login" label="LOG IN TO SEE WATCHLIST" pathName={props.location.pathname} />
+      <MenuItem route="/spin" label="SPIN" pathName={props.location.pathname} />
       <div className="right menu">
-        <Link to="/login" className="header item">
-          LOG IN
-        </Link>
+        <MenuItem route="/login" label="LOG IN" pathName={props.location.pathname} />
       </div>
     </Fragment>
   );
 };
 
-export default LoggedOutHeader;
+export default withRouter(LoggedOutHeader);

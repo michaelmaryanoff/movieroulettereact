@@ -9,7 +9,7 @@ import LoggedOutHeader from './LoggedOutHeader';
 
 class Menu extends React.Component {
   renderHeader() {
-    // Header willr ender conditional depending on user's auth status
+    // Header will render conditional depending on user's auth status
     return <Header>{this.props.isLoggedIn ? <LoggedInHeader /> : <LoggedOutHeader />}</Header>;
   }
 
