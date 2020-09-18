@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const LoginFooter = () => {
+const LoginFormFooter = () => {
   return (
     <div style={{ textAlign: 'center' }} className="ui blue message">
       Don't have an account? {<Link to="/spin">Click here to continue as guest</Link>}
@@ -11,4 +11,4 @@ const LoginFooter = () => {
   );
 };
 
-export default LoginFooter;
+export default LoginFormFooter;
