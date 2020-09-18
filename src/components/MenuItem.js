@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 
 const MenuItem = props => {
   let activeClass = props.pathName === props.route ? 'active' : '';
+  
   if (props.pathName === '/' && props.label === 'SPIN') {
     activeClass = 'active';
   }
