@@ -155,6 +155,14 @@ export const clearAuthError = () => dispatch => {
 };
 
 export const submitSpin = selection => async dispatch => {
+  //! This is a purposely incorrect paramater that will give a blank response
+  //! For testing placeholder card only
+  // eslint-disable-next-line
+  const incorrectDateFrom = '2000';
+
+  // eslint-disable-next-line
+  const incorrectDateTo = '1955';
+
   const { minimumRating, yearFrom, yearTo, languageInput, genreInput } = selection;
 
   let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
@@ -165,52 +173,21 @@ export const submitSpin = selection => async dispatch => {
   // eslint-disable-next-line
   let dateTo = `${highYear}-12-31`;
 
-  //! This is a purposely incorrect paramater that will give a blank response
-  //! For testing placeholder card only
-  // eslint-disable-next-line
-  const incorrectDateFrom = '2000';
-
-  // eslint-disable-next-line
-  const incorrectDateTo = '1955';
-
-  let dummyResponse = {
-    params: {
-      api_key: apiKey,
-      include_adult: false,
-      language: 'en-US',
-      sort_by: 'popularity.desc',
-      'vote_average.gte': minimumRating,
-      page: 1,
-      with_genres: genreInput,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo,
-      with_original_language: languageInput
-    }
+  const paramsObject = {
+    api_key: apiKey,
+    include_adult: false,
+    language: 'en-US',
+    sort_by: 'popularity.desc',
+    'vote_average.gte': minimumRating,
+    page: 1,
+    with_genres: genreInput,
+    'primary_release_date.gte': dateFrom,
+    'primary_release_date.lte': dateTo,
+    with_original_language: languageInput
   };
-
-  console.table(dummyResponse);
-
-  dummyResponse = {
-    ...dummyResponse,
-    params: { ...dummyResponse.params, extraParam: 'extraParam' }
-  };
-
-  // console.log('addedResponse: ', addedResponse);
-  console.table(dummyResponse);
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
-    params: {
-      api_key: apiKey,
-      include_adult: false,
-      language: 'en-US',
-      sort_by: 'popularity.desc',
-      'vote_average.gte': minimumRating,
-      page: 1,
-      with_genres: genreInput,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo,
-      with_original_language: languageInput
-    }
+    params: paramsObject
   });
 
   let totalPages = pageResponse.data.total_pages;
@@ -225,20 +202,12 @@ export const submitSpin = selection => async dispatch => {
 
   let randomPage = Math.floor(Math.random() * pageRange) + 1;
 
+  const individualMovieParams = { ...paramsObject, page: randomPage };
+
   const movieResponse = await tmdbClient.get('/discover/movie', {
-    params: {
-      api_key: apiKey,
-      include_adult: false,
-      language: 'en-US',
-      sort_by: 'popularity.desc',
-      'vote_average.gte': minimumRating,
-      page: randomPage,
-      with_genres: genreInput,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo,
-      with_original_language: languageInput
-    }
+    params: individualMovieParams
   });
+
   let { length } = movieResponse.data.results;
 
   if (length === 0) {
