@@ -155,14 +155,6 @@ export const clearAuthError = () => dispatch => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  //! This is a purposely incorrect paramater that will give a blank response
-  //! For testing placeholder card only
-  // eslint-disable-next-line
-  const incorrectDateFrom = '2000';
-
-  // eslint-disable-next-line
-  const incorrectDateTo = '1955';
-
   const { minimumRating, yearFrom, yearTo, languageInput, genreInput } = selection;
 
   let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
@@ -184,6 +176,16 @@ export const submitSpin = selection => async dispatch => {
     'primary_release_date.gte': dateFrom,
     'primary_release_date.lte': dateTo,
     with_original_language: languageInput
+  };
+
+  //! This object is only used for testing purposes, it purposely formats
+  //! An incorrect response. Used for testing situations where no
+  //! results are returned. It must replace individualMovieParams
+  //! and paramsObject in the two get requests below
+  const testParamsObject = {
+    ...paramsObject,
+    'primary_release_date.gte': '2000',
+    'primary_release_date.lte': '1955'
   };
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
