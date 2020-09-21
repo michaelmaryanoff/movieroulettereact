@@ -3,19 +3,20 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import { signOut } from '../actions';
-import Header from './Header';
-import LoggedInHeader from './LoggedInHeader';
-import LoggedOutHeader from './LoggedOutHeader';
+import MenuContainer from './MenuContainer';
+
+import LoadingBar from 'react-redux-loading-bar';
 
 class Menu extends React.Component {
-  renderHeader() {
-    // Header willr ender conditional depending on user's auth status
-    return <Header>{this.props.isLoggedIn ? <LoggedInHeader /> : <LoggedOutHeader />}</Header>;
-  }
-
   render() {
-    // We are not going to render our header on the login page, hence the logic check.
-    return <div>{this.props.location.pathname === '/login' ? null : this.renderHeader()}</div>;
+    return (
+      <div className="ui secondary pointing inverted menu">
+        <LoadingBar />
+        <div className="ui container">
+          <MenuContainer isLoggedIn={this.props.isLoggedIn} />
+        </div>
+      </div>
+    );
   }
 }
 

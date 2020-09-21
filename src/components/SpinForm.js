@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { generateYearArray, generateRatingArray } from '../utils';
+import { generateYearArray, generateRatingArray, generateReversedYearArray } from '../utils';
+
+import { Dropdown as SemanticDropdown, Select } from 'semantic-ui-react';
 
 import {
   getGenreCodes,
@@ -10,44 +12,45 @@ import {
   resetWatchlistUpdateStatus
 } from '../actions';
 
+import { languageList } from '../languageList/languageList.js';
+
 import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
 
-import Dropdown from './Dropdown';
-import DropdownOptions from './DropdownOptions';
-import GenreDropDownOptionList from './GenreDropDownOptionList';
+import FormHeader from './FormHeader';
+import FieldLabel from './FieldLabel';
+
 class SpinForm extends React.Component {
   constructor(props) {
     super(props);
     const yearArray = generateYearArray();
     const ratingsArray = generateRatingArray();
+    const languageArray = this.createLanguageList();
+    const reversedYearArray = generateReversedYearArray();
+    // let genreArray = this.populateGenreArray();
 
     this.state = {
       // These arrays are used to populate dropdown menu
-      // The genre dropdown is populated using a custom component, due to its async nature
       yearArray,
+      reversedYearArray,
       ratingsArray,
+      genreArray: [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }],
 
       // A default "yearFrom" set to 1955, since people are probably not going
       // to looking for a movie much earlier than that.
       // This will be used to to make the dropdown a controlled component.
-      yearFrom: yearArray[35].value,
+      yearFromInput: yearArray[35].value,
 
       // A default "yearTo", set at the current year
       // This will be used to to make the dropdown a controlled component.
-      yearTo: yearArray[yearArray.length - 1].value,
+      yearToInput: yearArray[yearArray.length - 1].value,
 
-      minimumRating: 0,
-
-      // This is used for making a minimum rating a controlled component
-      minimumRatingDisplay: '10%',
-
-      // The title of the currently selected genre
-      genreName: '',
+      minimumRatingInput: 0,
 
       // The code of the currently selected genre (used for our network request)
-      genreCode: '',
+      genreInput: '',
+      languageInput: '',
 
-      testValue: 'testValue'
+      languageArray
     };
   }
 
@@ -60,8 +63,34 @@ class SpinForm extends React.Component {
     this.props.getGenreCodes();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.populateGenreArray();
+    }
+  }
+
+  createLanguageList = () => {
+    const list = languageList.map(object => {
+      return object;
+    });
+    return list;
+  };
+
+  populateGenreArray = () => {
+    if (this.props.genreCodes) {
+      this.setState({
+        genreArray: this.props.genreCodes.map(({ id, name }) => {
+          return { key: id, value: id, text: name };
+        })
+      });
+    } else {
+      this.setState({
+        genreArray: [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }]
+      });
+    }
+  };
+
   // Handle the spin
-  // Some of these will use actions
   handleSpin = event => {
     event.preventDefault();
 
@@ -69,98 +98,109 @@ class SpinForm extends React.Component {
     this.props.resetWatchlistUpdateStatus();
 
     this.setState({ watchListIsUpdated: false });
-    let { yearFrom, yearTo, minimumRating, genreCode } = this.state;
+    let {
+      yearFromInput: yearFrom,
+      yearToInput: yearTo,
+      minimumRatingInput: minimumRating,
+      genreInput,
+      languageInput
+    } = this.state;
 
     let submissionObject = {
-      yearFrom: yearFrom,
-      yearTo: yearTo,
-      minimumRating: minimumRating,
-      genreCode: genreCode
+      yearFrom,
+      yearTo,
+      minimumRating,
+      genreInput,
+      languageInput
     };
 
     this.props.submitSpin(submissionObject).then(this.props.spinningCompleted);
   };
 
-  // Will update component state based on user input
-  handleUserInput = (event, inputType, id) => {
-    // This switch is used to control our components
-    switch (inputType) {
-      case yearFromInput:
-        return this.setState({ yearFrom: event });
-      case yearToInput:
-        return this.setState({ yearTo: event });
-      case minimumRatingInput:
-        return this.setState({ minimumRatingDisplay: event, minimumRating: id });
-      case genreInput:
-        return this.setState({ genreName: event, genreCode: id });
-      default:
-        return;
-    }
+  handleSemanticDropDownChange = (event, { name, value }) => {
+    this.setState({ [name]: value });
   };
 
-  renderSpinForm() {
-    // Note that our genre Dropdown is populated with a custom GenreDropDownOptionList component.
-    // It depends on an async call, so the process of populating it is very different from the other components.
-    return (
-      <form className="ui large form error" onSubmit={event => this.handleSpin(event)}>
-        <h2 className="ui teal image header">
-          <div className="content">Find a movie to watch tonight!</div>
-        </h2>
-        <div className="fields">
-          <Dropdown
-            inputtype={yearFromInput}
-            labeltext="From"
-            value={this.state.yearFrom}
-            onChange={(event, id) => {
-              this.handleUserInput(event, yearFromInput, id);
-            }}
-          >
-            <DropdownOptions optiondata={this.state.yearArray} />
-          </Dropdown>
-          <Dropdown
-            inputtype={yearToInput}
-            labeltext="To"
-            value={this.state.yearTo}
-            onChange={(event, id) => {
-              this.handleUserInput(event, yearToInput, id);
-            }}
-          >
-            <DropdownOptions optiondata={this.state.yearArray} />
-          </Dropdown>
-          <Dropdown
-            inputtype={minimumRatingInput}
-            labeltext="Minimum Rating"
-            value={this.state.minimumRatingDisplay}
-            onChange={(event, id) => {
-              this.handleUserInput(event, minimumRatingInput, id);
-            }}
-          >
-            <DropdownOptions optiondata={this.state.ratingsArray} />
-          </Dropdown>
-
-          <div className="ui basic segment"></div>
-          <p />
-          <Dropdown
-            inputtype={genreInput}
-            labeltext="Genre"
-            value={this.state.genreName}
-            onChange={(event, id) => {
-              this.handleUserInput(event, genreInput, id);
-            }}
-          >
-            <GenreDropDownOptionList />
-          </Dropdown>
-          <p />
-        </div>
-
-        <div className="ui basic segment"></div>
-        <button className="ui fluid large teal submit button">Spin!</button>
-      </form>
-    );
-  }
-
   render() {
-    return <div>{this.renderSpinForm()}</div>;
+    return (
+      <div className="ui four column centered doubling stackable center aligned grid">
+        <div className="ui centered center aligned basic fluid inverted segment">
+          <form className="ui large inverted form error" onSubmit={event => this.handleSpin(event)}>
+            <FormHeader label="Find a movie to watch!" />
+            <div className="inverted field">
+              <FieldLabel label="Language" />
+              <SemanticDropdown
+                name="languageInput"
+                onChange={this.handleSemanticDropDownChange}
+                placeholder="Select Language"
+                search
+                selection
+                labeled={true}
+                options={this.state.languageArray}
+              />
+            </div>
+
+            <div className="row">
+              <div className="two fields">
+                <div className="field">
+                  <FieldLabel label="From" />
+                  <Select
+                    name={yearFromInput}
+                    onChange={this.handleSemanticDropDownChange}
+                    placeholder={`${this.state.yearFromInput}`}
+                    search
+                    selection
+                    labeled={true}
+                    options={this.state.yearArray}
+                  />
+                </div>
+                <div className="field">
+                  <FieldLabel label="To" />
+                  <Select
+                    name={yearToInput}
+                    onChange={this.handleSemanticDropDownChange}
+                    placeholder={`${this.state.yearToInput}`}
+                    search
+                    selection
+                    labeled={true}
+                    options={this.state.reversedYearArray}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="two fields">
+                <div className="field">
+                  <FieldLabel label="Min. Rating" />
+                  <Select
+                    name={minimumRatingInput}
+                    onChange={this.handleSemanticDropDownChange}
+                    placeholder="1 / 10"
+                    search
+                    selection
+                    labeled={true}
+                    options={this.state.ratingsArray}
+                  />
+                </div>
+                <div className="field">
+                  <FieldLabel label="Genre" />
+                  <Select
+                    name={genreInput}
+                    onChange={this.handleSemanticDropDownChange}
+                    placeholder="Select Genre"
+                    search
+                    selection
+                    labeled={true}
+                    options={this.state.genreArray}
+                  />
+                </div>
+              </div>
+            </div>
+            <button className="ui fluid large red submit button">Spin!</button>
+          </form>
+        </div>
+      </div>
+    );
   }
 }
 

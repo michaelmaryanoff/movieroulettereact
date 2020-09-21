@@ -21,7 +21,7 @@ class SpinResultCard extends Component {
       vote_average
     } = this.props.selectedMovie;
 
-    let modifiedOverview = `${overview.slice(0, 250)}...`;
+    let modifiedOverview = `${overview.slice(0, 450)}...`;
 
     let imageURL = `https://image.tmdb.org/t/p/original/${poster_path}`;
     const movieURL = `https://www.themoviedb.org/movie/${id}`;
@@ -31,28 +31,22 @@ class SpinResultCard extends Component {
     }
 
     return (
-      <div className="ui card centered" key={id}>
-        <div className="content">
-          <h3>
-            <em>Tonight you're watching...</em>
-          </h3>
-          <h3 className="header">{original_title}</h3>
-          <div className="meta">Released: {release_date}</div>
-          <p />
-          <div className="ui centered small image">
-            <a href={movieURL}>
+      <div className="ui stackable grid">
+        <div className="ui two column row">
+          <div className="six wide column">
+            <a className="ui fluid image" href={movieURL}>
               <img src={imageURL} alt={id} />
             </a>
           </div>
-
-          <div className="description">
-            <p />
-            <p />
-            {modifiedOverview}
-          </div>
-          <div className="extra content">Average Score: {vote_average}</div>
-          <p />
-          <div>
+          <div className="ten wide column">
+            <div className="ui centered fluid card" style={{ fontSize: 16 }} key={id}>
+              <div className="left aligned content">
+                <div className="header">{original_title}</div>
+                <div className="meta">Released: {release_date}</div>
+                <div className="description">{modifiedOverview}</div>
+                <div className="extra content">Average Score: {vote_average}</div>
+              </div>
+            </div>
             <WatchlistAddButton handleAdd={this.handleAddToWatchlist} />
           </div>
         </div>
@@ -66,8 +60,7 @@ class SpinResultCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    selectedMovie: state.spin.selectedMovie,
-    
+    selectedMovie: state.spin.selectedMovie
   };
 };
 

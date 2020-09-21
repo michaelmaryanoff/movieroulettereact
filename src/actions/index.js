@@ -16,6 +16,7 @@ import {
 } from './types';
 import tmdbClient, { apiKey, apiKeyParams } from '../api/tmdbClient';
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
+import { generateDateString } from '../utils';
 
 // Action creator that gets the auth token
 export const getNewToken = () => async dispatch => {
@@ -128,16 +129,10 @@ export const getGenreCodes = () => async dispatch => {
     params: { api_key: apiKey }
   });
 
-  const genreArrayForDropdown = data.genres;
-  const selectGenresObject = { id: 'selectGenres', name: 'Select Genres' };
-
-  if (!genreArrayForDropdown.includes(selectGenresObject)) {
-    genreArrayForDropdown.unshift(selectGenresObject);
-  }
   dispatch(fetchGenresCompleted());
 
   dispatch({ type: GET_GENRE_CODES, payload: data.genres });
-  dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: genreArrayForDropdown });
+  dispatch({ type: GENRE_DROPDOWN_DATA_SOURCE, payload: data.genres });
 };
 
 export const signOut = params => async (dispatch, getState) => {
@@ -161,45 +156,39 @@ export const clearAuthError = () => dispatch => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  const { minimumRating, yearFrom, yearTo } = selection;
+  const { minimumRating, yearFrom, yearTo, languageInput, genreInput } = selection;
 
-  let genreCode = selection.genreCode;
+  const { dateFrom, dateTo } = generateDateString(yearFrom, yearTo);
 
-  if (genreCode === 'selectGenres') {
-    genreCode = '';
-  }
+  const paramsObject = {
+    api_key: apiKey,
+    include_adult: false,
+    language: 'en-US',
+    sort_by: 'popularity.desc',
+    'vote_average.gte': minimumRating,
+    page: 1,
+    with_genres: genreInput,
+    'primary_release_date.gte': dateFrom,
+    'primary_release_date.lte': dateTo,
+    with_original_language: languageInput
+  };
 
-  let lowYear = yearFrom <= yearTo ? yearFrom : yearTo;
-  let highYear = yearFrom >= yearTo ? yearFrom : yearTo;
+  //! This object is only used for testing purposes, it purposely formats
+  //! An incorrect response. Used for testing situations where no
+  //! results are returned. It must replace individualMovieParams
+  //! and paramsObject in the two get requests below
   // eslint-disable-next-line
-  let dateFrom = `${lowYear}-01-01`;
-
-  // eslint-disable-next-line
-  let dateTo = `${highYear}-12-31`;
-
-  //! This is a purposely incorrect paramater that will give a blank response
-  //! For testing placeholder card only
-  // eslint-disable-next-line
-  const incorrectDateFrom = '2000';
-
-  // eslint-disable-next-line
-  const incorrectDateTo = '1955';
+  const testParamsObject = {
+    ...paramsObject,
+    'primary_release_date.gte': '2000',
+    'primary_release_date.lte': '1955'
+  };
 
   const pageResponse = await tmdbClient.get('/discover/movie', {
-    params: {
-      api_key: apiKey,
-      include_adult: false,
-      language: 'en-US',
-      sort_by: 'popularity.desc',
-      'vote_average.gte': minimumRating,
-      page: 1,
-      with_genres: genreCode,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
-    }
+    params: paramsObject
   });
 
-  let totalPages = pageResponse.data.total_pages;
+  const totalPages = pageResponse.data.total_pages;
 
   /** In order to increase the randomness of the movies selected, we want to select a random page
    * The issue that we run into is that if we get the first page of results (with the popularity sorted
@@ -207,24 +196,17 @@ export const submitSpin = selection => async dispatch => {
    * of wide availability. So we will be using results for the first 40% of pages instead.
    */
 
-  let pageRange = totalPages * 0.4;
+  const pageRange = totalPages * 0.4;
 
-  let randomPage = Math.floor(Math.random() * pageRange) + 1;
+  const randomPage = Math.floor(Math.random() * pageRange) + 1;
+
+  const individualMovieParams = { ...paramsObject, page: randomPage };
 
   const movieResponse = await tmdbClient.get('/discover/movie', {
-    params: {
-      api_key: apiKey,
-      include_adult: false,
-      language: 'en-US',
-      sort_by: 'popularity.desc',
-      'vote_average.gte': minimumRating,
-      page: randomPage,
-      with_genres: genreCode,
-      'primary_release_date.gte': dateFrom,
-      'primary_release_date.lte': dateTo
-    }
+    params: individualMovieParams
   });
-  let { length } = movieResponse.data.results;
+
+  const { length } = movieResponse.data.results;
 
   if (length === 0) {
     let selectedMovie = 'NO_RESULTS';
@@ -233,32 +215,32 @@ export const submitSpin = selection => async dispatch => {
     return;
   }
 
-  let randomIndex = Math.floor(Math.random() * length);
+  const randomIndex = Math.floor(Math.random() * length);
 
-  let selectedMovie = movieResponse.data.results[randomIndex];
+  const selectedMovie = movieResponse.data.results[randomIndex];
 
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };
 
 export const addToWatchlist = selection => async (dispatch, getState) => {
-  let { session, spin } = getState();
-  let { accountDetails } = session;
+  const { session, spin } = getState();
+  const { accountDetails } = session;
 
-  // Parameters for watchlist add
-  let accountId = accountDetails.id;
-  let sessionId = session.sessionId;
+  // Paramaters for adding to watchlist
+  const { id } = accountDetails;
+  const { sessionId } = session;
   const mediaType = 'movie';
-  let mediaId = spin.selectedMovie.id;
+  const mediaId = spin.selectedMovie.id;
   const watchlist = true;
-  let pathParams = { api_key: apiKey, session_id: sessionId };
+  const pathParams = { api_key: apiKey, session_id: sessionId };
 
-  let bodyParams = {
+  const bodyParams = {
     media_type: mediaType,
     media_id: mediaId,
     watchlist
   };
 
-  let url = `/account/${accountId}/watchlist`;
+  const url = `/account/${id}/watchlist`;
 
   const response = await tmdbClient.post(url, bodyParams, { params: pathParams });
   dispatch(getWatchList());

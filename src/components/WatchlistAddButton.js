@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import AuthedWatchListAddButton from './AuthedWatchlistAddButton';
 import GuestWatchlistAddButton from './GuestWatchlistAddButton';
@@ -6,9 +6,9 @@ import GuestWatchlistAddButton from './GuestWatchlistAddButton';
 class WatchlistAddButton extends React.Component {
   render() {
     return (
-      <div>
+      <Fragment>
         {this.props.isLoggedIn ? <AuthedWatchListAddButton /> : <GuestWatchlistAddButton />}
-      </div>
+      </Fragment>
     );
   }
 }

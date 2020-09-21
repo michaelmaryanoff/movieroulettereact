@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
 
@@ -7,24 +7,30 @@ import { getWatchList, updatingWatchListCompleted } from '../actions';
 import WatchlistCards from './WatchlistCards';
 import WatchlistLoginError from './WatchlistLoginError';
 import Footer from './Footer';
+import PageHeader from './PageHeader';
 
 class Watchlist extends React.Component {
   // This will display the watchlist of our logged in user.
   // If our user is not logged in, it will display an error message
   // (hence the conditional render below)
   componentDidMount() {
-    this.props.getWatchList();
+    if (this.props.isLoggedIn) {
+      this.props.getWatchList();
+    }
 
     this.props.updatingWatchListCompleted();
   }
   render() {
     return (
-      <div className="ui container">
-        <div className="ui basic segment">
-          {this.props.isLoggedIn ? <WatchlistCards /> : <WatchlistLoginError />}
+      <Fragment>
+        <div className="ui container">
+          <div className="ui basic segment">
+            <PageHeader label="Watchlist" />
+            {this.props.isLoggedIn ? <WatchlistCards /> : <WatchlistLoginError />}
+          </div>
         </div>
         <Footer />
-      </div>
+      </Fragment>
     );
   }
 }

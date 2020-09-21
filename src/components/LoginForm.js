@@ -10,7 +10,8 @@ import TextInputFieldError from './TextInputFieldError';
 import LoginHeader from './LoginHeader';
 import TextInputField from './TextInputField';
 import LoginError from './LoginError';
-import LoginFooter from './LoginFooter';
+import LoginFormFooter from './LoginFormFooter';
+import PageDescription from './PageDescription';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -69,50 +70,63 @@ class LoginForm extends React.Component {
   };
 
   renderLoginForm() {
-    return (
-      <div className="ui basic segment">
-        <LoginHeader />
-        <form className="ui large form error" onSubmit={this.handleSubmit}>
-          <div className="ui stacked segment">
-            <TextInputField
-              name="username"
-              type="text"
-              placeholder="Username"
-              icon="user"
-              handleUserInput={this.handleUserInput}
-              value={this.state.username}
-            >
-              <TextInputFieldError
-                message="Please enter a username"
-                field={this.state.username}
-                hasSubmitted={this.state.hasSubmitted}
-              />
-            </TextInputField>
+    const createDescriptionText = () => {
+      return <div>If you would like to save a movie to watch later, you can sign in with a TMDb account and save it to your watchlist. TMDb is a movie database that comprises the backbone of Movie Roulette. <a href="https://www.themoviedb.org">Learn more here!</a></div>
+    };
 
-            <TextInputField
-              name="password"
-              placeholder="Password"
-              type="password"
-              handleUserInput={this.handleUserInput}
-              value={this.state.password}
-              icon="lock"
-            >
-              <TextInputFieldError
-                message="Please enter a password"
-                field={this.state.password}
-                hasSubmitted={this.state.hasSubmitted}
-              />
-            </TextInputField>
-            <button className="ui fluid large teal submit button">Login</button>
-            <LoginError authError={this.props.authError} />
-            <LoginFooter />
-          </div>
-        </form>
+    return (
+      <div className="seven wide column">
+        <div className="ui basic inverted left aligned segment">
+          <LoginHeader />
+          <PageDescription content={createDescriptionText()} />
+          <form className="ui large form error" onSubmit={this.handleSubmit}>
+            <div className="ui inverted blue segment">
+              <div className="ui stacked inverted segment">
+                <TextInputField
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  icon="user"
+                  handleUserInput={this.handleUserInput}
+                  value={this.state.username}
+                >
+                  <TextInputFieldError
+                    message="Please enter a username"
+                    field={this.state.username}
+                    hasSubmitted={this.state.hasSubmitted}
+                  />
+                </TextInputField>
+
+                <TextInputField
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  handleUserInput={this.handleUserInput}
+                  value={this.state.password}
+                  icon="lock"
+                >
+                  <TextInputFieldError
+                    message="Please enter a password"
+                    field={this.state.password}
+                    hasSubmitted={this.state.hasSubmitted}
+                  />
+                </TextInputField>
+                <button className="ui fluid large red submit button">Login</button>
+                <LoginError authError={this.props.authError} />
+                <LoginFormFooter />
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
   render() {
-    return <div className="ui middle aligned center aligned grid">{this.renderLoginForm()}</div>;
+    return (
+      <div className="ui middle aligned five column center aligned stackable grid">
+        {this.renderLoginForm()}
+      </div>
+    );
   }
 }
 

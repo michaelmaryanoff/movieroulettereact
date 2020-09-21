@@ -5,19 +5,23 @@ import { connect } from 'react-redux';
 const LoadingCard = props => {
   if (props.isSpinning) {
     return (
-      <div className="segment">
-        <div className="ui card centered" key="1">
-          <div className="content">
-            <h3>
-              <em>Spinning!</em>
-            </h3>
-            <h3 className="header">Finding a movie...</h3>
-            <div className="ui centered small image">
-              <img src={reelLogoPlaceHolder} alt="Spinning" />
+      <div className="ui stackable grid">
+        <div className="ui two column row">
+          <div className="six wide column">
+            <div className="dimmer">
+              <div className="ui medium image">
+                <div className="ui massive active red loader"></div>
+                <img src={reelLogoPlaceHolder} alt="Loading" />
+              </div>
             </div>
           </div>
-          <div className="ui active dimmer">
-            <div className="ui loader"></div>
+          <div className="ten wide column">
+            <div className="ui centered fluid inverted card" style={{ fontSize: 16 }}>
+              <div className="left aligned content">
+                <div className="header">Spinning!</div>
+                <div className="description">Finding you a movie to watch!</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
