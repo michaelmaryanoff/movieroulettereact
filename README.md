@@ -11,13 +11,13 @@ Movie Roulette was built with [React](https://reactjs.org/) and is powered by [T
 ## You can select a movie
 
 <p align="center">
-  <img src="./demo_imgs/SpinDemo.gif" alt="Spin" width="700">
+  <img src="./demo_imgs/Spin.gif" alt="Spin" width="700">
 </p>
 
 ## And add to your watchlist with TMDb integration.
 
 <p align="center">
-  <img src="./demo_imgs/AddToWatchlistDemo.gif" alt="Spin" width="700">
+  <img src="./demo_imgs/AddToWatchlist.gif" alt="Spin" width="700">
 </p>
 
 ## What's under the hood
