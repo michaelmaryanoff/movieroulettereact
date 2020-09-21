@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Link } from 'react-router-dom';
 
 const GuestWatchlistAddButton = () => {
   return (
-    <button className="ui fluid red basic button">
+    <Fragment>
       <Link style={{ color: 'white' }} to="/login">
-        Log in to add to Watchlist
+        <button className="ui fluid red basic button" style={{ textEmphasisColor: 'white' }}>
+          <Link style={{ color: 'white' }} to="/login">
+            Log in to add to Watchlist
+          </Link>
+        </button>
       </Link>
-    </button>
+    </Fragment>
   );
 };
 
