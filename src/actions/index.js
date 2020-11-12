@@ -30,7 +30,10 @@ export const getNewToken = () => async dispatch => {
     });
 };
 
-export const authorizeToken = (username, password, passedState) => async (dispatch, getState) => {
+export const authorizeToken = (username, password, passedState) => async (
+  dispatch,
+  getState
+) => {
   let token = passedState.session.newToken;
 
   await tmdbClient
@@ -54,7 +57,11 @@ export const createSessionId = passedState => async dispatch => {
 
   // Creates a new session and gets us a session_id
   await tmdbClient
-    .post('/authentication/session/new', { request_token: authenticatedToken }, apiKeyParams)
+    .post(
+      '/authentication/session/new',
+      { request_token: authenticatedToken },
+      apiKeyParams
+    )
     .then(response => {
       const sessionId = response.data.session_id;
       dispatch({ type: VALIDATE_REQUEST_TOKEN, payload: sessionId });
@@ -117,7 +124,11 @@ export const getWatchList = () => async (dispatch, getState) => {
   const { sessionId } = state.session;
 
   const { data } = await tmdbClient.get(`/account/${id}/watchlist/movies`, {
-    params: { api_key: apiKey, session_id: sessionId, sort_by: 'created_at.desc' }
+    params: {
+      api_key: apiKey,
+      session_id: sessionId,
+      sort_by: 'created_at.desc'
+    }
   });
 
   dispatch({ type: GET_WATCHLIST, payload: data });
@@ -139,11 +150,14 @@ export const signOut = params => async (dispatch, getState) => {
   let state = getState();
   let { sessionId } = state.session;
 
-  const response = await tmdbClient.delete(`/authentication/session?api_key=${apiKey}`, {
-    data: {
-      session_id: sessionId
+  const response = await tmdbClient.delete(
+    `/authentication/session?api_key=${apiKey}`,
+    {
+      data: {
+        session_id: sessionId
+      }
     }
-  });
+  );
 
   dispatch({
     type: SIGN_OUT,
@@ -156,7 +170,13 @@ export const clearAuthError = () => dispatch => {
 };
 
 export const submitSpin = selection => async dispatch => {
-  const { minimumRating, yearFrom, yearTo, languageInput, genreInput } = selection;
+  const {
+    minimumRating,
+    yearFrom,
+    yearTo,
+    languageInput,
+    genreInput
+  } = selection;
 
   const { dateFrom, dateTo } = generateDateString(yearFrom, yearTo);
 
@@ -218,7 +238,6 @@ export const submitSpin = selection => async dispatch => {
   const randomIndex = Math.floor(Math.random() * length);
 
   const selectedMovie = movieResponse.data.results[randomIndex];
-
   dispatch({ type: SUBMIT_SPIN, payload: selectedMovie });
 };
 
@@ -242,7 +261,9 @@ export const addToWatchlist = selection => async (dispatch, getState) => {
 
   const url = `/account/${id}/watchlist`;
 
-  const response = await tmdbClient.post(url, bodyParams, { params: pathParams });
+  const response = await tmdbClient.post(url, bodyParams, {
+    params: pathParams
+  });
   dispatch(getWatchList());
 
   dispatch(updatingWatchListCompleted());

@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { generateYearArray, generateRatingArray, generateReversedYearArray } from '../utils';
+import {
+  generateYearArray,
+  generateRatingArray,
+  generateReversedYearArray
+} from '../utils';
 
 import { Dropdown as SemanticDropdown, Select } from 'semantic-ui-react';
 
@@ -14,7 +18,12 @@ import {
 
 import { languageList } from '../languageList/languageList.js';
 
-import { yearFromInput, yearToInput, minimumRatingInput, genreInput } from './inputTypes';
+import {
+  yearFromInput,
+  yearToInput,
+  minimumRatingInput,
+  genreInput
+} from './inputTypes';
 
 import FormHeader from './FormHeader';
 import FieldLabel from './FieldLabel';
@@ -33,7 +42,9 @@ class SpinForm extends React.Component {
       yearArray,
       reversedYearArray,
       ratingsArray,
-      genreArray: [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }],
+      genreArray: [
+        { key: 'Loading...', value: 'Loading...', text: 'Loading...' }
+      ],
 
       // A default "yearFrom" set to 1955, since people are probably not going
       // to looking for a movie much earlier than that.
@@ -85,7 +96,9 @@ class SpinForm extends React.Component {
       });
     } else {
       this.setState({
-        genreArray: [{ key: 'Loading...', value: 'Loading...', text: 'Loading...' }]
+        genreArray: [
+          { key: 'Loading...', value: 'Loading...', text: 'Loading...' }
+        ]
       });
     }
   };
@@ -125,7 +138,10 @@ class SpinForm extends React.Component {
     return (
       <div className="ui four column centered doubling stackable center aligned grid">
         <div className="ui centered center aligned basic fluid inverted segment">
-          <form className="ui large inverted form error" onSubmit={event => this.handleSpin(event)}>
+          <form
+            className="ui large inverted form error"
+            onSubmit={event => this.handleSpin(event)}
+          >
             <FormHeader label="Find a movie to watch!" />
             <div className="inverted field">
               <FieldLabel label="Language" />

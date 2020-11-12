@@ -34,10 +34,12 @@ class SpinPage extends React.Component {
   pageDescriptionText = () => {
     return (
       <div>
-        Looking for something interesting to watch? Just enter your criteria (or don’t, it’s
-        completely optional) and hit “spin” to find a random movie! You can also optionally
-        <Link to="/login"> log in</Link> to your <a href="https://www.themoviedb.org/">TMDb</a>{' '}
-        account and save a movie to your watchlist.
+        Looking for something interesting to watch? Just enter your criteria (or
+        don’t, it’s completely optional) and hit “spin” to find a random movie!
+        You can also optionally
+        <Link to="/login"> log in</Link> to your{' '}
+        <a href="https://www.themoviedb.org/">TMDb</a> account and save a movie
+        to your watchlist.
       </div>
     );
   };
